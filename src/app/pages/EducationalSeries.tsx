@@ -3,90 +3,87 @@ import { Sparkles, Video, BookOpen } from 'lucide-react';
 
 export default function EducationalSeries() {
   useEffect(() => {
-    // Load TikTok embed script
-    const script = document.createElement('script');
-    script.src = 'https://www.tiktok.com/embed.js';
+  if (!window.tiktokEmbedLoaded) {
+    const script = document.createElement("script");
+    script.src = "https://www.tiktok.com/embed.js";
     script.async = true;
     document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+    window.tiktokEmbedLoaded = true;
+  } else {
+    if (window.tiktokEmbedLoad) {
+      window.tiktokEmbedLoad();
+    }
+  }
+}, []);
 
   const educationalContent = [
     {
       id: 1,
+      videoId: '7448941995302620424',
       title: 'Kain Batik Lasem',
-      category: 'Tekstil Tradisional',
       description: 'Kain Batik Lasem merupakan salah satu warisan budaya Indonesia yang khas, dengan motif yang mencerminkan perpaduan antara pengaruh Tiongkok dan Jawa. Keindahan warna dan detail pada setiap helai kainnya mengandung makna mendalam, menggambarkan sejarah dan kehidupan masyarakat Lasem. Batik Lasem bukan hanya sekadar seni tekstil, tetapi juga simbol kekayaan budaya yang terjaga hingga kini.',
-    },
-    {
+ },
+{
       id: 2,
+      videoId: '7443747332908223762',
       title: 'Kain Batik 3 Negeri',
-      category: 'Tekstil Tradisional',
       description: 'Kain Batik 3 Negeri merupakan perpaduan indah antara budaya Lasem, Solo, dan Pekalongan yang tercermin dalam motif dan warnanya. Setiap helai kain batik ini menceritakan kisah sejarah panjang dan interaksi antar budaya yang membentuk identitas unik Indonesia. Keindahan serta kekayaan makna pada Batik 3 Negeri menjadikannya salah satu warisan budaya yang patut dihargai.',
-    },
-    {
+ },
+{
       id: 3,
+      videoId: '7433366411155672340',
       title: 'Alat Tradisional Kapak Genggam',
-      category: 'Alat Tradisional',
-      description: 'Kapak genggam adalah alat tradisional yang digunakan oleh suku-suku di Indonesia, terutama dalam kegiatan sehari-hari seperti bertani atau berburu. Dengan desain sederhana namun fungsional, kapak genggam biasanya terbuat dari batu atau logam yang dipasang pada pegangan kayu. Alat ini tidak hanya berfungsi sebagai alat kerja, tetapi juga sering menjadi simbol kekuatan dan keberanian dalam berbagai tradisi.',
-    },
-    {
+      description: 'Kapak genggam adalah alat tradisional yang digunakan oleh suku-suku di Indonesia, terutama dalam kegiatan sehari-hari seperti bertani atau berburu. Dengan desain sederhana namun fungsional, kapak genggam biasanya terbuat dari batu atau logam yang dipasang pada pegangan kayu. Alat ini tidak hanya berfungsi sebagai alat kerja, tetapi juga sering menjadi simbol kekuatan dan keberanian dalam berbagai tradisi. Kapak genggam mencerminkan kearifan lokal yang diwariskan turun-temurun sebagai bagian dari kehidupan masyarakat adat Indonesia.',
+ },
+{
       id: 4,
+      videoId: '7428542725932223751',
       title: 'Celengan Majapahit',
-      category: 'Artefak Sejarah',
-      description: 'Celengan Majapahit adalah barang peninggalan sejarah yang mencerminkan kebudayaan dan keahlian kerajinan pada masa Kerajaan Majapahit. Celengan ini umumnya terbuat dari bahan tanah liat dan memiliki bentuk yang unik, sering kali menggambarkan simbol-simbol kerajaan atau motif-motif tradisional yang mencerminkan status sosial dan kehidupan masyarakat pada masa itu.',
-    },
-    {
+      description: 'Celengan Majapahit adalah barang peninggalan sejarah yang mencerminkan kebudayaan dan keahlian kerajinan pada masa Kerajaan Majapahit. Celengan ini umumnya terbuat dari bahan tanah liat dan memiliki bentuk yang unik, sering kali menggambarkan simbol-simbol kerajaan atau motif-motif tradisional yang mencerminkan status sosial dan kehidupan masyarakat pada masa itu. Selain berfungsi sebagai tempat penyimpanan uang, celengan Majapahit juga memiliki nilai historis yang tinggi, menggambarkan keindahan seni keramik dan kehidupan ekonomi di era kejayaan Majapahit.',
+ },
+{
       id: 5,
-      title: 'Alat Musik Tradisional Moko',
-      category: 'Alat Musik Tradisional',
-      description: 'Moko adalah drum tradisional yang terbuat dari logam perunggu, yang digunakan oleh suku-suku di wilayah timur Indonesia, seperti di Flores dan Alor. Drum ini memiliki bentuk menyerupai bejana besar dengan hiasan khas, dan digunakan dalam berbagai upacara adat, seperti pernikahan, pemakaman, dan perayaan keagamaan. Moko tidak hanya berfungsi sebagai alat musik, tetapi juga memiliki nilai simbolis yang tinggi.',
-    },
-    {
-      id: 6,
+      videoId: '7376613909362494728',
       title: 'Mengenal Hewan Mitologi China: Naga',
-      category: 'Mitologi & Budaya',
-      description: 'Naga dalam mitologi China adalah simbol kekuatan, keberuntungan, dan kebijaksanaan. Berbeda dengan naga dalam budaya Barat, naga China dianggap sebagai pelindung yang membawa berkah dan mengendalikan elemen air, seperti hujan. Dengan tubuh panjang dan kepala yang besar, naga ini juga melambangkan keharmonisan antara langit, bumi, dan manusia.',
-    },
-    {
-      id: 7,
+      description: 'Naga dalam mitologi China adalah simbol kekuatan, keberuntungan, dan kebijaksanaan. Berbeda dengan naga dalam budaya Barat, naga China dianggap sebagai pelindung yang membawa berkah dan mengendalikan elemen air, seperti hujan. Dengan tubuh panjang dan kepala yang besar, naga ini juga melambangkan keharmonisan antara langit, bumi, dan manusia, serta sering dikaitkan dengan kekaisaran sebagai simbol kekuasaan dan kebijaksanaan.',
+ },
+{
+      id: 6,
+      videoId: '7370279059122638100',
       title: 'Perisai Talawang, Perisai Khas Suku Dayak',
-      category: 'Senjata Tradisional',
-      description: 'Perisai Talawang adalah salah satu benda pusaka yang mencerminkan kekuatan dan keberanian dalam budaya Indonesia. Dengan desain yang khas dan fungsinya sebagai pelindung dalam pertempuran, perisai ini tidak hanya digunakan sebagai alat untuk bertahan, tetapi juga melambangkan kehormatan dan semangat juang.',
-    },
-    {
-      id: 8,
+      description: 'Perisai Talawang adalah salah satu benda pusaka yang mencerminkan kekuatan dan keberanian dalam budaya Indonesia. Dengan desain yang khas dan fungsinya sebagai pelindung dalam pertempuran, perisai ini tidak hanya digunakan sebagai alat untuk bertahan, tetapi juga melambangkan kehormatan dan semangat juang. Sebagai warisan budaya, Perisai Talawang menjadi simbol identitas dan kebanggaan masyarakat yang menjunjung tinggi nilai-nilai perjuangan dan keberanian dalam menghadapi tantangan.',
+ },
+{
+      id: 7,
+      videoId: '7357926838565358864',
       title: 'Topeng Monyet Jawa Barat',
-      category: 'Seni Pertunjukan',
-      description: 'Topeng Monyet adalah salah satu jenis topeng tradisional dari Jawa Barat yang menggambarkan sosok monyet dengan ekspresi yang lucu dan energik. Topeng ini biasanya digunakan dalam pertunjukan seni, seperti tari atau teater rakyat, di mana penari atau pemain berperan sebagai monyet yang memiliki sifat cerdik dan humoris.',
-    },
-    {
-      id: 9,
+      description: 'Topeng Monyet adalah salah satu jenis topeng tradisional dari Jawa Barat yang menggambarkan sosok monyet dengan ekspresi yang lucu dan energik. Topeng ini biasanya digunakan dalam pertunjukan seni, seperti tari atau teater rakyat, di mana penari atau pemain berperan sebagai monyet yang memiliki sifat cerdik dan humoris. Selain sebagai hiburan, topeng monyet juga memiliki nilai simbolis, menggambarkan kelincahan, kecerdikan, dan sifat-sifat tertentu yang dimiliki oleh monyet dalam kebudayaan Jawa Barat.',
+ },
+{
+      id: 8,
+      videoId: '7352105673892646162',
       title: 'Topeng Sidakarya Bali',
-      category: 'Seni Pertunjukan',
-      description: 'Topeng Sidakarya adalah salah satu jenis topeng tradisional dari Bali yang digunakan dalam pertunjukan seni, terutama dalam tari topeng. Topeng ini biasanya menggambarkan tokoh yang memiliki karakter bijaksana dan penuh kehormatan, sering kali berperan sebagai seorang pemimpin atau tokoh spiritual.',
-    },
-    {
-      id: 10,
+      description: 'Topeng Sidakarya adalah salah satu jenis topeng tradisional dari Bali yang digunakan dalam pertunjukan seni, terutama dalam tari topeng. Topeng ini biasanya menggambarkan tokoh yang memiliki karakter bijaksana dan penuh kehormatan, sering kali berperan sebagai seorang pemimpin atau tokoh spiritual. Ciri khas dari topeng ini adalah ekspresi wajah yang tenang dan serius, mencerminkan kebijaksanaan, yang mencerminkan nilai-nilai budaya Bali yang mengedepankan keseimbangan dan keharmonisan dalam kehidupan.',
+ },
+{
+      id: 9,
+      videoId: '7363234299383926033',
       title: 'Kisah Heroik Bujang Ganong',
-      category: 'Seni Pertunjukan',
-      description: 'Bujang Ganong adalah salah satu bentuk kesenian tradisional dari Ponorogo, Jawa Timur, yang menggambarkan tokoh pahlawan dengan gerakan tari yang dinamis dan penuh semangat. Dalam pertunjukan, Bujang Ganong biasanya ditampilkan dengan kostum khas dan riasan wajah yang mencolok, menggambarkan keberanian dan kegagahan.',
-    },
-    {
-      id: 11,
+      description: 'Bujang Ganong adalah salah satu bentuk kesenian tradisional dari Ponorogo, Jawa Timur, yang menggambarkan tokoh pahlawan dengan gerakan tari yang dinamis dan penuh semangat. Dalam pertunjukan, Bujang Ganong biasanya ditampilkan dengan kostum khas dan riasan wajah yang mencolok, menggambarkan keberanian dan kegagahan. Tokoh ini sering kali berperan sebagai simbol perjuangan melawan keburukan dan ketidakadilan, mengajarkan nilai-nilai keberanian dan pengorbanan dalam budaya Ponorogo.',
+ },
+{
+      id: 10,
+      videoId: '7348715959835708680',
       title: 'Keberagaman Tradisi Menyambut Ramadan di Indonesia',
-      category: 'Tradisi & Budaya',
       description: 'Setiap daerah di Indonesia punya cara unik menyambut Ramadan. Dari berbagi makanan di Jakarta, makan bersama di Jawa Barat, hingga ritual penyucian diri di Yogyakarta. Di Aceh, masyarakat memasak dan makan daging bersama, sementara di Sulawesi Barat menyalakan pelita tradisional.',
-    },
-    {
-      id: 12,
+ },
+{
+      id: 11,
+      videoId: '7484165354000764165',
       title: 'Asal-usul Kata "Puasa" di Nusantara',
-      category: 'Sejarah & Etimologi',
       description: 'Istilah puasa berasal dari upavasa, tradisi Hindu-Buddha yang berarti menahan diri dan mendekatkan diri pada Sang Pencipta. Saat Islam masuk, istilah ini tetap digunakan karena sudah melekat di masyarakat, alih-alih mengganti dengan shaum atau siyam dari bahasa Arab.',
-    },
+ },
   ];
 
   return (
@@ -166,21 +163,16 @@ export default function EducationalSeries() {
             >
               <div className="grid md:grid-cols-2 gap-8 p-8">
                 {/* TikTok Embed Placeholder */}
-                <div className={`${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
-                  <div className="bg-[#2B2B2B] rounded flex items-center justify-center min-h-[500px]">
-                    <div className="text-center text-white p-8">
-                      <svg
-                        className="w-16 h-16 mx-auto mb-4 opacity-50"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-                      </svg>
-                      <p className="text-sm opacity-75">TikTok Video Placeholder</p>
-                      <p className="text-xs opacity-50 mt-2">@indonesianheritage</p>
-                      <p className="text-xs opacity-50 mt-1">Educational Series #{content.id}</p>
-                    </div>
-                  </div>
+                <div className="grid md:grid-cols-2 gap-8 p-8">
+                <div className="rounded overflow-hidden flex justify-center">
+                  <blockquote
+                    className="tiktok-embed"
+                    cite={`https://www.tiktok.com/@indonesianheritage/video/${testimonial.videoId}`}
+                    data-video-id={testimonial.videoId}
+                    style={{ maxWidth: "605px", minWidth: "325px" }}
+                  >
+                    <section></section>
+                  </blockquote>
                 </div>
 
                 {/* Content */}
