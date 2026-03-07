@@ -2,66 +2,79 @@ import { useEffect } from 'react';
 import { Users, Heart, Camera } from 'lucide-react';
 
 export default function EducationGeneralFamily() {
-  useEffect(() => {
-    // Load TikTok embed script
-    const script = document.createElement('script');
-    script.src = 'https://www.tiktok.com/embed.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
+    useEffect(() => {
+    if (!window.tiktokEmbedLoaded) {
+      const script = document.createElement("script");
+      script.src = "https://www.tiktok.com/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+  
+      window.tiktokEmbedLoaded = true;
+    } else {
+      if (window.tiktokEmbedLoad) {
+        window.tiktokEmbedLoad();
+      }
+    }
   }, []);
 
   const testimonials = [
     {
       id: 1,
+      videoId: '7416667601687809298',
       title: 'Inilah Kesan Mereka Tentang Pesona Indonesian Heritage Museum',
       description: 'Kata mereka, museum ini sangat menarik karena terdapat benda-benda peninggalan asli yang kaya makna sejarah. Selain itu, museum ini tidak hanya menjadi tempat rekreasi yang menyenangkan, tetapi juga menjadi sarana edukasi yang bermanfaat bagi pengunjung dari berbagai usia.',
     },
     {
       id: 2,
+      videoId: '7446342608315583752',
       title: 'Begini Pendapat Pengunjung dari Lampung Tentang Pengalaman di Indonesian Heritage Museum',
       description: 'Menurut pengunjung, Indonesian Heritage Museum menawarkan banyak pembelajaran budaya yang berharga. Museum ini menghadirkan wawasan mendalam tentang sejarah dan tradisi Indonesia melalui koleksi-koleksi autentiknya.',
     },
     {
       id: 3,
+      videoId: '7421491440083062024',
       title: 'Ini yang Dirasakan Pengunjung saat Berkunjung ke Indonesian Heritage Museum',
       description: 'Pengunjung dalam video ini menyebut bahwa Indonesian Heritage Museum adalah tempat yang bagus untuk memahami sejarah dan budaya Indonesia. Mereka merasa museum ini memberikan pengalaman edukasi yang menarik sekaligus menyenangkan.',
     },
     {
       id: 4,
+      videoId: '7416667601687809298',
       title: 'Pengalaman Berkesan Adik Kecil saat Berkunjung di Indonesian Heritage Museum',
       description: 'Selama mengunjungi museum, adik kecil asal Surabaya ini mendapatkan banyak pengetahuan tentang suku adat dan budaya dari berbagai daerah di Indonesia.',
     },
     {
       id: 5,
+      videoId: '7384394681901141266',
       title: 'Cerita Pengunjung dari Bali tentang Keseruan Mengunjungi Indonesian Heritage Museum',
       description: 'Melalui koleksi yang dipamerkan, pengunjung ini menyebut dapat mengenali ciri khas dari berbagai daerah di Indonesia. Selain itu, ukiran pada benda-benda yang dipamerkan memiliki keunikan tersendiri yang mampu menarik perhatian.',
     },
     {
       id: 6,
+      videoId: '7455641795221818642',
       title: 'Pengalaman Menjelajahi Warisan Indonesia dengan Augmented Reality di Indonesian Heritage Museum',
       description: 'Di Indonesian Heritage Museum, pengunjung dapat mempelajari sejarah Indonesia, mulai dari peradaban kuno hingga zaman modern, serta wawasan mengenai akulturasi budaya antara Indonesia dan budaya luar. Augmented Reality membantu memvisualisasikan secara nyata peradaban bangsa Indonesia.',
     },
     {
       id: 7,
+      videoId: '7462238543105035536',
       title: 'Pendapat Tentang Penggunaan Augmented Reality di Indonesian Heritage Museum',
       description: 'Penggunaan augmented reality di Indonesian Heritage Museum sangat bagus untuk menciptakan pengalaman interaktif yang menghidupkan sejarah dengan visual yang nyata. Selain itu, pengunjung juga dapat melihat benda-benda purba asli yang memperkaya pengetahuan tentang masa lalu Indonesia.',
     },
     {
       id: 8,
+      videoId: '7388458706545020161',
       title: 'Cerita Menarik saat Mengunjungi Indonesian Heritage Museum',
       description: 'Di Indonesian Heritage Museum, pengunjung dapat mengetahui sejarah, adat istiadat, dan berbagai peninggalan budaya Indonesia yang kaya dan beragam.',
     },
     {
       id: 9,
+      videoId: '7357924367243726097',
       title: 'Kesan Seru saat Berkunjung ke Indonesian Heritage Museum',
       description: 'Kunjungan ke Indonesian Heritage Museum sangat memberikan insight yang mendalam tentang sejarah dan budaya nusantara.',
     },
     {
       id: 10,
+      videoId: '7454081256171572486',
       title: 'Cerita Kesan dan Pesan Setelah Mengunjungi Indonesian Heritage Museum',
       description: 'Museum ini memberikan wawasan sejarah yang mendalam dengan informasi lengkap di dalamnya, mencakup berbagai aspek budaya dan suku di Indonesia.',
     },
@@ -194,19 +207,15 @@ export default function EducationGeneralFamily() {
             >
               <div className="grid md:grid-cols-2 gap-8 p-8">
                 {/* TikTok Embed Placeholder */}
-                <div className="bg-[#2B2B2B] rounded flex items-center justify-center min-h-[400px]">
-                  <div className="text-center text-white p-8">
-                    <svg
-                      className="w-16 h-16 mx-auto mb-4 opacity-50"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-                    </svg>
-                    <p className="text-sm opacity-75">TikTok Video Placeholder</p>
-                    <p className="text-xs opacity-50 mt-2">@indonesianheritage</p>
-                    <p className="text-xs opacity-50 mt-1">Video #{testimonial.id}</p>
-                  </div>
+                <div className="rounded overflow-hidden flex justify-center">
+                  <blockquote
+                    className="tiktok-embed"
+                    cite={`https://www.tiktok.com/@indonesianheritage/video/${testimonial.videoId}`}
+                    data-video-id={testimonial.videoId}
+                    style={{ maxWidth: "605px", minWidth: "325px" }}
+                  >
+                    <section></section>
+                  </blockquote>
                 </div>
 
                 {/* Content */}
