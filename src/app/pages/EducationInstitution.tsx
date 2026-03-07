@@ -3,73 +3,87 @@ import { GraduationCap, BookOpen, Users } from 'lucide-react';
 
 export default function EducationInstitution() {
   useEffect(() => {
-    // Load TikTok embed script
-    const script = document.createElement('script');
-    script.src = 'https://www.tiktok.com/embed.js';
+  if (!window.tiktokEmbedLoaded) {
+    const script = document.createElement("script");
+    script.src = "https://www.tiktok.com/embed.js";
     script.async = true;
     document.body.appendChild(script);
 
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+    window.tiktokEmbedLoaded = true;
+  } else {
+    if (window.tiktokEmbedLoad) {
+      window.tiktokEmbedLoad();
+    }
+  }
+}, []);
 
   const testimonials = [
     {
       id: 1,
-      title: 'Siswa SMK Antusias Belajar Sejarah di Indonesian Heritage Museum',
-      description: 'Para siswa SMK menunjukkan antusiasme tinggi dalam mempelajari sejarah dan budaya Indonesia melalui koleksi museum yang lengkap dan metode pembelajaran yang interaktif.',
-    },
+      videoId: '7462238543105035536',
+      title: 'Inilah Kesan Kepala Sekolah setelah Mengunjungi Indonesian Heritage Museum',
+      description: 'Kepala Sekolah dari salah satu SMP Negeri Wonogiri mengatakan bahwa Indonesian Heritage Museum merupakan tempat yang sangat bermanfaat untuk menambah wawasan tentang budaya dan sejarah bangsa. Selain itu, museum ini juga dapat menumbuhkan rasa cinta tanah air pada generasi muda.',
+     },
     {
-      id: 2,
-      title: 'Kunjungan Edukatif SMP Membuka Wawasan Budaya Nusantara',
-      description: 'Siswa-siswi SMP mendapatkan pengalaman edukatif yang berharga tentang keragaman budaya Indonesia dan nilai-nilai sejarah yang terkandung dalam setiap koleksi.',
-    },
+          id: 2,
+          videoId: '7456718063233158418',
+          title: 'Pengalaman Berkesan Guru MTs Asal Malang di Indonesian Heritage Museum',
+          description: 'Indonesian Heritage Museum, dengan koleksi yang sangat lengkap, dinilai oleh guru sebagai tempat belajar yang ideal untuk memperluas pengetahuan anak-anak.',
+     },
     {
-      id: 3,
-      title: 'Program Study Tour SD Memberikan Pembelajaran Bermakna',
-      description: 'Anak-anak sekolah dasar belajar dengan cara yang menyenangkan tentang warisan budaya Indonesia, membuat pembelajaran sejarah menjadi lebih menarik dan mudah dipahami.',
-    },
+          id: 3,
+          videoId: '7455641795221818642',
+          title: 'Kesan dan Pesan Mahasiswi UGM Setelah Mengunjungi Indonesian Heritage Museum',
+          description: 'Mahasiswi UGM ini menyampaikan kesannya setelah mengunjungi Indonesian Heritage Museum, di mana ia merasa terkesan dengan banyaknya pengetahuan yang didapatkan. Ia juga berpesan agar lebih banyak masyarakat memanfaatkan museum ini untuk menambah wawasan tentang sejarah dan budaya Indonesia.',
+     },
     {
-      id: 4,
-      title: 'Mahasiswa Universitas Meneliti Koleksi Bersejarah',
-      description: 'Mahasiswa dari berbagai universitas memanfaatkan museum sebagai sumber penelitian untuk memahami lebih dalam tentang peradaban dan kebudayaan Indonesia.',
-    },
+          id: 4,
+          videoId: '7454081256171572486',
+          title: 'Cerita Guru SMA di Sumenep: Pengalaman Berkesan di Museum Warisan Indonesia',
+          description: 'Dalam video ini, Guru asal SMA di Sumenep menyebutkan bahwa Indonesian Heritage Museum merupakan tempat yang luar biasa karena mampu menyajikan kekayaan budaya Indonesia dengan sangat baik dan menarik.',
+     },
     {
-      id: 5,
-      title: 'Guru-Guru Apresiasi Fasilitas Edukatif Museum',
-      description: 'Para pendidik memberikan apresiasi tinggi terhadap fasilitas dan program edukatif museum yang mendukung pembelajaran sejarah dan budaya di luar kelas.',
-    },
+          id: 5,
+          videoId: '7446342608315583752',
+          title: 'Petualangan Seru Adik Kelas 6 SD di Indonesian Heritage Museum',
+          description: 'Menurutnya bahwa sejarah yang diceritakan di Indonesian Heritage Museum sangat menarik, karena dijelaskan dengan cara yang penuh detail dan menyenangkan.',
+     },
     {
-      id: 6,
-      title: 'Pesantren Belajar Sejarah Islam Nusantara',
-      description: 'Santri dan pengajar pesantren mempelajari sejarah penyebaran Islam di Nusantara melalui artefak dan koleksi yang tersimpan di museum.',
-    },
+          id: 6,
+          videoId: '7438555262203546887',
+          title: 'Pengalaman Edukatif SD asal Pasuruan di Indonesian Heritage Museum',
+          description: 'Indonesian Heritage Museum memiliki koleksi budaya yang sangat beragam, mulai dari Papua, Kalimantan, hingga berbagai daerah lainnya di Indonesia. Museum ini juga menyimpan artefak-artefak bersejarah yang menggambarkan kekayaan dan keberagaman budaya nusantara.',
+     },
     {
-      id: 7,
-      title: 'Sekolah Internasional Kenalkan Budaya Indonesia',
-      description: 'Siswa sekolah internasional mendapatkan kesempatan mengenal lebih dekat budaya Indonesia melalui tur edukatif yang dirancang khusus.',
-    },
+          id: 7,
+          videoId: '7416667601687809298',
+          title: 'Cerita Seru SMP dari Wonogiri saat Mengunjungi Indonesian Heritage Museum',
+          description: 'Indonesian Heritage Museum memiliki berbagai koleksi menarik tentang sejarah dan budaya Indonesia yang dapat memperluas wawasan, terutama bagi para pelajar. Selain itu, pelayanan yang ramah dan sangat baik membuat kunjungan menjadi nyaman selama berada di museum.',
+     },
     {
-      id: 8,
-      title: 'TK dan PAUD Belajar Sambil Bermain',
-      description: 'Anak-anak usia dini diperkenalkan dengan budaya Indonesia melalui metode pembelajaran yang menyenangkan dan sesuai dengan usia mereka.',
-    },
+          id: 8,
+          videoId: '7412573976636968208',
+          title: 'Kesan Kunjungan dari SMP asal Mojokertoo di Indonesian Heritage Museum',
+          description: 'Meskipun tidak mengunjungi daerahnya secara langsung, para siswa mendapatkan banyak pengalaman edukasi yang berharga tentang sejarah, budaya, dan adat istiadat dari berbagai daerah di Indonesia. Koleksi yang ada di Indonesian Heritage Museum memberikan wawasan mendalam yang memperkaya pengetahuan mereka tentang keberagaman nusantara.',
+     },
     {
-      id: 9,
-      title: 'Kunjungan Sekolah Luar Negeri Kagum dengan Koleksi',
-      description: 'Siswa dari luar negeri terkesan dengan kekayaan budaya Indonesia yang dipamerkan dan mendapatkan pemahaman baru tentang peradaban Nusantara.',
-    },
+          id: 9,
+          videoId: '7389969800685948180',
+          title: 'Pengalaman Belajar Sejarah dari MTs asal Tuban di Indonesian Heritage Museum',
+          description: 'Pengalaman kunjungan MTs Tuban di Indonesian Heritage Museum sangat bagus, di mana mereka dapat melihat berbagai artefak peninggalan sejarah yang mengedukasi. Koleksi artefak tersebut memberikan wawasan mendalam tentang sejarah dan budaya Indonesia, yang sangat bermanfaat untuk pembelajaran.',
+     },
     {
-      id: 10,
-      title: 'Program Magang Mahasiswa di Museum',
-      description: 'Mahasiswa mendapatkan pengalaman praktis dalam bidang kurasi, preservasi, dan edukasi museum melalui program magang yang terstruktur.',
-    },
+          id: 10,
+          videoId: '7388458706545020161',
+          title: 'Kesan Edukatif Study Tour di Indonesian Heritage Museum',
+          description: 'Kunjungan ke Indonesian Heritage Museum sangat mengesankan, karena anak-anak dapat memperoleh wawasan yang mendalam tentang sejarah, tradisi adat, dan budaya nusantara. Museum ini memberikan pengalaman belajar yang menyenangkan dan memperkaya pengetahuan tentang kekayaan budaya Indonesia.',
+     },
     {
-      id: 11,
-      title: 'Seminar Pendidikan Sejarah untuk Guru',
-      description: 'Museum menyelenggarakan seminar khusus untuk guru-guru sejarah, meningkatkan kapasitas pengajaran dengan pendekatan berbasis koleksi museum.',
-    },
+          id: 11,
+          videoId: '7384394681901141266',
+          title: 'Pengalaman Seru dan Edukatif bagi Siswa di Indonesian Heritage Museum',
+          description: 'Museum ini memungkinkan siswa untuk melihat langsung berbagai budaya dan sejarah Indonesia. Koleksi barang peninggalan yang beragam menambah wawasan sekaligus memberikan pengalaman belajar yang menyenangkan.',
+     },
     {
       id: 12,
       title: 'Workshop Pembelajaran Interaktif untuk Siswa',
@@ -194,19 +208,16 @@ export default function EducationInstitution() {
             >
               <div className="grid md:grid-cols-2 gap-8 p-8">
                 {/* TikTok Embed Placeholder */}
-                <div className="bg-[#2B2B2B] rounded flex items-center justify-center min-h-[400px]">
-                  <div className="text-center text-white p-8">
-                    <svg
-                      className="w-16 h-16 mx-auto mb-4 opacity-50"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-                    </svg>
-                    <p className="text-sm opacity-75">TikTok Video Placeholder</p>
-                    <p className="text-xs opacity-50 mt-2">@indonesianheritage</p>
-                    <p className="text-xs opacity-50 mt-1">Video #{testimonial.id}</p>
-                  </div>
+                <div className="grid md:grid-cols-2 gap-8 p-8">
+                <div className="rounded overflow-hidden flex justify-center">
+                  <blockquote
+                    className="tiktok-embed"
+                    cite={`https://www.tiktok.com/@indonesianheritage/video/${testimonial.videoId}`}
+                    data-video-id={testimonial.videoId}
+                    style={{ maxWidth: "605px", minWidth: "325px" }}
+                  >
+                    <section></section>
+                  </blockquote>
                 </div>
 
                 {/* Content */}
