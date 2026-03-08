@@ -1,5 +1,12 @@
 import { useState, useEffect } from 'react';
 import { ChevronUp } from 'lucide-react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/select';
 
 const languages = [
   { code: 'ID', name: 'Indonesian', flag: '🇮🇩' },
@@ -100,7 +107,7 @@ const museumData: Zone[] = [
       { id: '18', name: 'Tombak', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/16_y01t1j.webp', description: 'Tombak keraton dahulu digunakan sebagai senjata prajurit kerajaan dan kini menjadi simbol status kerabat keraton.' },
       { id: '19', name: 'Topeng Drama', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/17_yyq57m.webp', description: 'Topeng drama kontemporer yang menggambarkan kritik sosial terhadap elite pemerintah melalui pertunjukan teater.' },
       { id: '20', name: 'Topeng Harimau', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/18_ewehkf.webp', description: 'Topeng yang menggambarkan Singo Barong dan harimau dalam kisah Raja Klono Sewandono.' },
-     { id: '21', name: 'Tempat Sirih', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/19_d56o9w.webp', description: 'Wadah sirih masyarakat Jawa kuno yang melambangkan keindahan dan keagungan serta digunakan untuk kesehatan gigi.' },
+      { id: '21', name: 'Tempat Sirih', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/19_d56o9w.webp', description: 'Wadah sirih masyarakat Jawa kuno yang melambangkan keindahan dan keagungan serta digunakan untuk kesehatan gigi.' },
     ],
   },
   {
@@ -152,7 +159,7 @@ const museumData: Zone[] = [
       { id: '41', name: 'Haikara Jangga', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/38_lc4tiu.webp', description: 'Sisir kepala bangsawan NTT yang melambangkan keanggunan dan status tinggi.' },
       { id: '42', name: 'Cincin Kawin', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/39_xckkol.webp', description: 'Cincin dengan motif hewan yang melambangkan doa dan harapan baik dalam pernikahan.' },
       { id: '43', name: 'Pemarut Kelapa', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/40_yiv2pz.webp', description: 'Alat tradisional masyarakat Batak untuk memarut kelapa dengan cara diduduki.' },
-     { id: '44', name: 'Rumbi', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/41_l52blz.webp', description: 'Wadah penyimpanan beras dari akar kelapa yang kuat dan dapat bertahan ratusan tahun.' },
+      { id: '44', name: 'Rumbi', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/41_l52blz.webp', description: 'Wadah penyimpanan beras dari akar kelapa yang kuat dan dapat bertahan ratusan tahun.' },
       { id: '45', name: 'Kitab Pustaha Lak Lak', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/42_jesese.webp', description: 'Kitab mantra pengobatan tradisional masyarakat Batak yang dibuat dari kulit pohon.' },
       { id: '46', name: 'Topeng Makyong', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/43_itlsvb.webp', description: 'Topeng yang digunakan dalam tarian panen raya masyarakat Melayu dan Batak.' },
       { id: '47', name: 'Jendela Batak', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921703/44_wlrupk.webp', description: 'Jendela rumah adat Batak dengan ukiran yang melambangkan perlindungan orang tua terhadap keluarga.' },
@@ -168,7 +175,7 @@ const museumData: Zone[] = [
       { id: '52', name: 'Koin Syilling Yassin', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921719/49_gzv87y.webp', description: 'Koin emas dengan ukiran surat Yasin yang digunakan sebagai alat tukar di kerajaan Gowa.' },
     ],
   },
-    {
+  {
     name: 'KALIMANTAN',
     objects: [
       { id: '53', name: 'Patung Pantak Pandagi', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921565/50_vcsxuf.webp', description: 'Patung penjaga desa masyarakat Dayak yang terbuat dari kayu ulin.' },
@@ -204,7 +211,7 @@ const museumData: Zone[] = [
       { id: '68', name: 'Siapakah Laksamana Chengho', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921568/65_qj3dhu.webp', description: 'Cheng Ho adalah pelaut dan penjelajah Tiongkok yang melakukan ekspedisi ke Nusantara dan menyebarkan pengaruh Islam serta ilmu pengetahuan.' },
       { id: '69', name: 'Batik Cina', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921568/66_tqk8wj.webp', description: 'Teknik batik dari Tiongkok dengan warna merah sebagai ciri khas.' },
       { id: '70', name: 'Patung Naga', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921568/67_uv0okn.webp', description: 'Patung naga dari kayu Quan Zhi yang melambangkan kekuatan dan keberuntungan.' },
-     { id: '71', name: 'Keramik Cina', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921564/68_qv6wms.webp', description: 'Keramik hadiah dari ekspedisi Cheng Ho kepada penguasa daerah di Nusantara.' },
+      { id: '71', name: 'Keramik Cina', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921564/68_qv6wms.webp', description: 'Keramik hadiah dari ekspedisi Cheng Ho kepada penguasa daerah di Nusantara.' },
     ],
   },
   {
@@ -265,21 +272,20 @@ export default function AutoGuide() {
       </div>
 
       {/* LANGUAGE */}
-      <div className="sticky top-20 z-40 bg-white shadow-md py-4 px-4">
-        <div className="max-w-[1200px] mx-auto flex flex-wrap gap-2">
-          {languages.map((lang) => (
-            <button
-              key={lang.code}
-              onClick={() => setSelectedLanguage(lang.code)}
-              className={`px-4 py-2 rounded border ${
-                selectedLanguage === lang.code
-                  ? 'bg-[#8C6B3E] text-white border-[#8C6B3E]'
-                  : 'bg-white border-[#C8B9A6]'
-              }`}
-            >
-              {lang.flag} {lang.code}
-            </button>
-          ))}
+      <div className="sticky top-20 z-40 bg-white shadow-md py-3 px-4">
+        <div className="max-w-[1200px] mx-auto">
+          <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
+            <SelectTrigger className="w-full md:w-[240px] border-[#C8B9A6] focus:ring-[#8C6B3E] focus:border-[#8C6B3E]">
+              <SelectValue placeholder="Pilih Bahasa" />
+            </SelectTrigger>
+            <SelectContent>
+              {languages.map((lang) => (
+                <SelectItem key={lang.code} value={lang.code}>
+                  {lang.flag} {lang.name} ({lang.code})
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
       </div>
 

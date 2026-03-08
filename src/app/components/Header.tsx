@@ -31,9 +31,8 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-[#F4EFE6] shadow-md' : 'bg-[#F4EFE6]/95'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#F4EFE6] shadow-md' : 'bg-[#F4EFE6]/95'
+        }`}
       style={{ borderBottom: '1px solid #C8B9A6' }}
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -41,7 +40,7 @@ export default function Header() {
 
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            
+
             <div className="w-12 h-12 flex items-center justify-center transition-transform group-hover:scale-105">
               <img
                 src="https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772934955/Logo_mkvfjb.webp"
@@ -246,12 +245,149 @@ export default function Header() {
           <button
             className="lg:hidden text-[#8C6B3E] p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
 
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="lg:hidden bg-[#F4EFE6] border-t border-[#C8B9A6]">
+          <nav className="flex flex-col px-4 py-4 space-y-2">
+
+            <Link
+              to="/"
+              className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
+            >
+              Home
+            </Link>
+
+            <Link
+              to="/auto-guide"
+              className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
+            >
+              Auto Guide
+            </Link>
+
+            {/* Virtual Tour Mobile */}
+            <div className="space-y-1">
+              <button
+                className="w-full flex items-center justify-between px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:bg-[#E7DED0] rounded"
+                onClick={() => toggleDropdown('virtual-tour-mobile')}
+              >
+                <span>Virtual Tour</span>
+                <ChevronDown className={`w-5 h-5 transition-transform ${openDropdown === 'virtual-tour-mobile' ? 'rotate-180' : ''}`} />
+              </button>
+
+              {openDropdown === 'virtual-tour-mobile' && (
+                <div className="pl-4 space-y-1">
+                  <Link to="/virtual-tour" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                    Virtual Tour Overview
+                  </Link>
+                  <Link to="/virtual-tour-ihm" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                    Virtual Tour - IHM
+                  </Link>
+                  <Link to="/virtual-tour-candi-jago" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                    Virtual Tour - Candi Jago
+                  </Link>
+                  <Link to="/virtual-tour-candi-kidal" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                    Virtual Tour - Candi Kidal
+                  </Link>
+                  <Link to="/virtual-tour-ihm-2023" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                    Virtual Tour - IHM 2023
+                  </Link>
+                  <Link to="/virtual-tour-candi-jago-2023" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                    Virtual Tour - Candi Jago 2023
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <Link
+              to="/news"
+              className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
+            >
+              News
+            </Link>
+
+            <Link
+              to="/gallery"
+              className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
+            >
+              Gallery
+            </Link>
+
+            <Link
+              to="/visit"
+              className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
+            >
+              Visit
+            </Link>
+
+            <Link
+              to="/meta-museum"
+              className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
+            >
+              Meta Museum
+            </Link>
+
+            <Link
+              to="/testimoni"
+              className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
+            >
+              Testimoni
+            </Link>
+
+            {/* Education Mobile */}
+            <div className="space-y-1">
+              <button
+                className="w-full flex items-center justify-between px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:bg-[#E7DED0] rounded"
+                onClick={() => toggleDropdown('education-mobile')}
+              >
+                <span>Education & Family</span>
+                <ChevronDown className={`w-5 h-5 transition-transform ${openDropdown === 'education-mobile' ? 'rotate-180' : ''}`} />
+              </button>
+
+              {openDropdown === 'education-mobile' && (
+                <div className="pl-4 space-y-1">
+                  <Link to="/education/general-family" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                    General/Family
+                  </Link>
+                  <Link to="/education/educational-institution" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                    Educational Institution
+                  </Link>
+                  <Link to="/education/educational-series" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                    Educational Series
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Language Selector Mobile */}
+            <div className="pt-2 border-t border-[#C8B9A6]">
+              <div className="px-4 py-2 text-[#8C6B3E] font-['Cinzel'] text-sm">Language</div>
+              <div className="flex flex-wrap gap-2 px-4">
+                {languages.map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => setLanguage(lang)}
+                    className={`px-3 py-2 text-sm font-['Cinzel'] rounded border ${language === lang
+                        ? 'bg-[#8C6B3E] text-white border-[#8C6B3E]'
+                        : 'text-[#5A5A5A] border-[#C8B9A6] hover:bg-[#E7DED0]'
+                      }`}
+                  >
+                    {lang}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

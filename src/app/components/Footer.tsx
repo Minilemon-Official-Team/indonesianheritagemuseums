@@ -1,5 +1,9 @@
 import { Link } from 'react-router';
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
+import { MapPin, Phone, Facebook, Instagram, Youtube } from 'lucide-react';
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
 export default function Footer() {
   return (
@@ -30,47 +34,47 @@ export default function Footer() {
             <h3 className="font-['Cinzel'] text-lg text-[#2B2B2B] mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
+                <Link to="/" onClick={scrollToTop} className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/auto-guide" className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
+                <Link to="/auto-guide" onClick={scrollToTop} className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
                   Auto Guide
                 </Link>
               </li>
               <li>
-                <Link to="/virtual-tour" className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
+                <Link to="/virtual-tour" onClick={scrollToTop} className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
                   Virtual Tour
                 </Link>
               </li>
               <li>
-                <Link to="/news" className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
+                <Link to="/news" onClick={scrollToTop} className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
                   News
                 </Link>
               </li>
               <li>
-                <Link to="/gallery" className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
+                <Link to="/gallery" onClick={scrollToTop} className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
                   Gallery
                 </Link>
               </li>
               <li>
-                <Link to="/visit" className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
+                <Link to="/visit" onClick={scrollToTop} className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
                   Visit
                 </Link>
               </li>
               <li>
-                <Link to="/meta-museum" className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
+                <Link to="/meta-museum" onClick={scrollToTop} className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
                   Meta Museum
                 </Link>
               </li>
               <li>
-                <Link to="/education" className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
+                <Link to="/education" onClick={scrollToTop} className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
                   Education & Family
                 </Link>
               </li>
               <li>
-                <Link to="/testimoni" className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
+                <Link to="/testimoni" onClick={scrollToTop} className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
                   Testimoni
                 </Link>
               </li>
@@ -94,8 +98,6 @@ export default function Footer() {
                 <Phone className="w-4 h-4 flex-shrink-0 text-[#8C6B3E]" />
                 <span>+62 857-4840-5800</span>
               </li>
-              
-              
             </ul>
           </div>
         </div>
