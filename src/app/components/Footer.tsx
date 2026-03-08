@@ -75,36 +75,39 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/testimoni" onClick={scrollToTop} className="text-[#5A5A5A] text-sm hover:text-[#8C6B3E] transition-colors">
+                  Testimoni
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-                  {/* Programs - Removed */}
-                  <div className="hidden lg:block">
-                    {/* Empty column for spacing */}
-                  </div>
+          {/* Programs - Removed */}
+          <div className="hidden lg:block">
+            {/* Empty column for spacing */}
+          </div>
 
-                  {/* Contact Information */}
-                  <div>
-                    <h3 className="font-['Cinzel'] text-lg text-[#2B2B2B] mb-4">Contact Us</h3>
-                    <ul className="space-y-3">
-                      <li className="flex items-start gap-3 text-[#5A5A5A] text-sm">
-                        <MapPin className="w-4 h-4 mt-1 flex-shrink-0 text-[#8C6B3E]" />
-                        <span>Jl. Kartika No.2, Sisir, Kec. Batu, Kota Batu, Jawa Timur 65315</span>
-                      </li>
-                      <li className="flex items-center gap-3 text-[#5A5A5A] text-sm">
-                        <Phone className="w-4 h-4 flex-shrink-0 text-[#8C6B3E]" />
-                        <span>+62 857-4840-5800</span>
-                      </li>
+          {/* Contact Information */}
+          <div>
+            <h3 className="font-['Cinzel'] text-lg text-[#2B2B2B] mb-4">Contact Us</h3>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-3 text-[#5A5A5A] text-sm">
+                <MapPin className="w-4 h-4 mt-1 flex-shrink-0 text-[#8C6B3E]" />
+                <span>Jl. Kartika No.2, Sisir, Kec. Batu, Kota Batu, Jawa Timur 65315</span>
+              </li>
+              <li className="flex items-center gap-3 text-[#5A5A5A] text-sm">
+                <Phone className="w-4 h-4 flex-shrink-0 text-[#8C6B3E]" />
+                <span>+62 857-4840-5800</span>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="border-t border-[#C8B9A6] mt-12 pt-8 text-center">
-                  <p className="text-[#5A5A5A] text-sm">
-                    © 2026 Indonesian Heritage Museum | Privacy Policy IHM AR
-                  </p>
-                </div>
-              </div>
-            </footer>
-            );
+        <div className="border-t border-[#C8B9A6] mt-12 pt-8 text-center">
+          <p className="text-[#5A5A5A] text-sm">
+            © 2026 Indonesian Heritage Museum | Privacy Policy IHM AR
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
 }
