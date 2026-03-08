@@ -273,25 +273,16 @@ export default function AutoGuide() {
     };
 
     const handleShare = async (objectId: number) => {
+        // Build the share URL - use current origin for proper routing
         const shareUrl = `${window.location.origin}/auto-guide?object=${objectId}`;
 
-        if (navigator.share) {
-            try {
-                await navigator.share({
-                    title: `Objek #${objectId}`,
-                    url: shareUrl,
-                });
-            } catch (err) {
-                // User cancelled or error, copy to clipboard instead
-                await navigator.clipboard.writeText(shareUrl);
-                setCopiedId(objectId);
-                setTimeout(() => setCopiedId(null), 2000);
-            }
-        } else {
-            // Fallback: copy to clipboard
+        // Always copy to clipboard directly
+        try {
             await navigator.clipboard.writeText(shareUrl);
             setCopiedId(objectId);
             setTimeout(() => setCopiedId(null), 2000);
+        } catch (err) {
+            console.error('Failed to copy:', err);
         }
     };
 
