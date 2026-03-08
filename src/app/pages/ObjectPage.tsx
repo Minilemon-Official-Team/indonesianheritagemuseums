@@ -1,30 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
-import { ChevronUp, Share, Check } from 'lucide-react';
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '../components/ui/select';
+import { useParams, Link, useNavigate } from 'react-router';
+import { useState, useEffect } from 'react';
+import { Share2, Check, ArrowLeft, MapPin } from 'lucide-react';
 
-const languages = [
-    { code: 'ID', name: 'Indonesian', flag: '🇮🇩' },
-    { code: 'EN', name: 'English', flag: '🇬🇧' },
-    { code: 'JP', name: 'Japanese', flag: '🇯🇵' },
-    { code: 'KR', name: 'Korean', flag: '🇰🇷' },
-    { code: 'CN', name: 'Chinese', flag: '🇨🇳' },
-    { code: 'ES', name: 'Spanish', flag: '🇪🇸' },
-    { code: 'FR', name: 'French', flag: '🇫🇷' },
-    { code: 'DE', name: 'German', flag: '🇩🇪' },
-    { code: 'IT', name: 'Italian', flag: '🇮🇹' },
-    { code: 'NL', name: 'Dutch', flag: '🇳🇱' },
-    { code: 'RU', name: 'Russian', flag: '🇷🇺' },
-    { code: 'AR', name: 'Arabic', flag: '🇸🇦' },
-];
-
-const CDN_FALLBACK =
-    "https://res.cloudinary.com/dnbq1z8lx/image/upload";
+const CDN_FALLBACK = 'https://res.cloudinary.com/dnbq1z8lx/image/upload';
 
 interface ObjectItem {
     id: number;
@@ -38,21 +16,7 @@ interface Zone {
     objects: ObjectItem[];
 }
 
-/**
- * Function untuk mendapatkan image
- * Prioritas:
- * 1. gunakan image CDN manual
- * 2. fallback berdasarkan id
- */
-const getObjectImage = (object: ObjectItem) => {
-    if (object.image && object.image !== "") {
-        return object.image;
-    }
-
-    return `${CDN_FALLBACK}${object.id}.webp`;
-};
-
-// Data koleksi museum - 44 benda dalam 10 zona
+// Data koleksi museum - 44 benda dalam 10 zona (sama seperti AutoGuide)
 const museumData: Zone[] = [
     {
         name: 'Welcome to Indonesia Herritage Museum',
@@ -74,7 +38,7 @@ const museumData: Zone[] = [
     {
         name: 'AUSTRONESIA',
         objects: [
-            { id: 3, name: 'Kapak Corong', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921566/1_eulnh0.webp', description: 'Kapak corong merupakan kapak yang digunakan oleh masyarakat zaman dahulu untuk bercocok tanam, bentuknya menyerupai cangkul kuno untuk mengolah tanah agar menghasilkan bahan makanan terutama umbi-umbian. Kapak ini berasal dari kebudayaan Dongson di Vietnam Utara dan ditemukan di pedalaman Jawa.' },
+            { id: 3, name: 'Kapak Corong', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921566/1_eulnh0.webp', description: 'Kapak corong merupakan kapak yang digunakan oleh masyarakat zaman dahulu untuk bercocok tanam, bentuknya menyerupai cangkul kuno untuk mengolah tanah agar menghasilkan bahan makanan terutama umbi-umbian. Kapak ini berasal dari Kebudayaan Dongson di Vietnam Utara dan ditemukan di pedalaman Jawa.' },
             { id: 4, name: 'Gelang Kuno', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921566/2_dsdv00.webp', description: 'Gelang kuno digunakan sebagai aksesoris sekaligus penanda status sosial. Gelang batu yang besar dan berat menunjukkan pemakainya berasal dari status sosial tinggi dan tidak perlu melakukan pekerjaan berat.' },
             { id: 5, name: 'Patung Kepala', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921566/3_ptqqgo.webp', description: 'Patung kuno berbentuk kepala manusia yang digunakan dalam ritual animisme dan dinamisme untuk memuja roh nenek moyang. Patung ini ditemukan di pesisir Pulau Jawa.' },
             { id: 6, name: 'Figur Suku Tua', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921566/4_xgsw8x.webp', description: 'Figur ini menggambarkan suku-suku tua pada masa lampau yang telah hilang dari peradaban. Pada masa Austronesia terdapat banyak suku dengan kemampuan seni dan pertanian yang tinggi.' },
@@ -222,8 +186,6 @@ const museumData: Zone[] = [
     },
 ];
 
-// Zona terakhir - PENUTUP
-
 const closingZone: Zone = {
     name: 'PENUTUP',
     objects: [
@@ -231,239 +193,166 @@ const closingZone: Zone = {
     ],
 };
 
-// ===================== COMPONENT =====================
+// Function untuk mendapatkan image
+const getObjectImage = (object: ObjectItem) => {
+    if (object.image && object.image !== '') {
+        return object.image;
+    }
+    return `${CDN_FALLBACK}${object.id}.webp`;
+};
 
-export default function AutoGuide() {
-    const [selectedLanguage, setSelectedLanguage] = useState('ID');
-    const [showBackToTop, setShowBackToTop] = useState(false);
-    const [copiedId, setCopiedId] = useState<number | null>(null);
-    const objectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowBackToTop(window.scrollY > 500);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    // Handle deep linking - scroll to object on page load
-    useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const objectId = params.get('object');
-        if (objectId) {
-            const id = parseInt(objectId, 10);
-            setTimeout(() => {
-                const element = objectRefs.current[`object-${id}`];
-                if (element) {
-                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-            }, 100);
+// Helper function untuk mencari object berdasarkan ID
+const findObjectById = (id: number): { object: ObjectItem | null; zone: string } => {
+    // Search in main museum data
+    for (const zone of museumData) {
+        const found = zone.objects.find(obj => obj.id === id);
+        if (found) {
+            return { object: found, zone: zone.name };
         }
+    }
+    // Search in closing zone
+    const closingFound = closingZone.objects.find(obj => obj.id === id);
+    if (closingFound) {
+        return { object: closingFound, zone: closingZone.name };
+    }
+    return { object: null, zone: '' };
+};
+
+export default function ObjectPage() {
+    const { id } = useParams<{ id: string }>();
+    const navigate = useNavigate();
+    const [copied, setCopied] = useState(false);
+
+    const objectId = id ? parseInt(id, 10) : null;
+    const { object, zone } = objectId ? findObjectById(objectId) : { object: null, zone: '' };
+
+    // Scroll to top on mount
+    useEffect(() => {
+        window.scrollTo(0, 0);
     }, []);
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    const getDescription = (description: string, lang: string) => {
-        if (lang === 'ID') return description;
-        return `[${lang} Translation - To be filled] ${description}`;
-    };
-
-    const handleShare = async (objectId: number) => {
-        // Build the share URL - use /object/:id format for direct navigation
+    const handleShare = async () => {
         const shareUrl = `${window.location.origin}/object/${objectId}`;
-
-        // Always copy to clipboard directly
         try {
             await navigator.clipboard.writeText(shareUrl);
-            setCopiedId(objectId);
-            setTimeout(() => setCopiedId(null), 2000);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
         } catch (err) {
             console.error('Failed to copy:', err);
         }
     };
 
-    return (
-        <div className="bg-[#F4EFE6] min-h-screen">
-
-            {/* HERO */}
-            <div className="relative bg-[#8C6B3E] text-white py-20 px-4">
-                <div className="max-w-[1200px] mx-auto text-center">
-                    <h1 className="font-['Cinzel'] text-4xl md:text-5xl mb-4">
-                        Auto Guide Indonesia
+    if (!object) {
+        return (
+            <div className="bg-[#F4EFE6] min-h-screen pt-20 pb-12">
+                <div className="max-w-[1200px] mx-auto px-4 py-12 text-center">
+                    <h1 className="font-['Cinzel'] text-3xl text-[#8C6B3E] mb-4">
+                        Object Not Found
                     </h1>
-                    <div className="w-24 h-1 bg-white mx-auto mb-6"></div>
-                    <p className="text-lg md:text-xl max-w-2xl mx-auto opacity-90">
-                        Jelajahi 70 koleksi warisan budaya Indonesia dalam 10 zona dengan panduan audio multi-bahasa
+                    <p className="text-[#5A5A5A] mb-8">
+                        The object with ID {id} was not found in our collection.
                     </p>
+                    <Link
+                        to="/auto-guide"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#8C6B3E] text-white rounded hover:bg-[#7A5F36] transition-colors"
+                    >
+                        <ArrowLeft className="w-4 h-4" />
+                        Back to Auto Guide
+                    </Link>
                 </div>
             </div>
+        );
+    }
 
-            {/* LANGUAGE */}
-            <div className="sticky top-20 z-40 bg-white shadow-md py-3 px-4">
+    return (
+        <div className="bg-[#F4EFE6] min-h-screen pt-20 pb-12">
+            {/* Breadcrumb */}
+            <div className="bg-[#E7DED0] py-3 px-4">
                 <div className="max-w-[1200px] mx-auto">
-                    <Select value={selectedLanguage} onValueChange={setSelectedLanguage}>
-                        <SelectTrigger className="w-full md:w-[240px] border-[#C8B9A6] focus:ring-[#8C6B3E] focus:border-[#8C6B3E]">
-                            <SelectValue placeholder="Pilih Bahasa" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {languages.map((lang) => (
-                                <SelectItem key={lang.code} value={lang.code}>
-                                    {lang.flag} {lang.name} ({lang.code})
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
+                    <div className="flex items-center gap-2 text-sm">
+                        <Link to="/" className="text-[#8C6B3E] hover:underline">Home</Link>
+                        <span className="text-[#5A5A5A]">/</span>
+                        <Link to="/auto-guide" className="text-[#8C6B3E] hover:underline">Auto Guide</Link>
+                        <span className="text-[#5A5A5A]">/</span>
+                        <span className="text-[#5A5A5A]">{object.name}</span>
+                    </div>
                 </div>
             </div>
 
-            {/* CONTENT */}
+            {/* Hero Section */}
+            <div className="relative bg-[#8C6B3E] text-white py-12 px-4">
+                <div className="max-w-[1200px] mx-auto">
+                    <div className="flex items-center gap-2 text-sm mb-2 opacity-80">
+                        <MapPin className="w-4 h-4" />
+                        <span>{zone}</span>
+                    </div>
+                    <h1 className="font-['Cinzel'] text-4xl md:text-5xl mb-2">
+                        {object.name}
+                    </h1>
+                    <p className="text-sm opacity-80">Object #{object.id}</p>
+                </div>
+            </div>
+
+            {/* Content */}
             <div className="max-w-[1200px] mx-auto px-4 py-12">
+                <div className="bg-white rounded-lg shadow-md overflow-hidden">
+                    {/* Image */}
+                    <div className="w-full h-[400px] md:h-[500px] bg-[#8C6B3E] flex items-center justify-center">
+                        <img
+                            src={getObjectImage(object)}
+                            alt={object.name}
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
 
-                {museumData.map((zone, zoneIndex) => (
-                    <section key={zoneIndex} className="mb-16">
-
-                        <h2 className="font-['Cinzel'] text-3xl text-[#8C6B3E] mb-6">
-                            {zone.name}
-                        </h2>
-
-                        <div className="space-y-12">
-                            {zone.objects.map((object) => (
-                                <div
-                                    key={object.id}
-                                    id={`object-${object.id}`}
-                                    ref={(el) => { objectRefs.current[`object-${object.id}`] = el; }}
-                                    className="bg-white rounded shadow-md overflow-hidden relative"
-                                >
-                                    {/* Share Button */}
-                                    <button
-                                        onClick={() => handleShare(object.id)}
-                                        className="absolute top-3 right-3 z-10 bg-[#8C6B3E] text-white p-2 rounded-full shadow-md hover:bg-[#7A5F36] transition-colors"
-                                        aria-label="Share"
-                                    >
-                                        {copiedId === object.id ? (
-                                            <Check className="w-4 h-4" />
-                                        ) : (
-                                            <Share className="w-4 h-4" />
-                                        )}
-                                    </button>
-
-                                    <div className="grid md:grid-cols-2 gap-6 p-6">
-
-                                        {/* IMAGE */}
-                                        <div className="rounded overflow-hidden bg-[#8C6B3E]">
-                                            <img
-                                                src={getObjectImage(object)}
-                                                alt={object.name}
-                                                loading="lazy"
-                                                className="w-full h-[320px] object-contain"
-                                            />
-                                        </div>
-
-                                        {/* CONTENT */}
-                                        <div className="flex flex-col justify-center">
-
-                                            <div className="text-sm text-[#8C6B3E] font-medium mb-2">
-                                                Objek #{object.id}
-                                            </div>
-
-                                            <h3 className="font-['Cinzel'] text-2xl text-[#2B2B2B] mb-4">
-                                                {object.name}
-                                            </h3>
-
-                                            <div className="text-[#2B2B2B] leading-relaxed">
-                                                {getDescription(object.description, selectedLanguage)}
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            ))}
-                        </div>
-
-                    </section>
-                ))}
-
-                {/* CLOSING ZONE */}
-
-                <section className="mb-16">
-
-                    <h2 className="font-['Cinzel'] text-3xl text-[#8C6B3E] mb-6">
-                        {closingZone.name}
-                    </h2>
-
-                    {closingZone.objects.map((object) => (
-                        <div
-                            key={object.id}
-                            id={`object-${object.id}`}
-                            ref={(el) => { objectRefs.current[`object-${object.id}`] = el; }}
-                            className="bg-white rounded shadow-md overflow-hidden relative"
-                        >
-                            {/* Share Button */}
-                            <button
-                                onClick={() => handleShare(object.id)}
-                                className="absolute top-3 right-3 z-10 bg-[#8C6B3E] text-white p-2 rounded-full shadow-md hover:bg-[#7A5F36] transition-colors"
-                                aria-label="Share"
-                            >
-                                {copiedId === object.id ? (
-                                    <Check className="w-4 h-4" />
-                                ) : (
-                                    <Share className="w-4 h-4" />
-                                )}
-                            </button>
-
-                            <div className="grid md:grid-cols-2 gap-6 p-6">
-
-                                <div className="rounded overflow-hidden bg-[#8C6B3E]">
-                                    <img
-                                        src={getObjectImage(object)}
-                                        alt={object.name}
-                                        loading="lazy"
-                                        className="w-full h-[320px] object-contain"
-                                    />
-                                </div>
-
-                                <div className="flex flex-col justify-center">
-
-                                    <div className="text-sm text-[#8C6B3E] font-medium mb-2">
-                                        Objek #{object.id}
-                                    </div>
-
-                                    <h3 className="font-['Cinzel'] text-2xl text-[#2B2B2B] mb-4">
-                                        {object.name}
-                                    </h3>
-
-                                    <div className="text-[#2B2B2B] leading-relaxed">
-                                        {getDescription(object.description, selectedLanguage)}
-                                    </div>
-
-                                </div>
-
+                    {/* Description */}
+                    <div className="p-6 md:p-8">
+                        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+                            <div>
+                                <h2 className="font-['Cinzel'] text-2xl text-[#2B2B2B] mb-2">
+                                    {object.name}
+                                </h2>
+                                <p className="text-[#8C6B3E] font-medium">{zone}</p>
                             </div>
 
+                            {/* Share Button */}
+                            <button
+                                onClick={handleShare}
+                                className="inline-flex items-center gap-2 px-4 py-2 bg-[#8C6B3E] text-white rounded hover:bg-[#7A5F36] transition-colors"
+                            >
+                                {copied ? (
+                                    <>
+                                        <Check className="w-4 h-4" />
+                                        Link Copied!
+                                    </>
+                                ) : (
+                                    <>
+                                        <Share2 className="w-4 h-4" />
+                                        Share Link
+                                    </>
+                                )}
+                            </button>
                         </div>
-                    ))}
 
-                </section>
+                        <div className="prose max-w-none">
+                            <p className="text-[#2B2B2B] leading-relaxed text-lg">
+                                {object.description}
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
+                {/* Back Button */}
+                <div className="mt-8 flex gap-4">
+                    <Link
+                        to="/auto-guide"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-[#8C6B3E] text-white rounded hover:bg-[#7A5F36] transition-colors"
+                    >
+                        <ArrowLeft className="w-4 h-4" />
+                        Back to Auto Guide
+                    </Link>
+                </div>
             </div>
-
-            {/* BACK TO TOP */}
-
-            {showBackToTop && (
-                <button
-                    onClick={scrollToTop}
-                    className="fixed left-4 bottom-6 z-40 bg-[#8C6B3E] text-white p-2 rounded shadow-lg"
-                >
-                    <ChevronUp className="w-5 h-5" />
-                </button>
-            )}
-
         </div>
     );
 }
