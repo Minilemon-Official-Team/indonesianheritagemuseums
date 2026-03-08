@@ -16,10 +16,14 @@ const languages = [
   { code: 'AR', name: 'Arabic', flag: '🇸🇦' },
 ];
 
+const CDN_FALLBACK =
+  "https://res.cloudinary.com/dnbq1z8lx/image/upload";
+
 interface ObjectItem {
   id: number;
   name: string;
   description: string;
+  image?: string;
 }
 
 interface Zone {
@@ -27,292 +31,205 @@ interface Zone {
   objects: ObjectItem[];
 }
 
+/**
+ * Function untuk mendapatkan image
+ * Prioritas:
+ * 1. gunakan image CDN manual
+ * 2. fallback berdasarkan id
+ */
+const getObjectImage = (object: ObjectItem) => {
+  if (object.image && object.image !== "") {
+    return object.image;
+  }
+
+  return `${CDN_FALLBACK}${object.id}.webp`;
+};
+
 // Data koleksi museum - 44 benda dalam 10 zona
 const museumData: Zone[] = [
   {
-    name: 'AUSTRONESIA',
+    name: 'Welcome to Indonesia Herritage Museum',
     objects: [
       {
         id: 1,
-        name: 'Kapak Corong',
-        description: 'Kapak corong merupakan kapak yang digunakan oleh masyarakat zaman dahulu untuk bercocok tanam, bentuk yang menyerupai cangkul kuno dapat membantu masyarakat untuk mengolah tanah yang subur agar menghasilkan berbagai macam bahan makanan, khususnya umbi umbian. Kapak corong ini berasal dari kebudayan dongson di Vietnam utara dan ditemukan di daerah pedalaman jawa.',
+        name: 'Pembukaan',
+        image: '',
+        description: 'Indonesian heritage Museum merupakan museum warisan budaya Indonesia yang mempunyai koleksi warisan budaya dari seluruh wilayah Indonesia, berdiri sejak tahun 2010, Indonesian heritage Museum juga merupakan pelopor museum berteknologi Augmented Reality di Indonesia, terdapat 17 zona yang mewakili wilayah di Indonesia, yang menyimpan benda benda bersejarah dari seluruh suku di tanah air.',
       },
       {
         id: 2,
-        name: 'Gelang Kuno',
-        description: 'Masyarakat lampau menggunakan aksesoris gelang selain untuk keindahan juga digunakan sebagai penanda status sosial di masyarakat. Gelang kuno batu yang besar dan berat menunjukan status sosial di masyarakat yang tinggi. Arti dari gelang kuno yang digunakan masyarakat selain untuk menunjukan status sosial juga dipakai untuk mengartikan pemakai tidak perlu bersusah payah melakukan aktifitas sebagaimana masyarakat biasa karna memakai benda berat dan dipastikan mereka mempunyai pelayan.',
+        name: 'Download AR',
+        image: '',
+        description: 'Silakan kepada para pengunjung untuk dapat mengunduh aplikasi Augmented Reality di Google Play Store dan juga Autoself Guided Tour yang dapat diakses melalui website untuk dapat memudahkan para pengunjung selama berada di Indonesian Heritage Museum.',
       },
-      {
-        id: 3,
-        name: 'Patung Kepala',
-        description: 'Patung kepala merupakan Patung kuno berbentuk kepala manusia yang digunakan masyarakat animisme dinamisme sebagai alat ritual memuja roh nenek moyang. Karna bentuk kepala dengan mata dan bibir yang terbentuk alami maka masyarakat menganggap bahwa patung kepala ini juga jelmaan roh nenek moyang mereka, patung ini ditemukan di pesisir pulau jawa.',
-      },
-      {
-        id: 4,
-        name: 'Figur Suku Tua',
-        description: 'Figur suku tua ini adalah gambaran dari suku suku tua pada masa lampau yang telah hilang dari peradaban. Pada zaman dahulu ada lebih banyak suku suku lain lagi yang berbeda dari masa sekarang tetapi tidak dapat bertahan karna gempuran perang antar suku dan lain hal, suku suku yang hidup di masa Austronesia sudah memiliki peradaban seni yang tinggi dan cakap dalam pertanian dan banyak hal.',
-      },
-      {
-        id: 5,
-        name: 'Kapak Candrasa',
-        description: 'Kapak Candrasa atau yang sering juga disebut dengan kapak sepatu merupakan kapak yang digunakan untuk keperluan ritual adat masyarakat animisme dinamisme, yakni masyarakat yang masih belum mengenal agama dan masih dengan sistem kepercayaan kepada roh nenek moyang. Kapak ini terbuat dari perunggu dan berasal dari kebudayaan dongson di Vietnam utara, yang mana kebudayaan itu adalah cikal bakal terciptanya berbagai suku di Indonesia.',
-      },
+    ],
+  },
+  {
+    name: 'AUSTRONESIA',
+    objects: [
+      { id: '3', name: 'Kapak Corong', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921566/1_eulnh0.webp', description: 'Kapak corong merupakan kapak yang digunakan oleh masyarakat zaman dahulu untuk bercocok tanam, bentuknya menyerupai cangkul kuno untuk mengolah tanah agar menghasilkan bahan makanan terutama umbi-umbian. Kapak ini berasal dari kebudayaan Dongson di Vietnam Utara dan ditemukan di pedalaman Jawa.' },
+      { id: '4', name: 'Gelang Kuno', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921566/2_dsdv00.webp', description: 'Gelang kuno digunakan sebagai aksesoris sekaligus penanda status sosial. Gelang batu yang besar dan berat menunjukkan pemakainya berasal dari status sosial tinggi dan tidak perlu melakukan pekerjaan berat.' },
+      { id: '5', name: 'Patung Kepala', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921566/3_ptqqgo.webp', description: 'Patung kuno berbentuk kepala manusia yang digunakan dalam ritual animisme dan dinamisme untuk memuja roh nenek moyang. Patung ini ditemukan di pesisir Pulau Jawa.' },
+      { id: '6', name: 'Figur Suku Tua', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921566/4_xgsw8x.webp', description: 'Figur ini menggambarkan suku-suku tua pada masa lampau yang telah hilang dari peradaban. Pada masa Austronesia terdapat banyak suku dengan kemampuan seni dan pertanian yang tinggi.' },
+      { id: '7', name: 'Kapak Candrasa', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921567/5_mytqbo.webp', description: 'Kapak Candrasa atau kapak sepatu digunakan untuk ritual adat masyarakat animisme. Terbuat dari perunggu dan berasal dari kebudayaan Dongson di Vietnam Utara.' },
     ],
   },
   {
     name: 'MAJAPAHIT',
     objects: [
-      {
-        id: 6,
-        name: 'Figur Terakota',
-        description: 'Figur Terakota yang diabadikan di jaman kerajaan Majapahit, terakota adalah tanah liat yang dibakar dan dibentuk berbagai macam alat yang berfungsi dalam kehidupan sehari hari dan juga dibentuk menyerupai wajah para tokoh tersohor di jaman kerajaan tersebut.',
-      },
-      {
-        id: 7,
-        name: 'Candi Bajang Ratu Terakota',
-        description: 'Candi bajang ratu terletak di daerah Trowulan mojokerto. Gerbang bajang ratu merupakan gerbang masuk menuju kerajaan Majapahit. Kerajaan yang berjaya pada abad 13 dibawah kepemimpinan Hayam Wuruk dan Mahapatih Gajahmada. Sampai detik ini salah satu peninggalan istana kerjaan Majapahit yang masih tersisa adalah gerbang bajang ratu yang menjadi destinasi wisata pula.',
-      },
-      {
-        id: 8,
-        name: 'Celengan Kuno',
-        description: 'Celengan kuno berbentuk babi gemuk yang ditemukan di sekitar Trowulan mojokerto, celengan ini digunakan sebagai pembawa berkah bagi penghuni rumah, celengan Terakota ini juga digunakan sebagai soufenir ketika mengunjungi kerabat jauh.',
-      },
-      {
-        id: 9,
-        name: 'Cermin Puteri Tembaga',
-        description: 'Cermin puteri yang terbuat dari tembaga ini digunakan oleh para anggota keluarga kerajaan untuk berias diri, kualitas tembaga yang digunakan adalah yang terbaik sehingga dapat memberi pantulan yang terbaik pula. Biasanya cermin puteri juga menjadi hadiah untuk istana yang memiliki Puteri atau selir kerajaaan yang cantik dan suka berias.',
-      },
-      {
-        id: 10,
-        name: 'Cetakan Emas',
-        description: 'Cetakan emas digunakan masyarakat zaman majapahit untuk mencetak cairan emas yang berfungsi sebagai alat tukar dalam jual beli, besarnya emas pun di sesuaikan dengan jumlah negosiasi antar pedagang atau dapat pula dijadikan segabai hadiah.',
-      },
+      { id: '8', name: 'Figur Terakota', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921567/6_xkbmz2.webp', description: 'Figur terakota dari masa Majapahit yang dibuat dari tanah liat yang dibakar dan dibentuk sebagai peralatan maupun figur tokoh penting pada masa kerajaan.' },
+      { id: '9', name: 'Candi Bajang Ratu Terakota', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921568/7_sufact.webp', description: 'Gerbang Bajang Ratu di Trowulan Mojokerto merupakan peninggalan Kerajaan Majapahit yang berjaya pada abad ke-13 di masa Hayam Wuruk dan Mahapatih Gajah Mada.' },
+      { id: '10', name: 'Celengan Kuno', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921568/8_jrg9rn.webp', description: 'Celengan berbentuk babi dari terakota yang ditemukan di Trowulan. Digunakan sebagai pembawa berkah bagi penghuni rumah serta suvenir bagi kerabat.' },
+      { id: '11', name: 'Cermin Puteri Tembaga', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921568/9_vjjlvi.webp', description: 'Cermin tembaga yang digunakan anggota keluarga kerajaan untuk berias diri. Kualitas tembaga yang baik memberikan pantulan yang jernih.' },
+      { id: '12', name: 'Cetakan Emas', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921568/10_aeazi5.webp', description: 'Cetakan emas digunakan untuk mencetak emas cair yang dijadikan alat tukar perdagangan pada masa Majapahit.' },
     ],
   },
   {
     name: 'JAWA TIMUR',
     objects: [
-      {
-        id: 11,
-        name: 'Tempat Obat Berundak',
-        description: 'Tempat obat ini digunakan tabib untuk membawa obat menuju rumah pasien, laci yang tersedia merupakan tingkatan harga dan khasiat obat yang akan digunakan oleh para tabib untuk mengobati pasien, obat yang digunakan biasanya terdiri dari obat herbal dari berbagai macam tumbuhan.',
-      },
-      {
-        id: 12,
-        name: 'Miniatur Karapan Sapi',
-        description: 'Karapan sapi merupakan kebudayan asli tanah air Indonesia yang berasal dari Madura, pada awal ceritanya karapan sapi digunakan untuk menghibur pangeran yang sedang patah hati tetapi kemudian menjadi kebudayaan yang begitu dicintai masyarakat Madura.',
-      },
-      {
-        id: 13,
-        name: 'Loro Blonyo Probolinggo',
-        description: 'Loro blonyo adalah simbol kebahagiaan rumah tangga, patung pasangan suami istri ini mengartikan tentang kehidupan rumah tangga suami istri yang samawa dan bahagia, Patung loro blonyo diambil dari bahasa Jawa Loro dan Blonyo atau dua orang yang dirias karna akan menjadi pengantin.',
-      },
-      {
-        id: 14,
-        name: 'Hiasan Sampiran Tirai',
-        description: 'Hiasan Sampiran Tirai berbentuk peri laut adalah benda warisan budaya dari Jawa timur yang berfungsi untuk menahan bambu yang menjadi Sampiran kain tirai nya, hiasan ini mengartikan tentang keberkahan dan kebahagiaan di dalam rumah.',
-      },
+      { id: '13', name: 'Tempat Obat Berundak', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921568/11_mcazsc.webp', description: 'Kotak obat bertingkat yang digunakan tabib untuk membawa berbagai obat herbal ketika mengunjungi pasien.' },
+      { id: '14', name: 'Miniatur Karapan Sapi', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/12_ajoeyf.webp', description: 'Karapan sapi merupakan tradisi khas Madura yang awalnya dibuat untuk menghibur seorang pangeran dan kemudian menjadi budaya populer masyarakat.' },
+      { id: '15', name: 'Loro Blonyo Probolinggo', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/12_ajoeyf.webp', description: 'Patung pasangan suami istri yang melambangkan keharmonisan rumah tangga dan kebahagiaan keluarga.' },
+      { id: '16', name: 'Hiasan Sampiran Tirai', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/13_klxw2q.webp', description: 'Hiasan berbentuk peri laut yang berfungsi menahan bambu pada tirai dan melambangkan keberkahan dalam rumah.' },
     ],
   },
   {
     name: 'JAWA TENGAH',
     objects: [
-      {
-        id: 15,
-        name: 'Genteng Wuwungan',
-        description: 'Genteng Wuwungan merupakan simbolisasi rumah yang diberkati pada zaman Jawa kuno, rumah yang diatas genteng nya terdapat wuwungan / hiasan dipercaya membawa kebahagiaan bagi penghuni rumah, wuwungan ibu melambangkan betapa penting sosok ibu yang mengayomi keluarga.',
-      },
-      {
-        id: 16,
-        name: 'Tombak',
-        description: 'Tombak keraton pada zaman dahulu digunakan untuk berperang dan senjata prajurit yang membela keraton, dan menjaga keamanan seluruh wilayah kekeratonan solo, akan tetapi pada masa kini tombak keraton dijadikan penanda status kerabat keraton, dapat ditemukan di kediaman ruang tamu kerabat keraton.',
-      },
-      {
-        id: 17,
-        name: 'Topeng Drama',
-        description: 'Topeng drama kontemporer awal di kehidupan modern masyarakat yang menggambarkan bibir tebal yakni para elite pemerintah yang hanya memberikan janji manis kepada rakyatnya. Pertunjukan drama biasanya dilakukan oleh para pemuda persis seperti demontrasi yang dilakukan mahasiswa saat ini.',
-      },
-      {
-        id: 18,
-        name: 'Topeng Harimau',
-        description: 'Topeng ini menggambarkan tentang singo barong dan harimau ganas yang dibawa oleh raja klono sewandono dalam rangka mengahadapi musuh yang menghalangi nya untuk mendapatkan Dewi songgolangit sebagai istri.',
-      },
-      {
-        id: 19,
-        name: 'Tempat Sirih',
-        description: 'Tempat sirih adalah wadah sirih masyarakat Jawa kuno, bentuk setiap daerah berbeda, warna emas yang ada menggambarkan keindahan dan keagungan, sirih digunakan sebagai obat dan juga kesehatan gigi.',
-      },
+      { id: '17', name: 'Genteng Wuwungan', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/15_kcsn7n.webp', description: 'Hiasan di puncak atap rumah Jawa kuno yang dipercaya membawa keberkahan dan melambangkan peran ibu dalam keluarga.' },
+      { id: '18', name: 'Tombak', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/16_y01t1j.webp', description: 'Tombak keraton dahulu digunakan sebagai senjata prajurit kerajaan dan kini menjadi simbol status kerabat keraton.' },
+      { id: '19', name: 'Topeng Drama', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/17_yyq57m.webp', description: 'Topeng drama kontemporer yang menggambarkan kritik sosial terhadap elite pemerintah melalui pertunjukan teater.' },
+      { id: '20', name: 'Topeng Harimau', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/18_ewehkf.webp', description: 'Topeng yang menggambarkan Singo Barong dan harimau dalam kisah Raja Klono Sewandono.' },
+     { id: '21', name: 'Tempat Sirih', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/19_d56o9w.webp', description: 'Wadah sirih masyarakat Jawa kuno yang melambangkan keindahan dan keagungan serta digunakan untuk kesehatan gigi.' },
     ],
   },
   {
     name: 'JAWA BARAT',
     objects: [
-      {
-        id: 20,
-        name: 'Dadu Judi',
-        description: 'Dadu Judi digunakan masyarakat peranakan Jawa Cina untuk berjudi dan meramal nasib perdagangan, jumlah hewan dan warna melambangkan arti dari berbagai hal buruk dan baik yang akan terjadi, bentuk yang besar memudahkan ketika dimainkan, serta meminimalisir kesalahan mengartikan tanda dari dadu.',
-      },
-      {
-        id: 21,
-        name: 'Blawong',
-        description: 'Blawong adalah tempat untuk menggantung keris dengan ornamen yang mengandung arti tertentu, biasanya blawong dijadikan oleh oleh dari kerajaan atau daerah tertentu kepada kerajaan yang akan dikunjungi, dan menggabungkan dari dua kebudayaan kerajaan tersebut, seperti Blawong dari kebudayaan Cina dan Jawa barat terlihat dari adanya gambar kilin dan wayang.',
-      },
-      {
-        id: 22,
-        name: 'Kaca Rias Keraton',
-        description: 'Kaca rias ini merupakan milik dari keraton Jawa barat yang digunakan oleh permaisuri nya / anggota keluarga perempuan untuk menyimpan riasan dan hadiah serta perhiasan mereka, ukiran indah melambangkan bahwa benda ini tidak dapat dimiliki oleh sembarangan orang.',
-      },
-      {
-        id: 23,
-        name: 'Topeng Buto Terong',
-        description: 'Topeng ini adalah topeng yang menceritakan tokoh buto (raksasa) yang digunakan dalam pertunjukan tradisional Jawa Barat.',
-      },
+      { id: '22', name: 'Dadu Judi', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/20_fb2wjy.webp', description: 'Dadu besar yang digunakan masyarakat peranakan Jawa-Cina untuk berjudi sekaligus meramal nasib perdagangan.' },
+      { id: '23', name: 'Blawong', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921569/21_jwfsfq.webp', description: 'Tempat menggantung keris dengan ornamen perpaduan budaya Cina dan Jawa Barat.' },
+      { id: '24', name: 'Kaca Rias Keraton', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921570/22_w70vfg.webp', description: 'Kaca rias milik keluarga kerajaan Jawa Barat yang digunakan untuk menyimpan riasan dan perhiasan.' },
+      { id: '25', name: 'Topeng Buto Terong', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921570/23_jwjk5s.webp', description: 'Topeng yang menggambarkan raksasa berhidung besar yang membantu pembangunan kerajaan namun meminta hadiah perempuan tercantik.' },
     ],
   },
   {
     name: 'SULAWESI',
     objects: [
-      {
-        id: 24,
-        name: 'Tedong Bonga',
-        description: 'Tedong bonga adalah tanduk kerbau bule, kerbau putih khas Sulawesi yang berharga fantastis / mahal yang digunakan masyarakat suku Toraja untuk upacara ritual pemakaman, banyaknya tanduk menggambarkan tentang kekayaan keluarga yang ditunjukan pada tongkonan di depan rumah. Harga satu kerbau seharga 500 juta hingga 1 milyar rupiah.',
-      },
-      {
-        id: 25,
-        name: 'Koin Syilling Yassin',
-        description: 'Koin Syilling Yassin merupakan koin kuno yang digunakan sebagai alat tukar di wilayah Sulawesi.',
-      },
-      {
-        id: 26,
-        name: 'Patung Penjaga Desa',
-        description: 'Patung ini dibuat menggunakan kayu Ulin tua yang kuat, digunakan sebagai patung penjaga desa dari mara bahaya serta pelindung penduduk desa dari bencana dan sebagainya, bentuk kayu yang bercabang cabang menunjukkan kekuatan.',
-      },
-      {
-        id: 27,
-        name: 'Kursi Kepala Suku',
-        description: 'Kursi kepala suku berbentuk kura kura yang mengartikan umur panjang dan keberkahan, bentuk kursi mengidentifikasi para kepala suku agar tidak lalai dan bijaksana dalam memimpin.',
-      },
+      { id: '26', name: 'Kendi Susu', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921570/24_inr60o.webp', description: 'Kendi berbentuk payudara wanita yang melambangkan kesuburan serta digunakan sebagai wadah air minum.' },
+      { id: '27', name: 'Rangda', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921570/25_xelxrv.webp', description: 'Rangda adalah tokoh dalam mitologi Bali yang melambangkan kekuatan jahat dan malapetaka.' },
+      { id: '28', name: 'Patung Singaraja', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921570/26_n0uokg.webp', description: 'Patung yang menjadi simbol keselamatan dan sering dijadikan ikon penyambutan di fasilitas umum di Bali.' },
+      { id: '29', name: 'Topeng Tua', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921570/27_gssuzt.webp', description: 'Topeng yang menggambarkan sosok tetua bijaksana dan digunakan dalam tarian ritual masyarakat Bali.' },
     ],
   },
   {
     name: 'KALIMANTAN',
     objects: [
-      {
-        id: 28,
-        name: 'Sapundu',
-        description: 'Sapundu adalah alat menggantung hewan hasil buruan para pria Dayak, sapundu digunakan untuk meniriskan darah hewan ataupun merayakan kesuksesan berburu dengan menampilkan hewan buruan di depan umum ketika hendak dimasak menjadi santapan bersama.',
-      },
-      {
-        id: 29,
-        name: 'Patung Kewenak',
-        description: 'Patung ini menceritakan kegiatan sehari hari yang digambarkan oleh patung yang dipahat tanpa sambungan, patung kewenak dipahat dengan satu kayu pohon sehingga rata rata patung berbentuk tinggi, manfaat patung yakni seperti foto, mengabadikan momen.',
-      },
+      { id: '30', name: 'Kursi Singgasana Raja', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921570/28_no6f7w.webp', description: 'Singgasana kerajaan Buleleng dengan motif burung merak yang melambangkan keagungan.' },
+      { id: '31', name: 'Patung Garuda Wisnu Kencana', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921627/29_wgmwv4.webp', description: 'Patung yang menggambarkan Dewa Wisnu menunggang Garuda sebagai simbol kebesaran Bali.' },
     ],
   },
   {
     name: 'PAPUA',
     objects: [
-      {
-        id: 30,
-        name: 'Perisai Asmat',
-        description: 'Perisai Asmat merupakan perisai tradisional suku Asmat dari Papua yang digunakan untuk perlindungan dalam peperangan dan juga sebagai simbol status sosial.',
-      },
-      {
-        id: 31,
-        name: 'Patung Asmat',
-        description: 'Patung khas suku Asmat yang memiliki nilai seni tinggi dan digunakan dalam berbagai ritual adat.',
-      },
+      { id: '32', name: 'Jaran Kamput', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921640/30_c3wdlb.webp', description: 'Kuda mitologi Lombok yang melambangkan kekuatan dan digunakan dalam tradisi khitanan.' },
+      { id: '33', name: 'Kuda Kemanten', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921658/31_jgdkn4.webp', description: 'Simbol pesta pernikahan masyarakat Lombok yang menggambarkan kebahagiaan pasangan pengantin.' },
     ],
   },
   {
     name: 'WAYANG',
     objects: [
-      {
-        id: 32,
-        name: 'Wayang Golek',
-        description: 'Wayang Golek adalah wayang tiga dimensi yang terbuat dari kayu, berasal dari Jawa Barat dan digunakan untuk pertunjukan cerita pewayangan.',
-      },
-      {
-        id: 33,
-        name: 'Wayang Kulit',
-        description: 'Wayang kulit adalah seni tradisional Indonesia yang terutama berkembang di Jawa Tengah dan Jawa Timur. Wayang berasal dari kata "Ma Hyang" yang artinya menuju kepada roh spiritual, dewa, atau Tuhan Yang Maha Esa. Ada juga yang mengartikan wayang adalah istilah bahasa Jawa yang bermakna "bayangan", hal ini disebabkan karena penonton juga bisa menonton wayang dari belakang kelir atau hanya bayangannya saja.',
-      },
-      {
-        id: 34,
-        name: 'Wayang Pegunungan',
-        description: 'Wayang sadat, wayang maupun gunungan tidak diajarkan ke kanan dan ke kiri (seperti wayang purwo, tetapi cukup ditumpuk dalam kotak). Gunungan wayang sadat ditengahnya tergambar sebuah masjid Demak dan bertuliskan kalimat syahadat.',
-      },
-      {
-        id: 35,
-        name: 'Wayang Potehi',
-        description: 'Wayang Potehi adalah wayang boneka tangan yang berasal dari Tiongkok dan berkembang di Indonesia, terutama di kalangan masyarakat Tionghoa.',
-      },
+      { id: '34', name: 'Patung Penjaga Desa', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921658/31_jgdkn4.webp', description: 'Patung penjaga yang ditempatkan di batas desa untuk melindungi masyarakat dari niat jahat.' },
+      { id: '35', name: 'Sangkar Burung Raja', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921701/33_qnkpcp.webp', description: 'Sangkar burung milik raja atau bangsawan dengan ornamen naga sebagai simbol status tinggi.' },
+      { id: '36', name: 'Topeng Drama Sasak', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/34_sjqevd.webp', description: 'Topeng yang digunakan dalam pertunjukan drama masyarakat Sasak di Lombok.' },
+      { id: '37', name: 'Moko', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/35_nkv7ft.webp', description: 'Alat musik tradisional NTT yang dimainkan dalam upacara adat dan pernikahan.' },
     ],
   },
   {
     name: 'CHENGHO',
     objects: [
-      {
-        id: 36,
-        name: 'Siapakah Laksamana Chengho?',
-        description: 'Laksamana Chengho adalah pelaut dan penjelajah Tiongkok yang terkenal melakukan ekspedisi maritim ke berbagai wilayah termasuk Indonesia.',
-      },
-      {
-        id: 37,
-        name: 'Batik Tiga Negeri',
-        description: 'Warna merah dari batik tiga negeri ini dipengaruhi oleh masyarakat Tionghoa dulu. Yang memiliki simbol kebahagiaan karena sering dipakai dalam acara-acara pernikahan. Kemudian, warna biru datang dari orang-orang Belanda, pengaruh dari bangsa Eropa. Sedangkan warna cokelat soga identik dengan budaya Jawa.',
-      },
-      {
-        id: 38,
-        name: 'Loro Blonyo Jogja',
-        description: 'Loro Blonyo versi Jogja yang menggambarkan pasangan pengantin Jawa dalam busana tradisional Yogyakarta.',
-      },
-      {
-        id: 39,
-        name: 'Parang Klitik',
-        description: 'Parang Klitik adalah pola parang dengan stilasi yang halus. ukurannya pun lebih kecil dan juga menggambarkan citra feminin. Motif ini melambangkan kelemah-lembutan, perilaku halus dan bijaksana. Biasa digunakan oleh para puteri raja.',
-      },
-      {
-        id: 40,
-        name: 'Batik Cap',
-        description: 'Batik Cap adalah batik yang dibuat menggunakan cap tembaga untuk mencetak motif pada kain, berbeda dengan batik tulis yang dibuat dengan canting.',
-      },
-      {
-        id: 41,
-        name: 'Batik',
-        description: 'Batik (là rǎn 蜡染) adalah sebuah teknik pencelupan dengan lilin yang digunakan pada bahan dasar tekstil. Batik Cina biasa disebut dengan (là rǎn 蜡染). Para penemu menunjukkan bahwa batik merupakan originalitas dari leluhur Cina, warna merah masih merupakan ciri khas utama dari batik yang berasal dari Cina.',
-      },
-      {
-        id: 42,
-        name: 'Patung Naga',
-        description: 'Patung Naga yang dibuat menggunakan kayu Quan Zhi, kayu kokoh dari Cina yang berusia ratusan tahun, patung naga ini dahulu diletakkan di altar teras klenteng, menceritakan tentang naga yang terbang diatas awan.',
-      },
-      {
-        id: 43,
-        name: 'Keramik Cina',
-        description: 'Keramik Cina kuno yang memiliki nilai sejarah tinggi, menunjukkan hubungan perdagangan antara Tiongkok dan Indonesia.',
-      },
+      { id: '38', name: 'Patung Yene', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/36_tpsjb7.webp', description: 'Patung batu kuno yang digunakan dalam ritual persembahan kepada dewa.' },
+      { id: '39', name: 'Pedang Surik', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/37_sijhcr.webp', description: 'Pedang panjang masyarakat NTT yang menjadi simbol kekuatan.' },
+      { id: '41', name: 'Haikara Jangga', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/38_lc4tiu.webp', description: 'Sisir kepala bangsawan NTT yang melambangkan keanggunan dan status tinggi.' },
+      { id: '42', name: 'Cincin Kawin', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/39_xckkol.webp', description: 'Cincin dengan motif hewan yang melambangkan doa dan harapan baik dalam pernikahan.' },
+      { id: '43', name: 'Pemarut Kelapa', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/40_yiv2pz.webp', description: 'Alat tradisional masyarakat Batak untuk memarut kelapa dengan cara diduduki.' },
+     { id: '44', name: 'Rumbi', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/41_l52blz.webp', description: 'Wadah penyimpanan beras dari akar kelapa yang kuat dan dapat bertahan ratusan tahun.' },
+      { id: '45', name: 'Kitab Pustaha Lak Lak', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/42_jesese.webp', description: 'Kitab mantra pengobatan tradisional masyarakat Batak yang dibuat dari kulit pohon.' },
+      { id: '46', name: 'Topeng Makyong', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921702/43_itlsvb.webp', description: 'Topeng yang digunakan dalam tarian panen raya masyarakat Melayu dan Batak.' },
+      { id: '47', name: 'Jendela Batak', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921703/44_wlrupk.webp', description: 'Jendela rumah adat Batak dengan ukiran yang melambangkan perlindungan orang tua terhadap keluarga.' },
+    ],
+  },
+  {
+    name: 'SULAWESI',
+    objects: [
+      { id: '48', name: 'Pintu Makam', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921703/45_xhucv5.webp', description: 'Pintu makam Toraja dengan ukiran kerbau sebagai simbol kendaraan menuju surga.' },
+      { id: '49', name: 'Patung Tao Tao', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921703/46_uxxswm.webp', description: 'Patung kayu yang melambangkan arwah orang yang dimakamkan di tebing Toraja.' },
+      { id: '50', name: 'Topeng Kematian', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921719/47_nkly4n.webp', description: 'Topeng ritual pemakaman masyarakat Toraja untuk bangsawan.' },
+      { id: '51', name: 'Tedong Bonga', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921719/48_kl6fuq.webp', description: 'Kerbau putih langka yang digunakan dalam upacara pemakaman adat Toraja.' },
+      { id: '52', name: 'Koin Syilling Yassin', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921719/49_gzv87y.webp', description: 'Koin emas dengan ukiran surat Yasin yang digunakan sebagai alat tukar di kerajaan Gowa.' },
+    ],
+  },
+    {
+    name: 'KALIMANTAN',
+    objects: [
+      { id: '53', name: 'Patung Pantak Pandagi', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921565/50_vcsxuf.webp', description: 'Patung penjaga desa masyarakat Dayak yang terbuat dari kayu ulin.' },
+      { id: '54', name: 'Penutup Botol', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921564/51_mj7lan.webp', description: 'Penutup botol ukiran khas Dayak yang dibuat dari labu untuk bekal minum saat berburu.' },
+      { id: '55', name: 'Kursi Kepala Suku', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921565/52_s0lrnr.webp', description: 'Kursi kepala suku Dayak berbentuk kura-kura yang melambangkan umur panjang dan kewaspadaan.' },
+      { id: '56', name: 'Sapundu', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921565/53_grcw50.webp', description: 'Tiang gantungan hewan buruan dalam tradisi Dayak.' },
+    ],
+  },
+  {
+    name: 'PAPUA',
+    objects: [
+      { id: '57', name: 'Perisai Asmat', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921565/54_i4vjvc.webp', description: 'Perisai tradisional suku Asmat yang dihias ukiran keluarga dan diberkati dengan darah ritual.' },
+      { id: '58', name: 'Patung Kewenak', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921565/55_xbkulv.webp', description: 'Patung kayu tinggi yang menggambarkan aktivitas sehari-hari masyarakat Papua.' },
+      { id: '59', name: 'Patung Kewenak Asmat', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921566/56_ccijk3.webp', description: 'Patung ukiran kayu Asmat yang menggambarkan kehidupan masyarakat setempat.' },
+      { id: '60', name: 'Wayang Golek', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921566/57_eneter.webp', description: 'Wayang kayu khas Jawa Barat yang dikenal sejak abad ke-16.' },
+      { id: '60', name: 'Wayang Kulit', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921567/59_rxnx4z.webp', description: 'Gunungan wayang yang menjadi simbol pembuka dan penutup pertunjukan.' },
+      { id: '62', name: 'Wayang Pegunungan', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921567/59_rxnx4z.webp', description: 'Gunungan wayang yang menjadi simbol pembuka dan penutup pertunjukan.' },
+      { id: '63', name: 'Wayang Potehi', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921567/60_l9zsul.webp', description: 'Wayang boneka tangan dari tradisi Tionghoa yang berkembang di Nusantara.' },
+    ],
+  },
+  {
+    name: 'BATIK',
+    objects: [
+      { id: '64', name: 'Batik Parang Kelitik', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921567/61_hmb71v.webp', description: 'Motif batik halus yang melambangkan kelembutan dan kebijaksanaan.' },
+      { id: '65', name: 'Batik Cap', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921567/62_w6kwdz.webp', description: 'Jenis batik yang dibuat menggunakan canting cap dari tembaga.' },
+      { id: '66', name: 'Batik 3 Negeri', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921567/63_sq1l7y.webp', description: 'Batik dengan perpaduan warna merah Tionghoa, biru Belanda, dan coklat Jawa.' },
+      { id: '67', name: 'Loro Blonyo Jogja', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921568/64_aftwuu.webp', description: 'Patung pasangan suami istri yang melambangkan keharmonisan rumah tangga.' },
+    ],
+  },
+  {
+    name: 'CHENGHO',
+    objects: [
+      { id: '68', name: 'Siapakah Laksamana Chengho', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921568/65_qj3dhu.webp', description: 'Cheng Ho adalah pelaut dan penjelajah Tiongkok yang melakukan ekspedisi ke Nusantara dan menyebarkan pengaruh Islam serta ilmu pengetahuan.' },
+      { id: '69', name: 'Batik Cina', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921568/66_tqk8wj.webp', description: 'Teknik batik dari Tiongkok dengan warna merah sebagai ciri khas.' },
+      { id: '70', name: 'Patung Naga', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921568/67_uv0okn.webp', description: 'Patung naga dari kayu Quan Zhi yang melambangkan kekuatan dan keberuntungan.' },
+     { id: '71', name: 'Keramik Cina', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921564/68_qv6wms.webp', description: 'Keramik hadiah dari ekspedisi Cheng Ho kepada penguasa daerah di Nusantara.' },
+    ],
+  },
+  {
+    name: 'SINGOSARI',
+    objects: [
+      { id: '72', name: 'Patung Ganesa', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921565/69_rvq7f3.webp', description: 'Patung Dewa Ganesha yang berkepala gajah dan bertubuh manusia sebagai simbol kebijaksanaan.' },
     ],
   },
 ];
 
 // Zona terakhir - PENUTUP
+
 const closingZone: Zone = {
   name: 'PENUTUP',
   objects: [
-    {
-      id: 44,
-      name: 'Dewa Ganesha',
-      description: 'Dewa Ganesha atau sering juga disebut dengan Ganapati atau Winayaka ini merupakan Dewa yang perwujudannya campuran antara hewan gajah dan manusia. Seperti diketahui kalau Ganesha ini merupakan Dewa yang memiliki kepala gajah dan bertubuh manusia.',
-    },
+    { id: '73', name: 'Penutup', image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921566/70_orr2oj.webp', description: 'Penutup perjalanan Indonesian Heritage Museum yang menampilkan berbagai koleksi budaya Nusantara. Terima kasih atas kunjungan Anda dan salam budaya.' },
   ],
 };
+
+// ===================== COMPONENT =====================
 
 export default function AutoGuide() {
   const [selectedLanguage, setSelectedLanguage] = useState('ID');
   const [showBackToTop, setShowBackToTop] = useState(false);
 
-  // Monitor scroll untuk back to top button
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.scrollY > 500);
@@ -326,18 +243,15 @@ export default function AutoGuide() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Function untuk mendapatkan deskripsi berdasarkan bahasa
   const getDescription = (description: string, lang: string) => {
-    if (lang === 'ID') {
-      return description;
-    }
-    // Placeholder untuk bahasa lain - nanti bisa diisi manual
+    if (lang === 'ID') return description;
     return `[${lang} Translation - To be filled] ${description}`;
   };
 
   return (
     <div className="bg-[#F4EFE6] min-h-screen">
-      {/* Hero Section */}
+
+      {/* HERO */}
       <div className="relative bg-[#8C6B3E] text-white py-20 px-4">
         <div className="max-w-[1200px] mx-auto text-center">
           <h1 className="font-['Cinzel'] text-4xl md:text-5xl mb-4">
@@ -345,228 +259,140 @@ export default function AutoGuide() {
           </h1>
           <div className="w-24 h-1 bg-white mx-auto mb-6"></div>
           <p className="text-lg md:text-xl max-w-2xl mx-auto opacity-90">
-            Jelajahi 44 koleksi warisan budaya Indonesia dalam 10 zona dengan panduan audio multi-bahasa
+            Jelajahi 70 koleksi warisan budaya Indonesia dalam 10 zona dengan panduan audio multi-bahasa
           </p>
         </div>
       </div>
 
-      {/* Language Selector */}
-      <div id="language-selector" className="sticky top-20 z-40 bg-white shadow-md py-4 px-4">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <p className="text-[#2B2B2B] font-medium">Pilih Bahasa:</p>
-            <div className="flex flex-wrap gap-2">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  onClick={() => setSelectedLanguage(lang.code)}
-                  className={`px-4 py-2 rounded border transition-all ${
-                    selectedLanguage === lang.code
-                      ? 'bg-[#8C6B3E] text-white border-[#8C6B3E]'
-                      : 'bg-white text-[#2B2B2B] border-[#C8B9A6] hover:border-[#8C6B3E]'
-                  }`}
-                >
-                  <span className="mr-2">{lang.flag}</span>
-                  <span className="text-sm">{lang.code}</span>
-                </button>
-              ))}
-            </div>
-          </div>
+      {/* LANGUAGE */}
+      <div className="sticky top-20 z-40 bg-white shadow-md py-4 px-4">
+        <div className="max-w-[1200px] mx-auto flex flex-wrap gap-2">
+          {languages.map((lang) => (
+            <button
+              key={lang.code}
+              onClick={() => setSelectedLanguage(lang.code)}
+              className={`px-4 py-2 rounded border ${
+                selectedLanguage === lang.code
+                  ? 'bg-[#8C6B3E] text-white border-[#8C6B3E]'
+                  : 'bg-white border-[#C8B9A6]'
+              }`}
+            >
+              {lang.flag} {lang.code}
+            </button>
+          ))}
         </div>
       </div>
 
-      {/* Back to Top Button */}
+      {/* CONTENT */}
+      <div className="max-w-[1200px] mx-auto px-4 py-12">
+
+        {museumData.map((zone, zoneIndex) => (
+          <section key={zoneIndex} className="mb-16">
+
+            <h2 className="font-['Cinzel'] text-3xl text-[#8C6B3E] mb-6">
+              {zone.name}
+            </h2>
+
+            <div className="space-y-12">
+              {zone.objects.map((object) => (
+                <div key={object.id} className="bg-white rounded shadow-md overflow-hidden">
+
+                  <div className="grid md:grid-cols-2 gap-6 p-6">
+
+                    {/* IMAGE */}
+                    <div className="rounded overflow-hidden">
+                      <img
+                        src={getObjectImage(object)}
+                        alt={object.name}
+                        loading="lazy"
+                        className="w-full h-[320px] object-cover"
+                      />
+                    </div>
+
+                    {/* CONTENT */}
+                    <div className="flex flex-col justify-center">
+
+                      <div className="text-sm text-[#8C6B3E] font-medium mb-2">
+                        Objek #{object.id}
+                      </div>
+
+                      <h3 className="font-['Cinzel'] text-2xl text-[#2B2B2B] mb-4">
+                        {object.name}
+                      </h3>
+
+                      <div className="text-[#2B2B2B] leading-relaxed">
+                        {getDescription(object.description, selectedLanguage)}
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+              ))}
+            </div>
+
+          </section>
+        ))}
+
+        {/* CLOSING ZONE */}
+
+        <section className="mb-16">
+
+          <h2 className="font-['Cinzel'] text-3xl text-[#8C6B3E] mb-6">
+            {closingZone.name}
+          </h2>
+
+          {closingZone.objects.map((object) => (
+            <div key={object.id} className="bg-white rounded shadow-md overflow-hidden">
+
+              <div className="grid md:grid-cols-2 gap-6 p-6">
+
+                <div className="rounded overflow-hidden">
+                  <img
+                    src={getObjectImage(object)}
+                    alt={object.name}
+                    loading="lazy"
+                    className="w-full h-[320px] object-cover"
+                  />
+                </div>
+
+                <div className="flex flex-col justify-center">
+
+                  <div className="text-sm text-[#8C6B3E] font-medium mb-2">
+                    Objek #{object.id}
+                  </div>
+
+                  <h3 className="font-['Cinzel'] text-2xl text-[#2B2B2B] mb-4">
+                    {object.name}
+                  </h3>
+
+                  <div className="text-[#2B2B2B] leading-relaxed">
+                    {getDescription(object.description, selectedLanguage)}
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+          ))}
+
+        </section>
+
+      </div>
+
+      {/* BACK TO TOP */}
+
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed left-4 bottom-6 z-40 bg-[#8C6B3E] text-white p-2 rounded shadow-lg hover:bg-[#6F532F] transition-all opacity-70 hover:opacity-100"
-          aria-label="Back to top"
+          className="fixed left-4 bottom-6 z-40 bg-[#8C6B3E] text-white p-2 rounded shadow-lg"
         >
           <ChevronUp className="w-5 h-5" />
         </button>
       )}
 
-      {/* Content - All Zones */}
-      <div className="max-w-[1200px] mx-auto px-4 py-12">
-        {/* Render semua zona */}
-        {museumData.map((zone, zoneIndex) => (
-          <section key={zoneIndex} className="mb-16">
-            {/* Zone Title */}
-            <div className="mb-8">
-              <h2 className="font-['Cinzel'] text-3xl md:text-4xl text-[#8C6B3E] mb-3">
-                {zone.name}
-              </h2>
-              <div className="w-16 h-1 bg-[#8C6B3E]"></div>
-            </div>
-
-            {/* Objects Grid */}
-            <div className="space-y-12">
-              {zone.objects.map((object) => (
-                <div
-                  key={object.id}
-                  className="bg-white rounded shadow-md overflow-hidden"
-                >
-                  <div className="grid md:grid-cols-2 gap-6 p-6">
-                    {/* Image Section */}
-                    <div className="bg-[#E7DED0] rounded flex items-center justify-center min-h-[300px]">
-                      <div className="text-center p-8">
-                        <div className="text-[#8C6B3E] mb-4">
-                          <svg
-                            className="w-16 h-16 mx-auto"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={1.5}
-                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                            />
-                          </svg>
-                        </div>
-                        <p className="text-sm text-[#5A5A5A]">
-                          [Image Placeholder]
-                          <br />
-                          <span className="text-xs">ID: {object.id}</span>
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Content Section */}
-                    <div className="flex flex-col justify-center">
-                      {/* Object Number */}
-                      <div className="text-sm text-[#8C6B3E] font-medium mb-2">
-                        Objek #{object.id}
-                      </div>
-
-                      {/* Object Name */}
-                      <h3 className="font-['Cinzel'] text-2xl md:text-3xl text-[#2B2B2B] mb-4">
-                        {object.name}
-                      </h3>
-
-                      {/* Audio Player Placeholder */}
-                      <div className="mb-4">
-                        <div className="bg-[#F4EFE6] rounded p-4 border border-[#C8B9A6]">
-                          <div className="flex items-center gap-3">
-                            <button className="w-10 h-10 rounded-full bg-[#8C6B3E] text-white flex items-center justify-center hover:bg-[#6F532F] transition-all">
-                              <svg
-                                className="w-5 h-5"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path d="M8 5v14l11-7z" />
-                              </svg>
-                            </button>
-                            <div className="flex-1">
-                              <div className="text-xs text-[#5A5A5A] mb-1">
-                                Audio Guide - {selectedLanguage}
-                              </div>
-                              <div className="bg-[#C8B9A6] h-1 rounded-full">
-                                <div className="bg-[#8C6B3E] h-1 rounded-full w-0"></div>
-                              </div>
-                            </div>
-                            <span className="text-xs text-[#5A5A5A]">0:00</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Description */}
-                      <div className="text-[#2B2B2B] leading-relaxed">
-                        {getDescription(object.description, selectedLanguage)}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        ))}
-
-        {/* Zona Penutup */}
-        <section className="mb-16">
-          <div className="mb-8">
-            <h2 className="font-['Cinzel'] text-3xl md:text-4xl text-[#8C6B3E] mb-3">
-              {closingZone.name}
-            </h2>
-            <div className="w-16 h-1 bg-[#8C6B3E]"></div>
-          </div>
-
-          <div className="space-y-12">
-            {closingZone.objects.map((object) => (
-              <div
-                key={object.id}
-                className="bg-white rounded shadow-md overflow-hidden"
-              >
-                <div className="grid md:grid-cols-2 gap-6 p-6">
-                  <div className="bg-[#E7DED0] rounded flex items-center justify-center min-h-[300px]">
-                    <div className="text-center p-8">
-                      <div className="text-[#8C6B3E] mb-4">
-                        <svg
-                          className="w-16 h-16 mx-auto"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={1.5}
-                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          />
-                        </svg>
-                      </div>
-                      <p className="text-sm text-[#5A5A5A]">
-                        [Image Placeholder]
-                        <br />
-                        <span className="text-xs">ID: {object.id}</span>
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col justify-center">
-                    <div className="text-sm text-[#8C6B3E] font-medium mb-2">
-                      Objek #{object.id}
-                    </div>
-                    <h3 className="font-['Cinzel'] text-2xl md:text-3xl text-[#2B2B2B] mb-4">
-                      {object.name}
-                    </h3>
-
-                    <div className="mb-4">
-                      <div className="bg-[#F4EFE6] rounded p-4 border border-[#C8B9A6]">
-                        <div className="flex items-center gap-3">
-                          <button className="w-10 h-10 rounded-full bg-[#8C6B3E] text-white flex items-center justify-center hover:bg-[#6F532F] transition-all">
-                            <svg
-                              className="w-5 h-5"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M8 5v14l11-7z" />
-                            </svg>
-                          </button>
-                          <div className="flex-1">
-                            <div className="text-xs text-[#5A5A5A] mb-1">
-                              Audio Guide - {selectedLanguage}
-                            </div>
-                            <div className="bg-[#C8B9A6] h-1 rounded-full">
-                              <div className="bg-[#8C6B3E] h-1 rounded-full w-0"></div>
-                            </div>
-                          </div>
-                          <span className="text-xs text-[#5A5A5A]">0:00</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="text-[#2B2B2B] leading-relaxed">
-                      {getDescription(object.description, selectedLanguage)}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
     </div>
   );
 }
