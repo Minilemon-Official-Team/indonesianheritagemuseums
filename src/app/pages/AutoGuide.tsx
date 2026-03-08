@@ -53,13 +53,13 @@ const museumData: Zone[] = [
       {
         id: 1,
         name: 'Pembukaan',
-        image: '',
+        image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921565/IHM1-1024x576_1_yhi1lk.webp',
         description: 'Indonesian heritage Museum merupakan museum warisan budaya Indonesia yang mempunyai koleksi warisan budaya dari seluruh wilayah Indonesia, berdiri sejak tahun 2010, Indonesian heritage Museum juga merupakan pelopor museum berteknologi Augmented Reality di Indonesia, terdapat 17 zona yang mewakili wilayah di Indonesia, yang menyimpan benda benda bersejarah dari seluruh suku di tanah air.',
       },
       {
         id: 2,
         name: 'Download AR',
-        image: '',
+        image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772931496/IHM2-768x432_w8r2nn.webp',
         description: 'Silakan kepada para pengunjung untuk dapat mengunduh aplikasi Augmented Reality di Google Play Store dan juga Autoself Guided Tour yang dapat diakses melalui website untuk dapat memudahkan para pengunjung selama berada di Indonesian Heritage Museum.',
       },
     ],
