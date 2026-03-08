@@ -39,7 +39,7 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(rgba(140, 107, 62, 0.4), rgba(140, 107, 62, 0.6)), url('https://images.unsplash.com/photo-1686987195191-b3f91321d37d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxJbmRvbmVzaWFuJTIwaGVyaXRhZ2UlMjBtdXNldW0lMjBhcnRpZmFjdHN8ZW58MXx8fHwxNzcyNDgzNzE5fDA&ixlib=rb-4.1.0&q=80&w=1080')`,
+            backgroundImage: `linear-gradient(rgba(140, 107, 62, 0.4), rgba(140, 107, 62, 0.6)), url('https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772931496/IHM2-768x432_w8r2nn.webp')`,
           }}
         />
         <div className="relative z-10 text-center max-w-4xl px-4">
@@ -105,7 +105,7 @@ export default function Home() {
             <div className="bg-white rounded shadow-md overflow-hidden hover:shadow-xl transition-all duration-300">
               <div className="h-80 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1648643118664-c6f1c5ba0850?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21hbiUyMHZpZXdpbmclMjBhdWdtZW50ZWQlMjByZWFsaXR5JTIwbXVzZXVtJTIwZXhoaWJpdHxlbnwxfHx8fDE3NzI4NDYyNTB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772936678/1_23_x5apvd.webp"
                   alt="Augmented Reality"
                   className="w-full h-full object-cover"
                 />
@@ -166,7 +166,7 @@ export default function Home() {
       >
         <div className="max-w-[1400px] mx-auto">
           <img
-            src="https://images.unsplash.com/photo-1632490915966-479873207a88?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZW9wbGUlMjBtdXNldW0lMjB3YWxsJTIwbWFza3MlMjBjdWx0dXJhbHxlbnwxfHx8fDE3NzI4NDYyNTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+            src="https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921565/IHM1-1024x576_1_yhi1lk.webp"
             alt="Pengunjung melihat koleksi topeng di dinding"
             className="w-full h-[500px] object-cover rounded-lg shadow-lg"
           />
@@ -202,7 +202,7 @@ export default function Home() {
       >
         <div className="max-w-[1400px] mx-auto">
           <img
-            src="https://images.unsplash.com/photo-1767938072548-112727a13266?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnb2xkZW4lMjBtYXNrJTIwZGlzcGxheSUyMG11c2V1bSUyMGNvbGxlY3Rpb258ZW58MXx8fHwxNzcyODQ2MjUyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+            src="https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928951/1-649ec852e1a1676b31155872_y8trlr.webp"
             alt="Koleksi topeng emas di display"
             className="w-full h-[500px] object-cover rounded-lg shadow-lg"
           />
