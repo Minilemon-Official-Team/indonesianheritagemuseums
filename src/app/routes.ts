@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from "react-router";
+import { createBrowserRouter, redirect } from "react-router";
 import Root from "./pages/Root";
 import Home from "./pages/Home";
 import AutoGuide from "./pages/AutoGuide";
@@ -27,7 +27,10 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "auto-guide", Component: AutoGuide },
-      { path: "autoguide", Component: () => <Navigate to="/auto-guide" replace /> },
+      {
+        path: "autoguide",
+        loader: () => redirect("/auto-guide")
+      },
       { path: "object/:id", Component: ObjectPage },
       { path: "austronesia", Component: AutoGuide },
       { path: "virtual-tour", Component: VirtualTour },
