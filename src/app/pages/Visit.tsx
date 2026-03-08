@@ -100,18 +100,15 @@ export default function Visit() {
             </div>
             <div className="space-y-4">
               <p className="text-[#2B2B2B] leading-relaxed">
-                Jl. Kajoetangan No. 22<br />
-                Kelurahan Kauman, Kecamatan Klojen<br />
-                Malang, East Java 65119<br />
-                Indonesia
+                Jl. Kartika No.2, Sisir, Kec. Batu, Kota Batu, Jawa Timur 65314
               </p>
               <div className="border-t border-[#C8B9A6] pt-4">
                 <h3 className="font-['Cinzel'] text-lg text-[#2B2B2B] mb-3">How to Get Here</h3>
                 <ul className="space-y-2 text-[#5A5A5A]">
-                  <li>• 15 minutes from Malang Train Station</li>
-                  <li>• 30 minutes from Abdul Rachman Saleh Airport</li>
+                  <li>• 40 minutes from Malang Train Station</li>
+                  <li>• 55 minutes from Abdul Rachman Saleh Airport</li>
                   <li>• Parking available on-site</li>
-                  <li>• Accessible via public transportation</li>
+                  <li>• Accessible via ride-hailing services and public transportation</li>
                 </ul>
               </div>
             </div>
@@ -130,14 +127,7 @@ export default function Visit() {
                 <Phone className="w-5 h-5 text-[#8C6B3E] mt-1 flex-shrink-0" />
                 <div>
                   <div className="text-[#2B2B2B] font-medium">Phone</div>
-                  <div className="text-[#5A5A5A]">+62 341 362 943</div>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-[#8C6B3E] mt-1 flex-shrink-0" />
-                <div>
-                  <div className="text-[#2B2B2B] font-medium">Email</div>
-                  <div className="text-[#5A5A5A]">info@indonesianheritagemuseum.com</div>
+                  <div className="text-[#5A5A5A]">+62 857 4840 5800</div>
                 </div>
               </div>
               <div className="border-t border-[#C8B9A6] pt-4">
@@ -155,11 +145,7 @@ export default function Visit() {
         <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
           <h2 className="font-['Cinzel'] text-2xl text-[#2B2B2B] mb-6 text-center">Find Us</h2>
           <div className="aspect-video bg-[#E7DED0] rounded flex items-center justify-center">
-            <div className="text-center text-[#5A5A5A]">
-              <MapPin className="w-16 h-16 mx-auto mb-4 text-[#8C6B3E]" />
-              <p className="text-lg">Interactive Map</p>
-              <p className="text-sm">Jl. Kajoetangan No. 22, Malang, East Java</p>
-            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4924.694188352999!2d112.52393289999999!3d-7.8840109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78872dd3c46115%3A0x1d9644037c54d349!2sIndonesian%20Heritage%20Museum!5e1!3m2!1sen!2sid!4v1772927997715!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
         </div>
 
@@ -184,7 +170,7 @@ export default function Visit() {
               <li>• Advance booking required</li>
             </ul>
             <button className="px-6 py-3 bg-[#8C6B3E] text-white rounded hover:bg-[#6F532F] transition-colors">
-              Book Group Visit
+              <a href="https://wa.me/+6285748405800"> Book Group Visit </a>
             </button>
           </div>
 
