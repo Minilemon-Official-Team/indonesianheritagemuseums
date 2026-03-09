@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 
 export default function Header() {
@@ -77,14 +77,6 @@ export default function Header() {
               className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E] transition-colors relative group"
             >
               Auto Guide
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#8C6B3E] transition-all group-hover:w-full"></span>
-            </Link>
-
-            <Link
-              to="/austronesia"
-              className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E] transition-colors relative group"
-            >
-              Austronesia
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#8C6B3E] transition-all group-hover:w-full"></span>
             </Link>
 

@@ -1,4 +1,4 @@
-import { createBrowserRouter, redirect } from "react-router";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import Root from "./pages/Root";
 import Home from "./pages/Home";
 import AutoGuide from "./pages/AutoGuide";
@@ -32,7 +32,6 @@ export const router = createBrowserRouter([
         loader: () => redirect("/auto-guide")
       },
       { path: "object/:id", Component: ObjectPage },
-      { path: "austronesia", Component: AutoGuide },
       { path: "virtual-tour", Component: VirtualTour },
       { path: "virtual-tour-ihm", Component: VirtualTourIHM },
       { path: "virtual-tour-candi-jago", Component: VirtualTourCandiJago },

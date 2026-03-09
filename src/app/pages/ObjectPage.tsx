@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate } from 'react-router';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Share2, Check, ArrowLeft, MapPin } from 'lucide-react';
 
