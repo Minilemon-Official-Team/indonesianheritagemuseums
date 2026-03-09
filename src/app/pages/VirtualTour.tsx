@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Monitor, Eye, PlayCircle } from 'lucide-react';
 
 export default function VirtualTour() {
@@ -15,7 +15,7 @@ export default function VirtualTour() {
           </h1>
           <div className="w-24 h-1 bg-[#8C6B3E] mx-auto mb-6"></div>
           <p className="text-[#5A5A5A] text-lg max-w-3xl mx-auto leading-relaxed">
-            Experience the Indonesian Heritage Museum and its associated historical sites from anywhere in the world. 
+            Experience the Indonesian Heritage Museum and its associated historical sites from anywhere in the world.
             Our immersive 360° virtual tours allow you to explore our collections and ancient temples at your own pace.
           </p>
         </div>
@@ -35,7 +35,7 @@ export default function VirtualTour() {
               <h3 className="font-['Cinzel'] text-2xl text-[#2B2B2B]">Preview Tour</h3>
             </div>
             <p className="text-[#5A5A5A] leading-relaxed mb-6">
-              Get a quick overview of our museum and collections. Perfect for first-time visitors 
+              Get a quick overview of our museum and collections. Perfect for first-time visitors
               who want to plan their visit or get a taste of what we offer.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
@@ -69,7 +69,7 @@ export default function VirtualTour() {
               <h3 className="font-['Cinzel'] text-2xl text-[#2B2B2B]">Detailed Tour</h3>
             </div>
             <p className="text-[#5A5A5A] leading-relaxed mb-6">
-              Immerse yourself in a comprehensive exploration of our entire collection. Includes detailed 
+              Immerse yourself in a comprehensive exploration of our entire collection. Includes detailed
               information, high-resolution images, and expert commentary on each artifact.
             </p>
             <div className="grid md:grid-cols-2 gap-6">

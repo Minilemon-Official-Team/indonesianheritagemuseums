@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 
 export default function Header() {
@@ -272,6 +272,13 @@ export default function Header() {
               Auto Guide
             </Link>
 
+            <Link
+              to="/austronesia"
+              className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
+            >
+              Austronesia
+            </Link>
+
             {/* Virtual Tour Mobile */}
             <div className="space-y-1">
               <button
@@ -375,8 +382,8 @@ export default function Header() {
                     key={lang}
                     onClick={() => setLanguage(lang)}
                     className={`px-3 py-2 text-sm font-['Cinzel'] rounded border ${language === lang
-                        ? 'bg-[#8C6B3E] text-white border-[#8C6B3E]'
-                        : 'text-[#5A5A5A] border-[#C8B9A6] hover:bg-[#E7DED0]'
+                      ? 'bg-[#8C6B3E] text-white border-[#8C6B3E]'
+                      : 'text-[#5A5A5A] border-[#C8B9A6] hover:bg-[#E7DED0]'
                       }`}
                   >
                     {lang}

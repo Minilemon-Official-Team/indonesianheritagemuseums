@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Home, Search } from 'lucide-react';
 
 export default function NotFound() {
@@ -11,7 +11,7 @@ export default function NotFound() {
             Page Not Found
           </h2>
           <p className="text-[#5A5A5A] text-lg mb-8">
-            The page you're looking for doesn't exist or has been moved. 
+            The page you're looking for doesn't exist or has been moved.
             Let's get you back to exploring Indonesian heritage.
           </p>
         </div>
