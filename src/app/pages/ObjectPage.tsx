@@ -5,7 +5,7 @@ import { useTranslationContext } from '../context/TranslationContext';
 import { toZoneKey } from '../utils/translationConfig';
 import { ContentLanguageSwitcher } from '../components/ui/ContentLanguageSwitcher';
 
-const CDN_FALLBACK = 'https://res.cloudinary.com/dnbq1z8lx/image/upload';
+const DUMMY_LOGO = 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772934955/Logo_mkvfjb.webp';
 
 interface ZoneObject {
     id: number;
@@ -50,7 +50,7 @@ const museumData: Zone[] = [
 
 const getObjectImage = (object: ZoneObject) => {
     if (object.image && object.image !== '') return object.image;
-    return `${CDN_FALLBACK}${object.id}.webp`;
+    return DUMMY_LOGO;
 };
 
 const findObjectById = (id: number): { object: ZoneObject | null; zone: string; zoneIndex: number } => {
@@ -137,8 +137,8 @@ export default function ObjectPage() {
 
             <div className="max-w-[1200px] mx-auto px-4 py-12">
                 <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                    <div className="w-full h-[400px] md:h-[500px] bg-[#8C6B3E] flex items-center justify-center">
-                        <img src={getObjectImage(object)} alt={zone} className="w-full h-full object-contain" />
+                    <div className="w-full h-[400px] md:h-[500px] bg-[#8C6B3E] flex items-center justify-center p-8">
+                        <img src={getObjectImage(object)} alt={zone} className="w-full h-full max-w-[320px] object-contain" />
                     </div>
 
                     <div className="bg-[#F4EFE6] p-4 md:p-6 border-b border-[#E7DED0]">

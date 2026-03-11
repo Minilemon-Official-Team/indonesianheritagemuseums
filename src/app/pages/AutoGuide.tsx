@@ -4,7 +4,7 @@ import { useTranslationContext } from '../context/TranslationContext';
 import { toZoneKey } from '../utils/translationConfig';
 import { ContentLanguageSwitcher } from '../components/ui/ContentLanguageSwitcher';
 
-const CDN_FALLBACK = 'https://res.cloudinary.com/dnbq1z8lx/image/upload';
+const DUMMY_LOGO = 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772934955/Logo_mkvfjb.webp';
 
 interface ZoneObject {
     id: number;
@@ -19,7 +19,7 @@ interface Zone {
 
 const getObjectImage = (object: ZoneObject) => {
     if (object.image && object.image !== '') return object.image;
-    return `${CDN_FALLBACK}${object.id}.webp`;
+    return DUMMY_LOGO;
 };
 
 const museumData: Zone[] = [
@@ -143,12 +143,12 @@ export default function AutoGuide() {
                                 </button>
 
                                 <div className="grid md:grid-cols-2 gap-6 p-6">
-                                    <div className="rounded overflow-hidden bg-[#8C6B3E]">
+                                    <div className="rounded overflow-hidden bg-[#8C6B3E] h-[320px] flex items-center justify-center p-6">
                                         <img
                                             src={getObjectImage(obj)}
                                             alt={zone.name}
                                             loading="lazy"
-                                            className="w-full h-[320px] object-contain"
+                                            className="w-full h-full max-w-[220px] object-contain"
                                         />
                                     </div>
 
