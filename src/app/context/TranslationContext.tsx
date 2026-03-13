@@ -6,6 +6,8 @@ interface TranslationContextType {
     setLanguage: (lang: LangCode) => void;
     languages: typeof LANGUAGES;
     isLoading: boolean;
+    audioStatus: Record<string, 'loading' | 'ready' | 'error'>;
+    setAudioStatus: (key: string, status: 'loading' | 'ready' | 'error') => void;
     getDescription: (zoneName: string, indonesianText: string) => string;
     getAudio: (zoneName: string) => string;
     prefetchTranslation: (zoneName: string, indonesianText: string) => void;
@@ -16,9 +18,14 @@ const TranslationContext = createContext<TranslationContextType | null>(null);
 export function TranslationProvider({ children }: { children: React.ReactNode }) {
     const [currentLang, setCurrentLang] = useState<LangCode>('id');
     const [isLoading, setIsLoading] = useState(false);
+    const [audioStatus, setAudioStatusMap] = useState<Record<string, 'loading' | 'ready' | 'error'>>({});
     const cache = useRef<Record<string, string>>({});
 
     const setLanguage = useCallback((lang: LangCode) => setCurrentLang(lang), []);
+
+    const setAudioStatus = useCallback((key: string, status: 'loading' | 'ready' | 'error') => {
+        setAudioStatusMap(prev => ({ ...prev, [key]: status }));
+    }, []);
 
     const prefetchTranslation = useCallback(async (zoneName: string, indonesianText: string) => {
         if (currentLang === 'id') return;
@@ -53,7 +60,7 @@ export function TranslationProvider({ children }: { children: React.ReactNode })
     return (
         <TranslationContext.Provider value={{
             currentLang, setLanguage, languages: LANGUAGES,
-            isLoading, getDescription, getAudio, prefetchTranslation,
+            isLoading, audioStatus, setAudioStatus, getDescription, getAudio, prefetchTranslation,
         }}>
             {children}
         </TranslationContext.Provider>
