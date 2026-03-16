@@ -35,15 +35,15 @@ export function toZoneKey(zoneName: string): string {
 const ID_AUDIO_MAP: Record<string, string> = {
     prasejarah: 'Prasejarah',
     austronesia: 'Austronesia',
-    jawa_timur: 'Jawa_Timur',
+    'jawa_timur': 'Jawa_Timur',
     sejarah_kerajaan_jawa_timur: 'Sejarah_Kerajaan_Jawa_Timur',
     jawa_tengah: 'Jawa_Tengah',
     jawa_barat: 'Jawa_Barat',
     bali: 'Bali',
     nusa_tenggara_barat: 'NTB',
     nusa_tenggara_timur: 'NTT',
-    pulau_leti: 'Leti',
-    homo_floresiensis_hobbit: 'Hobbit',
+    'pulau_leti': 'Leti',
+    'homo_floresiensis_hobbit': 'Hobbit',
     sumatra: 'Sumatera',
     manusia_purba_harau: 'Manusia_Purba_Harau',
     sulawesi: 'Sulawesi',
@@ -62,15 +62,25 @@ const ID_AUDIO_MAP: Record<string, string> = {
     perjalanan_leluhur_nias: 'Sumatera_Perjalanan_Leluhur',
 };
 
+// English local audio filename mapping (identical to ID since filenames match)
+const EN_AUDIO_MAP: Record<string, string> = {
+    ...ID_AUDIO_MAP,
+    // Special cases confirmed from file names
+    'jawa_timur': 'Jawa Timur', // has space
+};
+
 // Build audio URL
 export function buildAudioUrl(langCode: LangCode, zoneName: string): string {
     const zoneKey = toZoneKey(zoneName);
+    const filename = (langCode === 'id' ? ID_AUDIO_MAP : langCode === 'en' ? EN_AUDIO_MAP : null)?.[zoneKey] || zoneKey;
+
     if (langCode === 'id') {
-        // Indonesian: .wav files served from public/Audio/id/
-        const filename = ID_AUDIO_MAP[zoneKey] || zoneKey;
         return `/Audio/id/${filename}.wav`;
     }
-    // All other 11 languages: .mp3 from Cloudflare R2
+    if (langCode === 'en') {
+        return `/Audio/eng/${filename}.wav`;
+    }
+    // All other languages: .mp3 from Cloudflare R2
     return `${R2_BASE_URL}/audio/${langCode}/${zoneKey}.mp3`;
 }
 
