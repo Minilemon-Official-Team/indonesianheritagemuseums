@@ -1,21 +1,20 @@
-
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Globe } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, ChevronDown, Globe } from "lucide-react";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [language, setLanguage] = useState('EN');
+  const [language, setLanguage] = useState("EN");
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -27,20 +26,32 @@ export default function Header() {
     setOpenDropdown(openDropdown === menu ? null : menu);
   };
 
-  const languages = ['EN', 'ID', 'JP', 'KR', 'CN', 'ES', 'FR', 'DE', 'IT', 'NL', 'RU', 'AR'];
+  const languages = [
+    "EN",
+    "ID",
+    "JP",
+    "KR",
+    "CN",
+    "ES",
+    "FR",
+    "DE",
+    "IT",
+    "NL",
+    "RU",
+    "AR",
+  ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#F4EFE6] shadow-md' : 'bg-[#F4EFE6]/95'
-        }`}
-      style={{ borderBottom: '1px solid #C8B9A6' }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-[#F4EFE6] shadow-md" : "bg-[#F4EFE6]/95"
+      }`}
+      style={{ borderBottom: "1px solid #C8B9A6" }}
     >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-
             <div className="w-12 h-12 flex items-center justify-center transition-transform group-hover:scale-105">
               <img
                 src="https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772934955/Logo_mkvfjb.webp"
@@ -58,12 +69,10 @@ export default function Header() {
                 Museum
               </div>
             </div>
-
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
-
             <Link
               to="/"
               className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E] transition-colors relative group"
@@ -81,7 +90,7 @@ export default function Header() {
             </Link>
 
             {/* Virtual Tour Dropdown */}
-            <div className="relative group">
+            {/* <div className="relative group">
               <button
                 className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E] transition-colors flex items-center gap-1"
                 onMouseEnter={() => setOpenDropdown('virtual-tour')}
@@ -140,7 +149,7 @@ export default function Header() {
 
                 </div>
               )}
-            </div>
+            </div> */}
 
             <Link
               to="/news"
@@ -179,21 +188,19 @@ export default function Header() {
 
             {/* Education Dropdown */}
             <div className="relative group">
-
               <button
                 className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E] flex items-center gap-1"
-                onMouseEnter={() => setOpenDropdown('education')}
+                onMouseEnter={() => setOpenDropdown("education")}
               >
                 Education & Family
                 <ChevronDown className="w-4 h-4" />
               </button>
 
-              {openDropdown === 'education' && (
+              {openDropdown === "education" && (
                 <div
                   className="absolute top-full right-0 mt-2 w-56 bg-white shadow-lg rounded border border-[#C8B9A6] py-2"
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
-
                   <Link
                     to="/education/general-family"
                     className="block px-4 py-2 hover:bg-[#E7DED0]"
@@ -214,7 +221,6 @@ export default function Header() {
                   >
                     Educational Series
                   </Link>
-
                 </div>
               )}
             </div>
@@ -238,7 +244,6 @@ export default function Header() {
                 ))}
               </div>
             </div>
-
           </nav>
 
           {/* Mobile Button */}
@@ -247,9 +252,12 @@ export default function Header() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
-
         </div>
       </div>
 
@@ -257,7 +265,6 @@ export default function Header() {
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-[#F4EFE6] border-t border-[#C8B9A6]">
           <nav className="flex flex-col px-4 py-4 space-y-2">
-
             <Link
               to="/"
               className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
@@ -283,30 +290,50 @@ export default function Header() {
             <div className="space-y-1">
               <button
                 className="w-full flex items-center justify-between px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:bg-[#E7DED0] rounded"
-                onClick={() => toggleDropdown('virtual-tour-mobile')}
+                onClick={() => toggleDropdown("virtual-tour-mobile")}
               >
                 <span>Virtual Tour</span>
-                <ChevronDown className={`w-5 h-5 transition-transform ${openDropdown === 'virtual-tour-mobile' ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`w-5 h-5 transition-transform ${openDropdown === "virtual-tour-mobile" ? "rotate-180" : ""}`}
+                />
               </button>
 
-              {openDropdown === 'virtual-tour-mobile' && (
+              {openDropdown === "virtual-tour-mobile" && (
                 <div className="pl-4 space-y-1">
-                  <Link to="/virtual-tour" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                  <Link
+                    to="/virtual-tour"
+                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
+                  >
                     Virtual Tour Overview
                   </Link>
-                  <Link to="/virtual-tour-ihm" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                  <Link
+                    to="/virtual-tour-ihm"
+                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
+                  >
                     Virtual Tour - IHM
                   </Link>
-                  <Link to="/virtual-tour-candi-jago" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                  <Link
+                    to="/virtual-tour-candi-jago"
+                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
+                  >
                     Virtual Tour - Candi Jago
                   </Link>
-                  <Link to="/virtual-tour-candi-kidal" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                  <Link
+                    to="/virtual-tour-candi-kidal"
+                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
+                  >
                     Virtual Tour - Candi Kidal
                   </Link>
-                  <Link to="/virtual-tour-ihm-2023" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                  <Link
+                    to="/virtual-tour-ihm-2023"
+                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
+                  >
                     Virtual Tour - IHM 2023
                   </Link>
-                  <Link to="/virtual-tour-candi-jago-2023" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                  <Link
+                    to="/virtual-tour-candi-jago-2023"
+                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
+                  >
                     Virtual Tour - Candi Jago 2023
                   </Link>
                 </div>
@@ -352,21 +379,32 @@ export default function Header() {
             <div className="space-y-1">
               <button
                 className="w-full flex items-center justify-between px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:bg-[#E7DED0] rounded"
-                onClick={() => toggleDropdown('education-mobile')}
+                onClick={() => toggleDropdown("education-mobile")}
               >
                 <span>Education & Family</span>
-                <ChevronDown className={`w-5 h-5 transition-transform ${openDropdown === 'education-mobile' ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`w-5 h-5 transition-transform ${openDropdown === "education-mobile" ? "rotate-180" : ""}`}
+                />
               </button>
 
-              {openDropdown === 'education-mobile' && (
+              {openDropdown === "education-mobile" && (
                 <div className="pl-4 space-y-1">
-                  <Link to="/education/general-family" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                  <Link
+                    to="/education/general-family"
+                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
+                  >
                     General/Family
                   </Link>
-                  <Link to="/education/educational-institution" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                  <Link
+                    to="/education/educational-institution"
+                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
+                  >
                     Educational Institution
                   </Link>
-                  <Link to="/education/educational-series" className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded">
+                  <Link
+                    to="/education/educational-series"
+                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
+                  >
                     Educational Series
                   </Link>
                 </div>
@@ -375,23 +413,25 @@ export default function Header() {
 
             {/* Language Selector Mobile */}
             <div className="pt-2 border-t border-[#C8B9A6]">
-              <div className="px-4 py-2 text-[#8C6B3E] font-['Cinzel'] text-sm">Language</div>
+              <div className="px-4 py-2 text-[#8C6B3E] font-['Cinzel'] text-sm">
+                Language
+              </div>
               <div className="flex flex-wrap gap-2 px-4">
                 {languages.map((lang) => (
                   <button
                     key={lang}
                     onClick={() => setLanguage(lang)}
-                    className={`px-3 py-2 text-sm font-['Cinzel'] rounded border ${language === lang
-                      ? 'bg-[#8C6B3E] text-white border-[#8C6B3E]'
-                      : 'text-[#5A5A5A] border-[#C8B9A6] hover:bg-[#E7DED0]'
-                      }`}
+                    className={`px-3 py-2 text-sm font-['Cinzel'] rounded border ${
+                      language === lang
+                        ? "bg-[#8C6B3E] text-white border-[#8C6B3E]"
+                        : "text-[#5A5A5A] border-[#C8B9A6] hover:bg-[#E7DED0]"
+                    }`}
                   >
                     {lang}
                   </button>
                 ))}
               </div>
             </div>
-
           </nav>
         </div>
       )}
