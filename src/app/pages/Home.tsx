@@ -55,10 +55,10 @@ export default function Home() {
               className="px-8 py-4 bg-[#8C6B3E] text-white rounded hover:bg-[#6F532F] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >Download AR</Link>
             <Link
-              to="/virtual-tour"
+              to="/auto-guide"
               className="px-8 py-4 bg-white text-[#8C6B3E] rounded hover:bg-[#E7DED0] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
-              Take Virtual Tour
+              Auto Guide
             </Link>
           </div>
         </div>
