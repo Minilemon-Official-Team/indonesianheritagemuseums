@@ -29,7 +29,7 @@ const guests: VIPGuest[] = [
     name: 'Duta Besar Thailand',
     role: 'Diplomat',
     category: 'Pejabat & Diplomat',
-    image: ph(0),
+    image: '/images/vip-1.jpg',
     description: 'Kunjungan kehormatan Duta Besar Thailand ke Indonesian Heritage Museum.',
   },
   {
@@ -37,7 +37,7 @@ const guests: VIPGuest[] = [
     name: 'Perdana Menteri Thailand',
     role: 'Kepala Pemerintahan',
     category: 'Pejabat & Diplomat',
-    image: ph(1),
+    image: '/images/vip-2.png',
     description: 'Kunjungan Perdana Menteri Thailand dalam rangka mengenal warisan budaya Nusantara.',
   },
   {
@@ -45,7 +45,7 @@ const guests: VIPGuest[] = [
     name: 'Fadli Zon',
     role: 'Menteri Kebudayaan RI',
     category: 'Pejabat & Diplomat',
-    image: ph(2),
+    image: '/images/vip-3.jpg',
     description: 'Kunjungan Menteri Kebudayaan Republik Indonesia, Fadli Zon, ke Indonesian Heritage Museum.',
   },
   {
@@ -53,7 +53,7 @@ const guests: VIPGuest[] = [
     name: 'Fadli Zon di Indonesian Heritage Museum',
     role: 'Menteri Kebudayaan RI (2025)',
     category: 'Pejabat & Diplomat',
-    image: ph(3),
+    image: '/images/vip-4.jpg',
     description: 'Kunjungan Menteri Kebudayaan Fadli Zon ke Indonesian Heritage Museum pada tahun 2025.',
   },
   {
@@ -61,7 +61,7 @@ const guests: VIPGuest[] = [
     name: 'Ibu Ani Yudhoyono',
     role: 'Ibu Negara ke-6 RI',
     category: 'Pejabat & Diplomat',
-    image: ph(4),
+    image: '/images/vip-5.jpg',
     description: 'Kunjungan kehormatan Ibu Ani Yudhoyono ke Indonesian Heritage Museum.',
   },
   {
@@ -69,7 +69,7 @@ const guests: VIPGuest[] = [
     name: 'Jero Wacik',
     role: 'Mantan Menteri Kebudayaan & Pariwisata',
     category: 'Pejabat & Diplomat',
-    image: ph(5),
+    image: '/images/vip-6.jpg',
     description: 'Kunjungan Bapak Jero Wacik, mantan Menteri Kebudayaan dan Pariwisata RI.',
   },
   {
@@ -77,7 +77,7 @@ const guests: VIPGuest[] = [
     name: 'Sapta Nirwandar',
     role: 'Tokoh Pariwisata Nasional',
     category: 'Pejabat & Diplomat',
-    image: ph(6),
+    image: '/images/vip-7.jpg',
     description: 'Kunjungan Bapak Sapta Nirwandar, tokoh pariwisata nasional, ke Indonesian Heritage Museum.',
   },
   {
@@ -85,7 +85,7 @@ const guests: VIPGuest[] = [
     name: 'Gusmardi Bustami',
     role: 'Tokoh',
     category: 'Pejabat & Diplomat',
-    image: ph(7),
+    image: '/images/vip-8.jpg',
     description: 'Kunjungan kehormatan Bapak Gusmardi Bustami ke Indonesian Heritage Museum.',
   },
   {
@@ -93,7 +93,7 @@ const guests: VIPGuest[] = [
     name: 'Bupati Hulu',
     role: 'Kepala Daerah',
     category: 'Pejabat & Diplomat',
-    image: ph(8),
+    image: '/images/vip-9.jpg',
     description: 'Kunjungan Bupati Hulu beserta rombongan ke Indonesian Heritage Museum.',
   },
   {
@@ -101,7 +101,7 @@ const guests: VIPGuest[] = [
     name: 'Ibu Boediono',
     role: 'Tamu Kehormatan',
     category: 'Pejabat & Diplomat',
-    image: ph(9),
+    image: '/images/vip-10.jpg',
     description: 'Kunjungan kehormatan Ibu Boediono ke Indonesian Heritage Museum.',
   },
   {
@@ -109,7 +109,7 @@ const guests: VIPGuest[] = [
     name: 'Ibu Miranda Gultom',
     role: 'Tamu Kehormatan',
     category: 'Pejabat & Diplomat',
-    image: ph(10),
+    image: '/images/vip-11.jpg',
     description: 'Kunjungan kehormatan Ibu Miranda Gultom ke Indonesian Heritage Museum.',
   },
   {
