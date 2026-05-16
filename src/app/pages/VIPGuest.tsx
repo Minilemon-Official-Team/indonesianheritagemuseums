@@ -125,7 +125,7 @@ const guests: VIPGuest[] = [
     name: 'Cak Kandar',
     role: 'Seniman & Pelukis',
     category: 'Tokoh & Seniman',
-    image: ph(12),
+    image: '/images/vip-13.jpg',
     description: 'Kunjungan seniman dan pelukis Cak Kandar ke Indonesian Heritage Museum.',
   },
   {
@@ -133,7 +133,7 @@ const guests: VIPGuest[] = [
     name: 'Ibu Dewi Motik',
     role: 'Tokoh Masyarakat',
     category: 'Tokoh & Seniman',
-    image: ph(13),
+    image: '/images/vip-14.jpg',
     description: 'Kunjungan tokoh masyarakat Ibu Dewi Motik ke Indonesian Heritage Museum.',
   },
   {
@@ -141,7 +141,7 @@ const guests: VIPGuest[] = [
     name: 'Ibu Atalia Praratya',
     role: 'Tamu Kehormatan',
     category: 'Tokoh & Seniman',
-    image: ph(14),
+    image: '/images/vip-15.jpeg',
     description: 'Kunjungan Ibu Atalia Praratya ke History of Sundaland Museum.',
   },
   {
@@ -149,7 +149,7 @@ const guests: VIPGuest[] = [
     name: 'ESSEC University',
     role: 'Delegasi Akademik',
     category: 'Institusi & Lainnya',
-    image: ph(15),
+    image: '/images/vip-16.jpg',
     description: 'Kunjungan delegasi akademik ESSEC University ke Indonesian Heritage Museum.',
   },
   {
@@ -157,7 +157,7 @@ const guests: VIPGuest[] = [
     name: 'ISI Bali',
     role: 'Institut Seni Indonesia Bali',
     category: 'Institusi & Lainnya',
-    image: ph(16),
+    image: '/images/vip-17.jpg',
     description: 'Kunjungan rombongan Institut Seni Indonesia (ISI) Bali ke Indonesian Heritage Museum.',
   },
   {
@@ -165,7 +165,7 @@ const guests: VIPGuest[] = [
     name: 'Founder Panorama Tour',
     role: 'Tokoh Pariwisata',
     category: 'Institusi & Lainnya',
-    image: ph(17),
+    image: '/images/vip-18.jpg',
     description: 'Kunjungan Founder Panorama Tour ke Indonesian Heritage Museum.',
   },
   {
@@ -173,7 +173,7 @@ const guests: VIPGuest[] = [
     name: 'Ibu Okka',
     role: 'Tamu Kehormatan',
     category: 'Institusi & Lainnya',
-    image: ph(18),
+    image: '/images/vip-19.jpg',
     description: 'Kunjungan kehormatan Ibu Okka ke Indonesian Heritage Museum.',
   },
   {
@@ -181,7 +181,7 @@ const guests: VIPGuest[] = [
     name: 'WNCH',
     role: 'Tamu Kehormatan',
     category: 'Institusi & Lainnya',
-    image: ph(19),
+    image: '/images/vip-20.jpg',
     description: 'Kunjungan tamu kehormatan WNCH ke Indonesian Heritage Museum.',
   },
 ];
