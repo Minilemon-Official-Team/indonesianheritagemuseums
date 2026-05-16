@@ -18,6 +18,8 @@ import Education from "./pages/Education";
 import EducationGeneralFamily from "./pages/EducationGeneralFamily";
 import EducationInstitution from "./pages/EducationInstitution";
 import EducationalSeries from "./pages/EducationalSeries";
+import Event from "./pages/Event";
+import VIPGuest from "./pages/VIPGuest";
 import NotFound from "./pages/NotFound";
 
 export const router = createBrowserRouter([
@@ -47,6 +49,8 @@ export const router = createBrowserRouter([
       { path: "education/general-family", Component: EducationGeneralFamily },
       { path: "education/educational-institution", Component: EducationInstitution },
       { path: "education/educational-series", Component: EducationalSeries },
+      { path: "event", Component: Event },
+      { path: "vip-guest", Component: VIPGuest },
       { path: "*", Component: NotFound },
     ],
   },
