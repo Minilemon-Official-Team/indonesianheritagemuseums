@@ -1,6 +1,35 @@
 import { useState } from 'react';
 import Masonry from 'react-responsive-masonry';
 import { X, ZoomIn } from 'lucide-react';
+import { useUiLang } from '../i18n';
+
+const UI = {
+  id: {
+    title: 'Galeri',
+    intro:
+      'Galeri di Indonesian Heritage Museum menampilkan beragam koleksi yang menggambarkan kekayaan budaya Indonesia, mulai dari patung kuno, topeng tradisional, hingga naskah bernilai sejarah tinggi. Setiap koleksi mencerminkan keunikan dan keberagaman budaya yang berkembang di berbagai daerah di Indonesia, sekaligus peran penting benda-benda tersebut dalam kehidupan masyarakat Indonesia di masa lampau.',
+  },
+  en: {
+    title: 'Gallery',
+    intro:
+      'The galleries at the Indonesian Heritage Museum display various collections that illustrate the richness of Indonesian culture, ranging from ancient statues, traditional masks, to scriptures that have high historical value. Each collection reflects the uniqueness and diversity of cultures that developed in various regions in Indonesia, as well as the important role these objects played in the lives of Indonesians in the past.',
+  },
+  zh: {
+    title: '展廊',
+    intro:
+      '印度尼西亚遗产博物馆的展廊展示了体现印尼丰富文化的多种藏品，从古代雕像、传统面具到具有重要历史价值的手稿。每件藏品都反映了印尼各地文化的独特与多样，以及这些文物在印尼先民生活中的重要作用。',
+  },
+};
+
+const CAT_LABELS: Record<string, { id: string; en: string; zh: string }> = {
+  All: { id: 'Semua', en: 'All', zh: '全部' },
+  Sculpture: { id: 'Patung', en: 'Sculpture', zh: '雕塑' },
+  Pottery: { id: 'Tembikar', en: 'Pottery', zh: '陶器' },
+  Textiles: { id: 'Tekstil', en: 'Textiles', zh: '纺织品' },
+  Architecture: { id: 'Arsitektur', en: 'Architecture', zh: '建筑' },
+  Artifacts: { id: 'Artefak', en: 'Artifacts', zh: '文物' },
+  Documents: { id: 'Dokumen', en: 'Documents', zh: '文献' },
+};
 
 const galleryItems = [
   {
@@ -76,6 +105,9 @@ const galleryItems = [
 ];
 
 export default function Gallery() {
+  const lang = useUiLang();
+  const ui = UI[lang];
+  const catLabel = (c: string) => CAT_LABELS[c]?.[lang] ?? c;
   const [selectedImage, setSelectedImage] = useState<typeof galleryItems[0] | null>(null);
   const [filter, setFilter] = useState<string>('All');
 
@@ -91,11 +123,11 @@ export default function Gallery() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="font-['Cinzel'] text-4xl md:text-5xl text-[#2B2B2B] mb-4">
-            Gallery
+            {ui.title}
           </h1>
           <div className="w-24 h-1 bg-[#8C6B3E] mx-auto mb-6"></div>
           <p className="text-[#5A5A5A] text-lg max-w-3xl mx-auto leading-relaxed">
-            The galleries at the Indonesian Heritage Museum display various collections that illustrate the richness of Indonesian culture, ranging from ancient statues, traditional masks, to scriptures that have high historical value. Each collection reflects the uniqueness and diversity of cultures that developed in various regions in Indonesia. Through this exhibition, visitors can better understand how Indonesia’s art and traditions are strongly intertwined, as well as the important role these objects played in the lives of Indonesians in the past. The gallery provides a deep insight into the long journey of Indonesian culture that is rich in spiritual, aesthetic and historical values.
+            {ui.intro}
           </p>
         </div>
 
@@ -111,7 +143,7 @@ export default function Gallery() {
                   : 'bg-white text-[#2B2B2B] border border-[#C8B9A6] hover:bg-[#E7DED0]'
               }`}
             >
-              {category}
+              {catLabel(category)}
             </button>
           ))}
         </div>
@@ -132,7 +164,7 @@ export default function Gallery() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                   <span className="inline-block px-3 py-1 bg-[#8C6B3E] text-xs rounded-full mb-2">
-                    {item.category}
+                    {catLabel(item.category)}
                   </span>
                   <h3 className="font-['Cinzel'] text-xl mb-1">{item.title}</h3>
                   <p className="text-sm text-white/90">{item.description}</p>
@@ -165,7 +197,7 @@ export default function Gallery() {
               />
               <div className="mt-6 text-white text-center">
                 <span className="inline-block px-4 py-2 bg-[#8C6B3E] rounded-full text-sm mb-3">
-                  {selectedImage.category}
+                  {catLabel(selectedImage.category)}
                 </span>
                 <h2 className="font-['Cinzel'] text-3xl mb-2">{selectedImage.title}</h2>
                 <p className="text-white/80 text-lg">{selectedImage.description}</p>

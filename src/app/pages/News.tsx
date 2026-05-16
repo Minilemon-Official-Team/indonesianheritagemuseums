@@ -1,5 +1,27 @@
 import { useState } from 'react';
 import { Calendar, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { useUiLang } from '../i18n';
+
+const UI = {
+  id: {
+    title: 'Berita & Pembaruan Museum',
+    intro:
+      'Ikuti informasi terbaru seputar pameran, acara, temuan riset, dan program di Indonesian Heritage Museum.',
+    readMore: 'Baca artikel lengkap',
+  },
+  en: {
+    title: 'Museum News & Updates',
+    intro:
+      'Stay informed about the latest exhibitions, events, research discoveries, and programs at the Indonesian Heritage Museum.',
+    readMore: 'Read full article',
+  },
+  zh: {
+    title: '博物馆新闻与动态',
+    intro:
+      '及时了解印度尼西亚遗产博物馆最新的展览、活动、研究发现及项目。',
+    readMore: '阅读全文',
+  },
+};
 
 interface NewsArticle {
   id: number;
@@ -120,6 +142,8 @@ const newsArticles: NewsArticle[] = [
 ];
 
 export default function News() {
+  const lang = useUiLang();
+  const ui = UI[lang];
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 6;
   const totalPages = Math.ceil(newsArticles.length / articlesPerPage);
@@ -147,11 +171,11 @@ export default function News() {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="font-['Cinzel'] text-4xl md:text-5xl text-[#2B2B2B] mb-4">
-            Museum News & Updates
+            {ui.title}
           </h1>
           <div className="w-24 h-1 bg-[#8C6B3E] mx-auto mb-6"></div>
           <p className="text-[#5A5A5A] text-lg max-w-3xl mx-auto leading-relaxed">
-            Stay informed about the latest exhibitions, events, research discoveries, and programs at the Indonesian Heritage Museum
+            {ui.intro}
           </p>
         </div>
 
@@ -189,7 +213,7 @@ export default function News() {
                   </p>
                   {article.link && (
                     <div className="mt-4 flex items-center gap-1 text-[#8C6B3E] text-sm font-medium">
-                      <span>Read full article</span>
+                      <span>{ui.readMore}</span>
                       <ExternalLink className="w-4 h-4" />
                     </div>
                   )}

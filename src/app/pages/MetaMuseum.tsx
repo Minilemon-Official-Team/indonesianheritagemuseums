@@ -1,5 +1,67 @@
 import { useState } from 'react';
 import { Cpu, Eye, Layers, Play, X } from 'lucide-react';
+import { useUiLang } from '../i18n';
+
+const UI = {
+  id: {
+    badge: 'Augmented Reality',
+    subtitle:
+      'Menjelajahi warisan budaya Indonesia secara interaktif — menghidupkan sejarah lewat teknologi Augmented Reality.',
+    explore: 'Jelajahi Galeri AR',
+    introTitle: 'Sejarah yang Hidup',
+    introP1:
+      'Indonesian Heritage Museum menggabungkan teknologi augmented reality untuk memberikan pengalaman baru dalam menjelajahi kekayaan budaya Indonesia.',
+    introP2:
+      'Teknologi ini membawa sejarah dan budaya Indonesia lebih dekat kepada pengunjung dengan cara yang menyenangkan dan interaktif.',
+    f1Title: 'Teknologi AR',
+    f1Text: 'Augmented Reality yang canggih menghidupkan koleksi museum.',
+    f2Title: 'Pengalaman Imersif',
+    f2Text: 'Setiap artefak dan situs bersejarah dihidupkan kembali.',
+    f3Title: '30 Konten AR',
+    f3Text: 'Koleksi lengkap 30 konten AR yang mengeksplorasi budaya Nusantara.',
+    galleryTitle: 'Galeri Augmented Reality',
+    video: 'Video',
+    arContent: 'Konten AR',
+  },
+  en: {
+    badge: 'Augmented Reality',
+    subtitle:
+      "Explore Indonesia's cultural heritage interactively — bringing history to life through Augmented Reality.",
+    explore: 'Explore the AR Gallery',
+    introTitle: 'History Brought to Life',
+    introP1:
+      'Indonesian Heritage Museum combines augmented reality technology to offer a new experience in exploring the richness of Indonesian culture.',
+    introP2:
+      'This technology brings Indonesian history and culture closer to visitors in an enjoyable and interactive way.',
+    f1Title: 'AR Technology',
+    f1Text: 'Advanced Augmented Reality brings the museum collection to life.',
+    f2Title: 'Immersive Experience',
+    f2Text: 'Every artefact and historical site is brought back to life.',
+    f3Title: '30 AR Contents',
+    f3Text: 'A complete collection of 30 AR contents exploring the archipelago’s culture.',
+    galleryTitle: 'Augmented Reality Gallery',
+    video: 'Video',
+    arContent: 'AR Content',
+  },
+  zh: {
+    badge: '增强现实',
+    subtitle: '以互动方式探索印度尼西亚文化遗产 — 通过增强现实技术让历史鲜活呈现。',
+    explore: '探索 AR 展廊',
+    introTitle: '鲜活的历史',
+    introP1:
+      '印度尼西亚遗产博物馆结合增强现实技术，为探索印尼丰富文化带来全新体验。',
+    introP2: '这项技术以有趣而互动的方式，让印尼的历史与文化更贴近访客。',
+    f1Title: 'AR 技术',
+    f1Text: '先进的增强现实技术让博物馆藏品鲜活起来。',
+    f2Title: '沉浸式体验',
+    f2Text: '每一件文物与历史遗址都重获新生。',
+    f3Title: '30 项 AR 内容',
+    f3Text: '完整收录 30 项探索群岛文化的 AR 内容。',
+    galleryTitle: '增强现实展廊',
+    video: '视频',
+    arContent: 'AR 内容',
+  },
+};
 
 /* =========================
    CDN CONFIG
@@ -288,6 +350,8 @@ const arItems: ARItem[] = [
 
 export default function MetaMuseum() {
   const [selected, setSelected] = useState<ARItem | null>(null);
+  const lang = useUiLang();
+  const ui = UI[lang];
 
   return (
     <div className="bg-[#F4EFE6] min-h-screen">
@@ -304,7 +368,7 @@ export default function MetaMuseum() {
         <div className="relative max-w-[900px] mx-auto text-center py-28">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/25 backdrop-blur-sm mb-8">
             <Cpu className="w-4 h-4" />
-            <span className="text-sm tracking-wide uppercase">Augmented Reality</span>
+            <span className="text-sm tracking-wide uppercase">{ui.badge}</span>
           </div>
 
           <h1 className="font-['Cinzel'] text-5xl md:text-7xl mb-6 drop-shadow-lg">
@@ -314,15 +378,14 @@ export default function MetaMuseum() {
           <div className="w-24 h-1 bg-[#D97234] mx-auto mb-8"></div>
 
           <p className="text-lg md:text-xl text-white/90 leading-relaxed max-w-2xl mx-auto">
-            Menjelajahi warisan budaya Indonesia secara interaktif &mdash;
-            menghidupkan sejarah lewat teknologi Augmented Reality.
+            {ui.subtitle}
           </p>
 
           <a
             href="#galeri-ar"
             className="inline-flex items-center gap-2 mt-10 px-8 py-4 bg-[#D97234] text-white rounded-full hover:bg-[#C0611D] transition-all shadow-lg"
           >
-            Jelajahi Galeri AR
+            {ui.explore}
           </a>
         </div>
       </div>
@@ -332,17 +395,14 @@ export default function MetaMuseum() {
         <div className="grid md:grid-cols-2 gap-10 items-center">
           <div>
             <h2 className="font-['Cinzel'] text-3xl text-[#2B2B2B] mb-4">
-              Sejarah yang Hidup
+              {ui.introTitle}
             </h2>
             <div className="w-16 h-1 bg-[#8C6B3E] mb-6"></div>
             <p className="text-[#5A5A5A] text-lg leading-relaxed mb-4">
-              Indonesian Heritage Museum menggabungkan teknologi augmented
-              reality untuk memberikan pengalaman baru dalam menjelajahi
-              kekayaan budaya Indonesia.
+              {ui.introP1}
             </p>
             <p className="text-[#5A5A5A] text-lg leading-relaxed">
-              Teknologi ini membawa sejarah dan budaya Indonesia lebih dekat
-              kepada pengunjung dengan cara yang menyenangkan dan interaktif.
+              {ui.introP2}
             </p>
           </div>
           <div className="rounded-lg overflow-hidden shadow-lg">
@@ -362,20 +422,20 @@ export default function MetaMuseum() {
 
           <div className="bg-white rounded shadow-md p-8 text-center">
             <Cpu className="w-10 h-10 mx-auto mb-4 text-[#8C6B3E]" />
-            <h3 className="font-['Cinzel'] text-xl mb-3">Teknologi AR</h3>
-            <p>Augmented Reality yang canggih menghidupkan koleksi museum.</p>
+            <h3 className="font-['Cinzel'] text-xl mb-3">{ui.f1Title}</h3>
+            <p>{ui.f1Text}</p>
           </div>
 
           <div className="bg-white rounded shadow-md p-8 text-center">
             <Eye className="w-10 h-10 mx-auto mb-4 text-[#8C6B3E]" />
-            <h3 className="font-['Cinzel'] text-xl mb-3">Pengalaman Imersif</h3>
-            <p>Setiap artefak dan situs bersejarah dihidupkan kembali.</p>
+            <h3 className="font-['Cinzel'] text-xl mb-3">{ui.f2Title}</h3>
+            <p>{ui.f2Text}</p>
           </div>
 
           <div className="bg-white rounded shadow-md p-8 text-center">
             <Layers className="w-10 h-10 mx-auto mb-4 text-[#8C6B3E]" />
-            <h3 className="font-['Cinzel'] text-xl mb-3">30 Konten AR</h3>
-            <p>Koleksi lengkap 30 konten AR yang mengeksplorasi budaya Nusantara.</p>
+            <h3 className="font-['Cinzel'] text-xl mb-3">{ui.f3Title}</h3>
+            <p>{ui.f3Text}</p>
           </div>
 
         </div>
@@ -386,7 +446,7 @@ export default function MetaMuseum() {
 
         <div className="text-center mb-12">
           <h2 className="font-['Cinzel'] text-3xl md:text-4xl text-[#2B2B2B] mb-4">
-            Galeri Augmented Reality
+            {ui.galleryTitle}
           </h2>
           <div className="w-24 h-1 bg-[#8C6B3E] mx-auto"></div>
         </div>
@@ -428,7 +488,7 @@ export default function MetaMuseum() {
                     />
                   )}
                   <span className="absolute top-3 left-3 px-3 py-1 bg-[#8C6B3E] text-white text-xs rounded-full">
-                    {item.type === "video" ? "Video" : `AR #${item.id}`}
+                    {item.type === "video" ? ui.video : `${ui.arContent} #${item.id}`}
                   </span>
                 </div>
                 <div className="p-5">
@@ -479,7 +539,7 @@ export default function MetaMuseum() {
             )}
             <div className="mt-6 text-center text-white">
               <span className="inline-block px-4 py-1.5 bg-[#8C6B3E] rounded-full text-sm mb-3">
-                Konten AR #{selected.id}
+                {ui.arContent} #{selected.id}
               </span>
               <h3 className="font-['Cinzel'] text-2xl md:text-3xl mb-3">
                 {selected.title}
