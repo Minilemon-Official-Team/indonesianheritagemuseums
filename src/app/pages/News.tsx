@@ -4,7 +4,7 @@ import { Calendar, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
 interface NewsArticle {
   id: number;
   title: string;
-  date: string;
+  date?: string;
   category: string;
   image: string;
   excerpt: string;
@@ -14,54 +14,6 @@ interface NewsArticle {
 const newsArticles: NewsArticle[] = [
   {
     id: 1,
-    title: 'Semangat Eksplor Indonesian Heritage Museum di Jatim Park 1 Sangat Luar Biasa, Pelajar Pancasila Wajib Datang!',
-    date: 'March 1, 2026',
-    category: 'Exhibition',
-    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928714/screenshot-20201113-133811-gallery-6479bdd708a8b552583a76e3_l427th.webp',
-    excerpt: 'Keindahan taman rekreasi Jatim Park 1 di Kota Batu, Jawa Timur, tidak terlepas dari keberadaan Indonesian Heritage Museum (IHM) sebagai wahana edukasi yang multikultur. Sebagai tempat hiburan terbaik suasana Jatim Park 1 sangat meriah dengan berbagai atraksi permainan, bahkan dikelilingi sejumlah wahana edukasi di dalam ruangan. Salah satunya Indonesian Heritage Museum yang menampilkan ribuan benda koleksi bersejarah dari seluruh penjuru Indonesia.  ',
-  },
-  {
-    id: 2,
-    title: 'Kajian Indonesian Heritage Museum : Sejarah Wayang Potehi',
-    date: 'February 15, 2026',
-    category: 'Research',
-    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928951/1-649ec852e1a1676b31155872_y8trlr.webp',
-    excerpt: 'Potehi berasal dari kata pou 布 (kain), te 袋 (kantong) dan hi 戯 (wayang). Wayang Potehi adalah wayang boneka yang terbuat dari kain. Sang dalang akan memasukkan tangan mereka ke dalam kain tersebut dan memainkannya layaknya wayang jenis lain. Kesenian ini sudah berumur sekitar 3.000 tahun dan berasal dari Tiongkok.',
-  },
-  {
-    id: 3,
-    title: 'Kajian Indonesian Heritage Museum: Topeng Jawa Timur',
-    date: 'February 10, 2026',
-    category: 'Education',
-    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928712/1-649e9c984addee76a0426332_xdh14w.webp',
-    excerpt: 'Topeng adalah benda yang dipakai di atas wajah. Biasanya topeng dipakai untuk mengiringi musik kesenian daerah. Topeng di kesenian daerah umumnya untuk menghormati sesembahan atau memperjelas watak dalam mengiringi kesenian. Bentuk topeng bermacam-macam ada yang menggambarkan watak marah, ada yang menggambarkan lembut, dan adapula yang menggambarkan kebijaksanaan.',
-  },
-  {
-    id: 4,
-    title: 'Mewujudkan 4 Motivasi Kunjungan Indonesian Heritage Museum yang Historikal',
-    date: 'January 28, 2026',
-    category: 'Conservation',
-    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928712/ihmm3-64c8e1a108a8b564d002cda2_nyjcff.webp',
-    excerpt: 'Kunjungan Indonesian Heritage Museum (IHM) di Jatim Park 1 sebagai pusat edukasi telah mewarnai wawasan nusantara bangsa kita. Seluruh pengunjung terutama usia anak-anak diajakserta berkenalan pada ribuan benda koleksi dari berbagai penjuru Nusantara. Disini pula motivasi anak dan remaja untuk memandang kekayaan artefak bangsanya terus bertumbuh seiring bimbingan guru hingga orangtua untuk berkunjung ke museum.',
-  },
-  {
-    id: 5,
-    title: 'Misteri Cucuran Darah di Balik Patung Letti 2000 Tahun yang Lalu, di Museum Indonesian Heritage',
-    date: 'December 20, 2025',
-    category: 'Announcement',
-    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772926890/5_r19bii.webp',
-    excerpt: 'Indonesian Heritage Museum (IHM) di Jatim Park 1 memang memiliki keragaman artefak langka dari Sabang hingga Merauke. Namun salah satu artefak yang paling misterius adalah patung letti dari Kepulauan Yene, Maluku, Nusa Tenggara Timur. ',
-  },
-  {
-    id: 6,
-    title: 'New Indonesian Heritage Museum JTP 1 with ASG Tour Technology (English Ver.)',
-    date: 'January 15, 2026',
-    category: 'Exhibition',
-    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928713/Patung-Loro-Blonyo-dari-Jawa-Tengah-dipercaya-sebagai-patung-keberuntungan-1024x683-1_n1fmdr.webp',
-    excerpt: 'Batu, SERU.co.id – Entering the Eid holiday, Jawa Timur Park (JTP) Group again adds services to its loyal visitors. Along with the increasingly vibrant digitalization era, JTP Group management has also adapted by making new breakthroughs. Visitors can still enjoy all facilities practically digitally.',
-  },
-  {
-    id: 7,
     title: 'Fadli Zon Apresiasi Indonesian Heritage Museum, Warisan Budaya Indonesia Terjaga',
     date: '2025',
     category: 'Event',
@@ -70,7 +22,7 @@ const newsArticles: NewsArticle[] = [
     link: 'https://surabaya.inews.id/read/584126/fadli-zon-apresiasi-indonesian-heritage-museum-warisan-budaya-indonesia-terjaga',
   },
   {
-    id: 8,
+    id: 2,
     title: 'Menteri Kebudayaan Fadli Zon Apresiasi Keberadaan Indonesian Heritage Museum',
     date: '2025',
     category: 'Event',
@@ -79,7 +31,7 @@ const newsArticles: NewsArticle[] = [
     link: 'https://timesindonesia.co.id/indonesia-positif/535781/menteri-kebudayaan-fadli-zon-apresiasi-keberadaan-indonesian-heritage-museum',
   },
   {
-    id: 9,
+    id: 3,
     title: 'Kunjungan Menteri Kebudayaan Fadli Zon ke Indonesia Heritage Museum dan Museum Tubuh – Jatim Park 1',
     date: '2025',
     category: 'Event',
@@ -88,7 +40,7 @@ const newsArticles: NewsArticle[] = [
     link: 'https://jtp.id/kunjungan-menteri-kebudayaan-fadli-zon-ke-indonesia-heritage-museum-dan-museum-tubuh-jatim-park-1/',
   },
   {
-    id: 10,
+    id: 4,
     title: 'Jatim Park 1: Kunjungan Menteri Kebudayaan Republik Indonesia Fadli Zon ke Indonesia Heritage Museum dan The Bagong Adventure Museum Tubuh',
     date: '2025',
     category: 'Event',
@@ -97,7 +49,7 @@ const newsArticles: NewsArticle[] = [
     link: 'https://jtp.id/jatimpark1/jatim-park-1-kunjungan-menteri-kebudayaan-republik-indonesia-fadli-zon-ke-indonesia-heritage-museum-dan-the-bagong-adventure-museum-tubuh/',
   },
   {
-    id: 11,
+    id: 5,
     title: "Indonesian Heritage Museum showcases archipelago's past",
     date: 'January 12, 2018',
     category: 'Exhibition',
@@ -106,7 +58,7 @@ const newsArticles: NewsArticle[] = [
     link: 'https://www.thejakartapost.com/life/2018/01/12/indonesian-heritage-museum-showcases-archipelagos-past.html',
   },
   {
-    id: 12,
+    id: 6,
     title: 'Indonesian Heritage Museum Dilengkapi Augmented Reality',
     date: '2018',
     category: 'Technology',
@@ -115,13 +67,55 @@ const newsArticles: NewsArticle[] = [
     link: 'https://timesindonesia.co.id/wisata/161572/indonesian-heritage-museum-dilengkapi-augmented-reality',
   },
   {
-    id: 13,
+    id: 7,
     title: 'Menelusuri 17 Zona Budaya di Indonesian Heritage Museum di Kota Batu, Jejak Peradaban Nusantara dari Zaman Batu hingga Peranakan',
     date: '2024',
     category: 'Education',
     image: '/images/news-7.jpg',
     excerpt: 'Jawa Pos mengajak pembaca menelusuri 17 zona budaya di Indonesian Heritage Museum, Kota Batu, yang merekam jejak peradaban Nusantara mulai dari zaman batu hingga era Peranakan.',
     link: 'https://www.jawapos.com/travelling/015910015/menelusuri-17-zona-budaya-di-indonesian-heritage-museum-di-kota-batu-jejak-peradaban-nusantara-dari-zaman-batu-hingga-peranakan',
+  },
+  {
+    id: 8,
+    title: 'Semangat Eksplor Indonesian Heritage Museum di Jatim Park 1 Sangat Luar Biasa, Pelajar Pancasila Wajib Datang!',
+    category: 'Exhibition',
+    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928714/screenshot-20201113-133811-gallery-6479bdd708a8b552583a76e3_l427th.webp',
+    excerpt: 'Keindahan taman rekreasi Jatim Park 1 di Kota Batu, Jawa Timur, tidak terlepas dari keberadaan Indonesian Heritage Museum (IHM) sebagai wahana edukasi yang multikultur. Sebagai tempat hiburan terbaik suasana Jatim Park 1 sangat meriah dengan berbagai atraksi permainan, bahkan dikelilingi sejumlah wahana edukasi di dalam ruangan. Salah satunya Indonesian Heritage Museum yang menampilkan ribuan benda koleksi bersejarah dari seluruh penjuru Indonesia.  ',
+  },
+  {
+    id: 9,
+    title: 'Kajian Indonesian Heritage Museum : Sejarah Wayang Potehi',
+    category: 'Research',
+    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928951/1-649ec852e1a1676b31155872_y8trlr.webp',
+    excerpt: 'Potehi berasal dari kata pou 布 (kain), te 袋 (kantong) dan hi 戯 (wayang). Wayang Potehi adalah wayang boneka yang terbuat dari kain. Sang dalang akan memasukkan tangan mereka ke dalam kain tersebut dan memainkannya layaknya wayang jenis lain. Kesenian ini sudah berumur sekitar 3.000 tahun dan berasal dari Tiongkok.',
+  },
+  {
+    id: 10,
+    title: 'Kajian Indonesian Heritage Museum: Topeng Jawa Timur',
+    category: 'Education',
+    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928712/1-649e9c984addee76a0426332_xdh14w.webp',
+    excerpt: 'Topeng adalah benda yang dipakai di atas wajah. Biasanya topeng dipakai untuk mengiringi musik kesenian daerah. Topeng di kesenian daerah umumnya untuk menghormati sesembahan atau memperjelas watak dalam mengiringi kesenian. Bentuk topeng bermacam-macam ada yang menggambarkan watak marah, ada yang menggambarkan lembut, dan adapula yang menggambarkan kebijaksanaan.',
+  },
+  {
+    id: 11,
+    title: 'Mewujudkan 4 Motivasi Kunjungan Indonesian Heritage Museum yang Historikal',
+    category: 'Conservation',
+    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928712/ihmm3-64c8e1a108a8b564d002cda2_nyjcff.webp',
+    excerpt: 'Kunjungan Indonesian Heritage Museum (IHM) di Jatim Park 1 sebagai pusat edukasi telah mewarnai wawasan nusantara bangsa kita. Seluruh pengunjung terutama usia anak-anak diajakserta berkenalan pada ribuan benda koleksi dari berbagai penjuru Nusantara. Disini pula motivasi anak dan remaja untuk memandang kekayaan artefak bangsanya terus bertumbuh seiring bimbingan guru hingga orangtua untuk berkunjung ke museum.',
+  },
+  {
+    id: 12,
+    title: 'Misteri Cucuran Darah di Balik Patung Letti 2000 Tahun yang Lalu, di Museum Indonesian Heritage',
+    category: 'Announcement',
+    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772926890/5_r19bii.webp',
+    excerpt: 'Indonesian Heritage Museum (IHM) di Jatim Park 1 memang memiliki keragaman artefak langka dari Sabang hingga Merauke. Namun salah satu artefak yang paling misterius adalah patung letti dari Kepulauan Yene, Maluku, Nusa Tenggara Timur. ',
+  },
+  {
+    id: 13,
+    title: 'New Indonesian Heritage Museum JTP 1 with ASG Tour Technology (English Ver.)',
+    category: 'Exhibition',
+    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928713/Patung-Loro-Blonyo-dari-Jawa-Tengah-dipercaya-sebagai-patung-keberuntungan-1024x683-1_n1fmdr.webp',
+    excerpt: 'Batu, SERU.co.id – Entering the Eid holiday, Jawa Timur Park (JTP) Group again adds services to its loyal visitors. Along with the increasingly vibrant digitalization era, JTP Group management has also adapted by making new breakthroughs. Visitors can still enjoy all facilities practically digitally.',
   },
 ];
 
@@ -180,10 +174,12 @@ export default function News() {
                     <span className={`px-3 py-1 ${getCategoryColor(article.category)} text-white text-xs rounded-full`}>
                       {article.category}
                     </span>
-                    <div className="flex items-center gap-1 text-[#8C6B3E] text-sm">
-                      <Calendar className="w-4 h-4" />
-                      <span>{article.date}</span>
-                    </div>
+                    {article.date && (
+                      <div className="flex items-center gap-1 text-[#8C6B3E] text-sm">
+                        <Calendar className="w-4 h-4" />
+                        <span>{article.date}</span>
+                      </div>
+                    )}
                   </div>
                   <h2 className="font-['Cinzel'] text-xl text-[#2B2B2B] mb-3 line-clamp-2">
                     {article.title}
