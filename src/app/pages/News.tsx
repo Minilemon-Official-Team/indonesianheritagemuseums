@@ -1,7 +1,17 @@
 import { useState } from 'react';
-import { Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 
-const newsArticles = [
+interface NewsArticle {
+  id: number;
+  title: string;
+  date: string;
+  category: string;
+  image: string;
+  excerpt: string;
+  link?: string;
+}
+
+const newsArticles: NewsArticle[] = [
   {
     id: 1,
     title: 'Semangat Eksplor Indonesian Heritage Museum di Jatim Park 1 Sangat Luar Biasa, Pelajar Pancasila Wajib Datang!',
@@ -50,6 +60,51 @@ const newsArticles = [
     image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928713/Patung-Loro-Blonyo-dari-Jawa-Tengah-dipercaya-sebagai-patung-keberuntungan-1024x683-1_n1fmdr.webp',
     excerpt: 'Batu, SERU.co.id – Entering the Eid holiday, Jawa Timur Park (JTP) Group again adds services to its loyal visitors. Along with the increasingly vibrant digitalization era, JTP Group management has also adapted by making new breakthroughs. Visitors can still enjoy all facilities practically digitally.',
   },
+  {
+    id: 7,
+    title: 'Kunjungan Menteri Kebudayaan Fadli Zon ke Indonesia Heritage Museum dan Museum Tubuh – Jatim Park 1',
+    date: '2025',
+    category: 'Event',
+    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928712/ihmm3-64c8e1a108a8b564d002cda2_nyjcff.webp',
+    excerpt: 'Menteri Kebudayaan Republik Indonesia, Fadli Zon, melakukan kunjungan ke Indonesia Heritage Museum dan Museum Tubuh di Jatim Park 1. Kunjungan ini menjadi bentuk apresiasi terhadap upaya pelestarian dan edukasi warisan budaya Nusantara.',
+    link: 'https://jtp.id/kunjungan-menteri-kebudayaan-fadli-zon-ke-indonesia-heritage-museum-dan-museum-tubuh-jatim-park-1/',
+  },
+  {
+    id: 8,
+    title: 'Jatim Park 1: Kunjungan Menteri Kebudayaan Republik Indonesia Fadli Zon ke Indonesia Heritage Museum dan The Bagong Adventure Museum Tubuh',
+    date: '2025',
+    category: 'Event',
+    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928714/screenshot-20201113-133811-gallery-6479bdd708a8b552583a76e3_l427th.webp',
+    excerpt: 'Liputan kunjungan Menteri Kebudayaan RI Fadli Zon ke Indonesia Heritage Museum dan The Bagong Adventure Museum Tubuh di Jatim Park 1, menyoroti peran kedua museum sebagai wahana edukasi budaya dan ilmu pengetahuan.',
+    link: 'https://jtp.id/jatimpark1/jatim-park-1-kunjungan-menteri-kebudayaan-republik-indonesia-fadli-zon-ke-indonesia-heritage-museum-dan-the-bagong-adventure-museum-tubuh/',
+  },
+  {
+    id: 9,
+    title: "Indonesian Heritage Museum showcases archipelago's past",
+    date: 'January 12, 2018',
+    category: 'Exhibition',
+    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772926892/7_vpirjo.webp',
+    excerpt: "The Jakarta Post features the Indonesian Heritage Museum in Batu, East Java, highlighting how its extensive collection of artifacts presents the rich and diverse history of the Indonesian archipelago.",
+    link: 'https://www.thejakartapost.com/life/2018/01/12/indonesian-heritage-museum-showcases-archipelagos-past.html',
+  },
+  {
+    id: 10,
+    title: 'Indonesian Heritage Museum Dilengkapi Augmented Reality',
+    date: '2018',
+    category: 'Technology',
+    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772926891/6_ocazup.webp',
+    excerpt: 'Indonesian Heritage Museum menghadirkan teknologi Augmented Reality untuk memperkaya pengalaman pengunjung, memungkinkan koleksi museum dieksplorasi secara lebih interaktif dan modern.',
+    link: 'https://timesindonesia.co.id/wisata/161572/indonesian-heritage-museum-dilengkapi-augmented-reality',
+  },
+  {
+    id: 11,
+    title: 'Menelusuri 17 Zona Budaya di Indonesian Heritage Museum di Kota Batu, Jejak Peradaban Nusantara dari Zaman Batu hingga Peranakan',
+    date: '2024',
+    category: 'Education',
+    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772926890/3_j4wpy0.webp',
+    excerpt: 'Jawa Pos mengajak pembaca menelusuri 17 zona budaya di Indonesian Heritage Museum, Kota Batu, yang merekam jejak peradaban Nusantara mulai dari zaman batu hingga era Peranakan.',
+    link: 'https://www.jawapos.com/travelling/015910015/menelusuri-17-zona-budaya-di-indonesian-heritage-museum-di-kota-batu-jejak-peradaban-nusantara-dari-zaman-batu-hingga-peranakan',
+  },
 ];
 
 export default function News() {
@@ -90,37 +145,60 @@ export default function News() {
 
         {/* News Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {currentArticles.map((article) => (
-            <article
-              key={article.id}
-              className="bg-white rounded shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
-            >
-              <div className="h-56 overflow-hidden">
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className={`px-3 py-1 ${getCategoryColor(article.category)} text-white text-xs rounded-full`}>
-                    {article.category}
-                  </span>
-                  <div className="flex items-center gap-1 text-[#8C6B3E] text-sm">
-                    <Calendar className="w-4 h-4" />
-                    <span>{article.date}</span>
-                  </div>
+          {currentArticles.map((article) => {
+            const cardClass =
+              'block bg-white rounded shadow-md overflow-hidden group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2';
+            const content = (
+              <>
+                <div className="h-56 overflow-hidden">
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  />
                 </div>
-                <h2 className="font-['Cinzel'] text-xl text-[#2B2B2B] mb-3 line-clamp-2">
-                  {article.title}
-                </h2>
-                <p className="text-[#5A5A5A] text-sm leading-relaxed line-clamp-3">
-                  {article.excerpt}
-                </p>
-              </div>
-            </article>
-          ))}
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className={`px-3 py-1 ${getCategoryColor(article.category)} text-white text-xs rounded-full`}>
+                      {article.category}
+                    </span>
+                    <div className="flex items-center gap-1 text-[#8C6B3E] text-sm">
+                      <Calendar className="w-4 h-4" />
+                      <span>{article.date}</span>
+                    </div>
+                  </div>
+                  <h2 className="font-['Cinzel'] text-xl text-[#2B2B2B] mb-3 line-clamp-2">
+                    {article.title}
+                  </h2>
+                  <p className="text-[#5A5A5A] text-sm leading-relaxed line-clamp-3">
+                    {article.excerpt}
+                  </p>
+                  {article.link && (
+                    <div className="mt-4 flex items-center gap-1 text-[#8C6B3E] text-sm font-medium">
+                      <span>Read full article</span>
+                      <ExternalLink className="w-4 h-4" />
+                    </div>
+                  )}
+                </div>
+              </>
+            );
+
+            return article.link ? (
+              <a
+                key={article.id}
+                href={article.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cardClass}
+              >
+                {content}
+              </a>
+            ) : (
+              <article key={article.id} className={cardClass}>
+                {content}
+              </article>
+            );
+          })}
         </div>
 
         {/* Pagination */}
