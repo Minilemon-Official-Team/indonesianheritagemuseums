@@ -3,6 +3,25 @@ import { ChevronUp, Share, Check, Loader2 } from 'lucide-react';
 import { useTranslationContext } from '../context/TranslationContext';
 import { ContentLanguageSwitcher } from '../components/ui/ContentLanguageSwitcher';
 import { AudioPlayer } from '../components/ui/AudioPlayer';
+import { useUiLang } from '../i18n';
+
+const PAGE_UI = {
+  id: {
+    subtitle: 'Jelajahi 27 zona warisan budaya Indonesia dengan panduan audio multi-bahasa',
+    loading: 'Memuat...',
+    zone: 'Zona',
+  },
+  en: {
+    subtitle: 'Explore 27 zones of Indonesian cultural heritage with multilingual audio guides',
+    loading: 'Loading...',
+    zone: 'Zone',
+  },
+  zh: {
+    subtitle: '探索 27 个印尼文化遗产展区，配有多语言语音导览',
+    loading: '加载中...',
+    zone: '展区',
+  },
+};
 
 const DUMMY_LOGO = 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772934955/Logo_mkvfjb.webp';
 
@@ -57,6 +76,7 @@ export default function AutoGuide() {
     const [copiedId, setCopiedId] = useState<number | null>(null);
     const objectRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
     const { currentLang, getDescription, prefetchTranslation, isLoading } = useTranslationContext();
+    const pageUi = PAGE_UI[useUiLang()];
 
     useEffect(() => {
         const onScroll = () => setShowBackToTop(window.scrollY > 500);
@@ -102,7 +122,7 @@ export default function AutoGuide() {
                     <h1 className="font-['Cinzel'] text-4xl md:text-5xl mb-4">Auto Guide Indonesia</h1>
                     <div className="w-24 h-1 bg-white mx-auto mb-6"></div>
                     <p className="text-lg md:text-xl max-w-2xl mx-auto opacity-90">
-                        Jelajahi 27 zona warisan budaya Indonesia dengan panduan audio multi-bahasa
+                        {pageUi.subtitle}
                     </p>
                 </div>
             </div>
@@ -113,7 +133,7 @@ export default function AutoGuide() {
                     {isLoading && (
                         <div className="flex items-center gap-2 text-sm text-[#8C6B3E]">
                             <Loader2 className="w-4 h-4 animate-spin" />
-                            <span>Loading...</span>
+                            <span>{pageUi.loading}</span>
                         </div>
                     )}
                 </div>
@@ -154,7 +174,7 @@ export default function AutoGuide() {
                                     </div>
 
                                     <div className="flex flex-col justify-center">
-                                        <div className="text-sm text-[#8C6B3E] font-medium mb-2">Zona #{index + 1}</div>
+                                        <div className="text-sm text-[#8C6B3E] font-medium mb-2">{pageUi.zone} #{index + 1}</div>
                                         <div className="text-[#2B2B2B] leading-relaxed mb-4">{description}</div>
 
                                         <AudioPlayer zoneName={zone.name} />
