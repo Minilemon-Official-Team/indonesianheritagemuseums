@@ -1,4 +1,52 @@
 import { Quote, Star } from 'lucide-react';
+import { useUiLang } from '../i18n';
+
+const UI = {
+  id: {
+    title: 'Testimoni Pengunjung',
+    intro:
+      'Dengarkan apa kata pengunjung kami tentang pengalaman mereka di Indonesian Heritage Museum.',
+    outOf: '5.0 dari 5',
+    basedOn: (n: number) => `Berdasarkan ${n} ulasan dari pengunjung di seluruh dunia`,
+    shareTitle: 'Bagikan Pengalaman Anda',
+    shareText:
+      'Kami senang mendengar dari para pengunjung! Bagikan pengalaman Anda di Indonesian Heritage Museum dan bantu orang lain menemukan keindahan warisan budaya Indonesia.',
+    writeReview: 'Tulis Ulasan',
+    recommend: 'Merekomendasikan',
+    annual: 'Pengunjung per Tahun',
+    google: 'Ulasan Google',
+    years: 'Tahun Keunggulan',
+  },
+  en: {
+    title: 'Visitor Testimonials',
+    intro:
+      'Hear what our visitors have to say about their experience at the Indonesian Heritage Museum.',
+    outOf: '5.0 out of 5',
+    basedOn: (n: number) => `Based on ${n} reviews from visitors worldwide`,
+    shareTitle: 'Share Your Experience',
+    shareText:
+      'We love hearing from our visitors! Share your experience at the Indonesian Heritage Museum and help others discover the beauty of Indonesian cultural heritage.',
+    writeReview: 'Write a Review',
+    recommend: 'Would Recommend',
+    annual: 'Annual Visitors',
+    google: 'Google Reviews',
+    years: 'Years of Excellence',
+  },
+  zh: {
+    title: '游客评价',
+    intro: '听听我们的游客对在印度尼西亚遗产博物馆体验的评价。',
+    outOf: '5.0 / 5',
+    basedOn: (n: number) => `基于来自全球游客的 ${n} 条评价`,
+    shareTitle: '分享您的体验',
+    shareText:
+      '我们乐于聆听游客的心声！分享您在印度尼西亚遗产博物馆的体验，帮助更多人发现印尼文化遗产之美。',
+    writeReview: '撰写评价',
+    recommend: '愿意推荐',
+    annual: '年度游客',
+    google: '谷歌评价',
+    years: '卓越年数',
+  },
+};
 
 const testimonials = [
   {
@@ -76,17 +124,18 @@ const testimonials = [
 ];
 
 export default function Testimoni() {
+  const ui = UI[useUiLang()];
   return (
     <div className="bg-[#F4EFE6] min-h-screen py-16 px-4">
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="font-['Cinzel'] text-4xl md:text-5xl text-[#2B2B2B] mb-4">
-            Visitor Testimonials
+            {ui.title}
           </h1>
           <div className="w-24 h-1 bg-[#8C6B3E] mx-auto mb-6"></div>
           <p className="text-[#5A5A5A] text-lg max-w-3xl mx-auto leading-relaxed">
-            Hear what our visitors have to say about their experience at the Indonesian Heritage Museum
+            {ui.intro}
           </p>
         </div>
 
@@ -97,8 +146,8 @@ export default function Testimoni() {
               <Star key={i} className="w-8 h-8 fill-[#8C6B3E] text-[#8C6B3E]" />
             ))}
           </div>
-          <div className="text-4xl font-['Cinzel'] text-[#2B2B2B] mb-2">5.0 out of 5</div>
-          <p className="text-[#5A5A5A]">Based on {testimonials.length} reviews from visitors worldwide</p>
+          <div className="text-4xl font-['Cinzel'] text-[#2B2B2B] mb-2">{ui.outOf}</div>
+          <p className="text-[#5A5A5A]">{ui.basedOn(testimonials.length)}</p>
         </div>
 
         {/* Testimonials Grid */}
@@ -137,13 +186,12 @@ export default function Testimoni() {
 
         {/* Share Your Experience */}
         <div className="mt-16 bg-[#E7DED0] rounded-lg shadow-lg p-12 text-center">
-          <h2 className="font-['Cinzel'] text-3xl text-[#2B2B2B] mb-4">Share Your Experience</h2>
+          <h2 className="font-['Cinzel'] text-3xl text-[#2B2B2B] mb-4">{ui.shareTitle}</h2>
           <p className="text-[#5A5A5A] mb-8 max-w-2xl mx-auto">
-            We love hearing from our visitors! Share your experience at the Indonesian Heritage Museum 
-            and help others discover the beauty of Indonesian cultural heritage.
+            {ui.shareText}
           </p>
           <button className="px-8 py-4 bg-[#8C6B3E] text-white rounded hover:bg-[#6F532F] transition-all shadow-lg hover:shadow-xl">
-            Write a Review
+            {ui.writeReview}
           </button>
         </div>
 
@@ -151,19 +199,19 @@ export default function Testimoni() {
         <div className="mt-12 grid md:grid-cols-4 gap-6">
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
             <div className="text-3xl font-['Cinzel'] text-[#8C6B3E] mb-2">100%</div>
-            <div className="text-sm text-[#5A5A5A]">Would Recommend</div>
+            <div className="text-sm text-[#5A5A5A]">{ui.recommend}</div>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
             <div className="text-3xl font-['Cinzel'] text-[#8C6B3E] mb-2">50K+</div>
-            <div className="text-sm text-[#5A5A5A]">Annual Visitors</div>
+            <div className="text-sm text-[#5A5A5A]">{ui.annual}</div>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
             <div className="text-3xl font-['Cinzel'] text-[#8C6B3E] mb-2">4.9/5</div>
-            <div className="text-sm text-[#5A5A5A]">Google Reviews</div>
+            <div className="text-sm text-[#5A5A5A]">{ui.google}</div>
           </div>
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
             <div className="text-3xl font-['Cinzel'] text-[#8C6B3E] mb-2">25</div>
-            <div className="text-sm text-[#5A5A5A]">Years of Excellence</div>
+            <div className="text-sm text-[#5A5A5A]">{ui.years}</div>
           </div>
         </div>
       </div>
