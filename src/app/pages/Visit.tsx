@@ -28,11 +28,11 @@ export default function Visit() {
             <div className="space-y-4">
               <div className="flex justify-between items-center py-3 border-b border-[#C8B9A6]">
                 <span className="text-[#2B2B2B]">Tuesday - Friday</span>
-                <span className="text-[#8C6B3E] font-medium">09:00 - 17:00</span>
+                <span className="text-[#8C6B3E] font-medium">08:00 - 16:00</span>
               </div>
               <div className="flex justify-between items-center py-3 border-b border-[#C8B9A6]">
                 <span className="text-[#2B2B2B]">Saturday - Sunday</span>
-                <span className="text-[#8C6B3E] font-medium">09:00 - 18:00</span>
+                <span className="text-[#8C6B3E] font-medium">08:00 - 16:00</span>
               </div>
               <div className="flex justify-between items-center py-3">
                 <span className="text-[#2B2B2B]">Monday</span>
@@ -73,17 +73,23 @@ export default function Visit() {
               <div className="flex justify-between items-center py-3 border-b border-[#C8B9A6]">
                 <div>
                   <div className="text-[#2B2B2B]">Children</div>
-                  <div className="text-sm text-[#5A5A5A]">Under 12 years</div>
+                  <div className="text-sm text-[#5A5A5A]">Under 85 cm tall</div>
                 </div>
                 <span className="text-[#8C6B3E] font-medium text-xl">Free</span>
               </div>
               <div className="flex justify-between items-center py-3">
                 <div>
                   <div className="text-[#2B2B2B]">Family Pass</div>
-                  <div className="text-sm text-[#5A5A5A]">2 adults + 2 children</div>
+                  <div className="text-sm text-[#5A5A5A]">Family package</div>
                 </div>
                 <span className="text-[#8C6B3E] font-medium text-xl">IDR 120,000</span>
               </div>
+            </div>
+            <div className="mt-6 p-4 bg-[#E7DED0] rounded">
+              <p className="text-sm text-[#5A5A5A]">
+                <strong className="text-[#2B2B2B]">Note:</strong> Setiap
+                pembelian 30 tiket gratis 1 tiket.
+              </p>
             </div>
           </div>
         </div>
