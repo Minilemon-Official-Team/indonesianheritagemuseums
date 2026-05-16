@@ -1,13 +1,77 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, Globe } from "lucide-react";
+import { useTranslationContext } from "../context/TranslationContext";
+import { useUiLang, UI_LANGUAGES } from "../i18n";
+
+const NAV = {
+  id: {
+    home: "Beranda",
+    autoGuide: "Auto Guide",
+    news: "Berita",
+    event: "Acara",
+    gallery: "Galeri",
+    vip: "Tamu VIP",
+    visit: "Kunjungan",
+    meta: "Meta Museum",
+    testimoni: "Testimoni",
+    eduFamily: "Edukasi & Keluarga",
+    generalFamily: "Umum / Keluarga",
+    eduInstitution: "Institusi Pendidikan",
+    eduSeries: "Seri Edukasi",
+    virtualTour: "Tur Virtual",
+    vtOverview: "Ringkasan Tur Virtual",
+    austronesia: "Austronesia",
+    language: "Bahasa",
+  },
+  en: {
+    home: "Home",
+    autoGuide: "Auto Guide",
+    news: "News",
+    event: "Event",
+    gallery: "Gallery",
+    vip: "VIP Guest",
+    visit: "Visit",
+    meta: "Meta Museum",
+    testimoni: "Testimonials",
+    eduFamily: "Education & Family",
+    generalFamily: "General / Family",
+    eduInstitution: "Educational Institution",
+    eduSeries: "Educational Series",
+    virtualTour: "Virtual Tour",
+    vtOverview: "Virtual Tour Overview",
+    austronesia: "Austronesia",
+    language: "Language",
+  },
+  zh: {
+    home: "首页",
+    autoGuide: "自助导览",
+    news: "新闻",
+    event: "活动",
+    gallery: "展廊",
+    vip: "贵宾",
+    visit: "参观",
+    meta: "元宇宙博物馆",
+    testimoni: "游客评价",
+    eduFamily: "教育与家庭",
+    generalFamily: "大众 / 家庭",
+    eduInstitution: "教育机构",
+    eduSeries: "教育系列",
+    virtualTour: "虚拟游览",
+    vtOverview: "虚拟游览概览",
+    austronesia: "南岛文化",
+    language: "语言",
+  },
+};
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [language, setLanguage] = useState("EN");
   const location = useLocation();
+  const { currentLang, setLanguage } = useTranslationContext();
+  const lang = useUiLang();
+  const t = NAV[lang];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,20 +90,8 @@ export default function Header() {
     setOpenDropdown(openDropdown === menu ? null : menu);
   };
 
-  const languages = [
-    "EN",
-    "ID",
-    "JP",
-    "KR",
-    "CN",
-    "ES",
-    "FR",
-    "DE",
-    "IT",
-    "NL",
-    "RU",
-    "AR",
-  ];
+  const currentLabel =
+    UI_LANGUAGES.find((l) => l.code === lang)?.label ?? "ID";
 
   return (
     <header
@@ -77,7 +129,7 @@ export default function Header() {
               to="/"
               className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E] transition-colors relative group"
             >
-              Home
+              {t.home}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#8C6B3E] transition-all group-hover:w-full"></span>
             </Link>
 
@@ -85,119 +137,57 @@ export default function Header() {
               to="/auto-guide"
               className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E] transition-colors relative group"
             >
-              Auto Guide
+              {t.autoGuide}
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#8C6B3E] transition-all group-hover:w-full"></span>
             </Link>
-
-            {/* Virtual Tour Dropdown */}
-            {/* <div className="relative group">
-              <button
-                className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E] transition-colors flex items-center gap-1"
-                onMouseEnter={() => setOpenDropdown('virtual-tour')}
-              >
-                Virtual Tour
-                <ChevronDown className="w-4 h-4" />
-              </button>
-
-              {openDropdown === 'virtual-tour' && (
-                <div
-                  className="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg rounded border border-[#C8B9A6] py-2"
-                  onMouseLeave={() => setOpenDropdown(null)}
-                >
-
-                  <Link
-                    to="/virtual-tour"
-                    className="block px-4 py-2 text-[#2B2B2B] hover:bg-[#E7DED0]"
-                  >
-                    Virtual Tour Overview
-                  </Link>
-
-                  <Link
-                    to="/virtual-tour-ihm"
-                    className="block px-4 py-2 text-[#2B2B2B] hover:bg-[#E7DED0]"
-                  >
-                    Virtual Tour - IHM
-                  </Link>
-
-                  <Link
-                    to="/virtual-tour-candi-jago"
-                    className="block px-4 py-2 text-[#2B2B2B] hover:bg-[#E7DED0]"
-                  >
-                    Virtual Tour - Candi Jago
-                  </Link>
-
-                  <Link
-                    to="/virtual-tour-candi-kidal"
-                    className="block px-4 py-2 text-[#2B2B2B] hover:bg-[#E7DED0]"
-                  >
-                    Virtual Tour - Candi Kidal
-                  </Link>
-
-                  <Link
-                    to="/virtual-tour-ihm-2023"
-                    className="block px-4 py-2 text-[#2B2B2B] hover:bg-[#E7DED0]"
-                  >
-                    Virtual Tour - IHM 2023
-                  </Link>
-
-                  <Link
-                    to="/virtual-tour-candi-jago-2023"
-                    className="block px-4 py-2 text-[#2B2B2B] hover:bg-[#E7DED0]"
-                  >
-                    Virtual Tour - Candi Jago 2023
-                  </Link>
-
-                </div>
-              )}
-            </div> */}
 
             <Link
               to="/news"
               className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E] transition-colors"
             >
-              News
+              {t.news}
             </Link>
 
             <Link
               to="/event"
               className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E] transition-colors"
             >
-              Event
+              {t.event}
             </Link>
 
             <Link
               to="/gallery"
               className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E]"
             >
-              Gallery
+              {t.gallery}
             </Link>
 
             <Link
               to="/vip-guest"
               className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E]"
             >
-              VIP Guest
+              {t.vip}
             </Link>
 
             <Link
               to="/visit"
               className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E]"
             >
-              Visit
+              {t.visit}
             </Link>
 
             <Link
               to="/meta-museum"
               className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E]"
             >
-              Meta Museum
+              {t.meta}
             </Link>
 
             <Link
               to="/testimoni"
               className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E]"
             >
-              Testimoni
+              {t.testimoni}
             </Link>
 
             {/* Education Dropdown */}
@@ -206,7 +196,7 @@ export default function Header() {
                 className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E] flex items-center gap-1"
                 onMouseEnter={() => setOpenDropdown("education")}
               >
-                Education & Family
+                {t.eduFamily}
                 <ChevronDown className="w-4 h-4" />
               </button>
 
@@ -219,21 +209,21 @@ export default function Header() {
                     to="/education/general-family"
                     className="block px-4 py-2 hover:bg-[#E7DED0]"
                   >
-                    General/Family
+                    {t.generalFamily}
                   </Link>
 
                   <Link
                     to="/education/educational-institution"
                     className="block px-4 py-2 hover:bg-[#E7DED0]"
                   >
-                    Educational Institution
+                    {t.eduInstitution}
                   </Link>
 
                   <Link
                     to="/education/educational-series"
                     className="block px-4 py-2 hover:bg-[#E7DED0]"
                   >
-                    Educational Series
+                    {t.eduSeries}
                   </Link>
                 </div>
               )}
@@ -243,17 +233,19 @@ export default function Header() {
             <div className="relative group ml-2">
               <button className="px-3 py-2 text-[#8C6B3E] border border-[#8C6B3E] rounded hover:bg-[#8C6B3E] hover:text-white flex items-center gap-2">
                 <Globe className="w-4 h-4" />
-                {language}
+                {currentLabel}
               </button>
 
               <div className="absolute top-full right-0 mt-2 w-32 bg-white shadow-lg rounded border border-[#C8B9A6] py-2 hidden group-hover:block">
-                {languages.map((lang) => (
+                {UI_LANGUAGES.map((l) => (
                   <button
-                    key={lang}
-                    onClick={() => setLanguage(lang)}
-                    className="block w-full text-left px-4 py-2 hover:bg-[#E7DED0]"
+                    key={l.code}
+                    onClick={() => setLanguage(l.code)}
+                    className={`block w-full text-left px-4 py-2 hover:bg-[#E7DED0] ${
+                      currentLang === l.code ? "text-[#8C6B3E] font-medium" : ""
+                    }`}
                   >
-                    {lang}
+                    {l.label}
                   </button>
                 ))}
               </div>
@@ -283,124 +275,63 @@ export default function Header() {
               to="/"
               className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
             >
-              Home
+              {t.home}
             </Link>
 
             <Link
               to="/auto-guide"
               className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
             >
-              Auto Guide
+              {t.autoGuide}
             </Link>
-
-            <Link
-              to="/austronesia"
-              className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
-            >
-              Austronesia
-            </Link>
-
-            {/* Virtual Tour Mobile */}
-            <div className="space-y-1">
-              <button
-                className="w-full flex items-center justify-between px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:bg-[#E7DED0] rounded"
-                onClick={() => toggleDropdown("virtual-tour-mobile")}
-              >
-                <span>Virtual Tour</span>
-                <ChevronDown
-                  className={`w-5 h-5 transition-transform ${openDropdown === "virtual-tour-mobile" ? "rotate-180" : ""}`}
-                />
-              </button>
-
-              {openDropdown === "virtual-tour-mobile" && (
-                <div className="pl-4 space-y-1">
-                  <Link
-                    to="/virtual-tour"
-                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
-                  >
-                    Virtual Tour Overview
-                  </Link>
-                  <Link
-                    to="/virtual-tour-ihm"
-                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
-                  >
-                    Virtual Tour - IHM
-                  </Link>
-                  <Link
-                    to="/virtual-tour-candi-jago"
-                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
-                  >
-                    Virtual Tour - Candi Jago
-                  </Link>
-                  <Link
-                    to="/virtual-tour-candi-kidal"
-                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
-                  >
-                    Virtual Tour - Candi Kidal
-                  </Link>
-                  <Link
-                    to="/virtual-tour-ihm-2023"
-                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
-                  >
-                    Virtual Tour - IHM 2023
-                  </Link>
-                  <Link
-                    to="/virtual-tour-candi-jago-2023"
-                    className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
-                  >
-                    Virtual Tour - Candi Jago 2023
-                  </Link>
-                </div>
-              )}
-            </div>
 
             <Link
               to="/news"
               className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
             >
-              News
+              {t.news}
             </Link>
 
             <Link
               to="/event"
               className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
             >
-              Event
+              {t.event}
             </Link>
 
             <Link
               to="/gallery"
               className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
             >
-              Gallery
+              {t.gallery}
             </Link>
 
             <Link
               to="/vip-guest"
               className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
             >
-              VIP Guest
+              {t.vip}
             </Link>
 
             <Link
               to="/visit"
               className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
             >
-              Visit
+              {t.visit}
             </Link>
 
             <Link
               to="/meta-museum"
               className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
             >
-              Meta Museum
+              {t.meta}
             </Link>
 
             <Link
               to="/testimoni"
               className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
             >
-              Testimoni
+              {t.testimoni}
             </Link>
 
             {/* Education Mobile */}
@@ -409,7 +340,7 @@ export default function Header() {
                 className="w-full flex items-center justify-between px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:bg-[#E7DED0] rounded"
                 onClick={() => toggleDropdown("education-mobile")}
               >
-                <span>Education & Family</span>
+                <span>{t.eduFamily}</span>
                 <ChevronDown
                   className={`w-5 h-5 transition-transform ${openDropdown === "education-mobile" ? "rotate-180" : ""}`}
                 />
@@ -421,19 +352,19 @@ export default function Header() {
                     to="/education/general-family"
                     className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
                   >
-                    General/Family
+                    {t.generalFamily}
                   </Link>
                   <Link
                     to="/education/educational-institution"
                     className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
                   >
-                    Educational Institution
+                    {t.eduInstitution}
                   </Link>
                   <Link
                     to="/education/educational-series"
                     className="block px-4 py-2 text-[#5A5A5A] hover:bg-[#E7DED0] rounded"
                   >
-                    Educational Series
+                    {t.eduSeries}
                   </Link>
                 </div>
               )}
@@ -442,20 +373,20 @@ export default function Header() {
             {/* Language Selector Mobile */}
             <div className="pt-2 border-t border-[#C8B9A6]">
               <div className="px-4 py-2 text-[#8C6B3E] font-['Cinzel'] text-sm">
-                Language
+                {t.language}
               </div>
               <div className="flex flex-wrap gap-2 px-4">
-                {languages.map((lang) => (
+                {UI_LANGUAGES.map((l) => (
                   <button
-                    key={lang}
-                    onClick={() => setLanguage(lang)}
+                    key={l.code}
+                    onClick={() => setLanguage(l.code)}
                     className={`px-3 py-2 text-sm font-['Cinzel'] rounded border ${
-                      language === lang
+                      currentLang === l.code
                         ? "bg-[#8C6B3E] text-white border-[#8C6B3E]"
                         : "text-[#5A5A5A] border-[#C8B9A6] hover:bg-[#E7DED0]"
                     }`}
                   >
-                    {lang}
+                    {l.label}
                   </button>
                 ))}
               </div>
