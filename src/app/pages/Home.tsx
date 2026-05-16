@@ -109,10 +109,12 @@ export default function Home() {
             {t.heroSubtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/visit"
+            <a
+              href="https://play.google.com/store/apps/details?id=com.dtopeng.ihmarr"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-4 bg-[#8C6B3E] text-white rounded hover:bg-[#6F532F] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >{t.downloadAR}</Link>
+            >{t.downloadAR}</a>
             <Link
               to="/auto-guide"
               className="px-8 py-4 bg-white text-[#8C6B3E] rounded hover:bg-[#E7DED0] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
