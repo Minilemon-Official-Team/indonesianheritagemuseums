@@ -293,38 +293,65 @@ export default function MetaMuseum() {
     <div className="bg-[#F4EFE6] min-h-screen">
 
       {/* HERO */}
-      <div className="relative bg-[#8C6B3E] text-white py-32 px-4">
-        <div className="max-w-[900px] mx-auto text-center">
+      <div className="relative min-h-[70vh] flex items-center justify-center text-white px-4 overflow-hidden">
+        <img
+          src="https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772935582/1_19_o1wmvk.webp"
+          alt="Augmented Reality di Indonesian Heritage Museum"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2B2B2B]/85 via-[#5A4326]/75 to-[#8C6B3E]/90"></div>
 
-          <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-8">
-            <Cpu className="w-10 h-10 text-white" />
+        <div className="relative max-w-[900px] mx-auto text-center py-28">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/25 backdrop-blur-sm mb-8">
+            <Cpu className="w-4 h-4" />
+            <span className="text-sm tracking-wide uppercase">Augmented Reality</span>
           </div>
 
-          <h1 className="font-['Cinzel'] text-4xl md:text-6xl mb-6">
+          <h1 className="font-['Cinzel'] text-5xl md:text-7xl mb-6 drop-shadow-lg">
             Meta Museum
           </h1>
 
-          <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
+          <div className="w-24 h-1 bg-[#D97234] mx-auto mb-8"></div>
 
-          <p className="text-lg md:text-xl opacity-90 leading-relaxed">
-            Augmented Reality — Menjelajahi Warisan Budaya Indonesia Secara Interaktif
+          <p className="text-lg md:text-xl text-white/90 leading-relaxed max-w-2xl mx-auto">
+            Menjelajahi warisan budaya Indonesia secara interaktif &mdash;
+            menghidupkan sejarah lewat teknologi Augmented Reality.
           </p>
 
+          <a
+            href="#galeri-ar"
+            className="inline-flex items-center gap-2 mt-10 px-8 py-4 bg-[#D97234] text-white rounded-full hover:bg-[#C0611D] transition-all shadow-lg"
+          >
+            Jelajahi Galeri AR
+          </a>
         </div>
       </div>
 
       {/* INTRO */}
-      <div className="max-w-[900px] mx-auto px-4 py-16">
-        <div className="bg-white rounded shadow-md p-8 md:p-12">
-          <p className="text-[#2B2B2B] text-lg leading-relaxed mb-6">
-            Indonesian Heritage Museum menggabungkan teknologi augmented reality
-            untuk memberikan pengalaman baru dalam menjelajahi kekayaan budaya Indonesia.
-          </p>
-
-          <p className="text-[#2B2B2B] text-lg leading-relaxed">
-            Teknologi ini membawa sejarah dan budaya Indonesia lebih dekat
-            kepada pengunjung dengan cara yang menyenangkan.
-          </p>
+      <div className="max-w-[1100px] mx-auto px-4 py-20">
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h2 className="font-['Cinzel'] text-3xl text-[#2B2B2B] mb-4">
+              Sejarah yang Hidup
+            </h2>
+            <div className="w-16 h-1 bg-[#8C6B3E] mb-6"></div>
+            <p className="text-[#5A5A5A] text-lg leading-relaxed mb-4">
+              Indonesian Heritage Museum menggabungkan teknologi augmented
+              reality untuk memberikan pengalaman baru dalam menjelajahi
+              kekayaan budaya Indonesia.
+            </p>
+            <p className="text-[#5A5A5A] text-lg leading-relaxed">
+              Teknologi ini membawa sejarah dan budaya Indonesia lebih dekat
+              kepada pengunjung dengan cara yang menyenangkan dan interaktif.
+            </p>
+          </div>
+          <div className="rounded-lg overflow-hidden shadow-lg">
+            <img
+              src="https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772935581/1_5_xkczqq.webp"
+              alt="Pengunjung menikmati Augmented Reality"
+              className="w-full h-72 object-cover"
+            />
+          </div>
         </div>
       </div>
 
@@ -355,7 +382,7 @@ export default function MetaMuseum() {
       </div>
 
       {/* CONTENT */}
-      <div className="max-w-[1200px] mx-auto px-4 py-16">
+      <div id="galeri-ar" className="max-w-[1200px] mx-auto px-4 py-16 scroll-mt-24">
 
         <div className="text-center mb-12">
           <h2 className="font-['Cinzel'] text-3xl md:text-4xl text-[#2B2B2B] mb-4">

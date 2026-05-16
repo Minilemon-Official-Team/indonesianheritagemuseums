@@ -1,149 +1,297 @@
 import { useState } from 'react';
-import Masonry from 'react-responsive-masonry';
-import { X, ZoomIn } from 'lucide-react';
+import { X, Crown } from 'lucide-react';
 
-interface VIPVisit {
+interface VIPGuest {
   id: number;
   name: string;
-  occasion: string;
-  date: string;
+  role: string;
+  category: string;
   image: string;
   description: string;
 }
 
-const vipVisits: VIPVisit[] = [
+const placeholders = [
+  '/images/news-1.jpg',
+  '/images/news-2.jpg',
+  '/images/news-3.webp',
+  '/images/news-4.jpg',
+  '/images/news-5.jpg',
+  '/images/news-6.webp',
+  '/images/news-7.jpg',
+  '/images/auto-tour.png',
+];
+
+const ph = (i: number) => placeholders[i % placeholders.length];
+
+const guests: VIPGuest[] = [
   {
     id: 1,
-    name: 'Kunjungan Delegasi Pendidikan',
-    occasion: 'Kunjungan Resmi',
-    date: 'March 2026',
-    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928714/screenshot-20201113-133811-gallery-6479bdd708a8b552583a76e3_l427th.webp',
-    description: 'Kunjungan delegasi pendidikan untuk meninjau program edukasi budaya di Indonesian Heritage Museum.',
+    name: 'Duta Besar Thailand',
+    role: 'Diplomat',
+    category: 'Pejabat & Diplomat',
+    image: ph(0),
+    description: 'Kunjungan kehormatan Duta Besar Thailand ke Indonesian Heritage Museum.',
   },
   {
     id: 2,
-    name: 'Tamu Kehormatan Festival Budaya',
-    occasion: 'Kegiatan Khusus',
-    date: 'February 2026',
-    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928951/1-649ec852e1a1676b31155872_y8trlr.webp',
-    description: 'Tamu kehormatan menghadiri pembukaan festival budaya yang diselenggarakan oleh museum.',
+    name: 'Perdana Menteri Thailand',
+    role: 'Kepala Pemerintahan',
+    category: 'Pejabat & Diplomat',
+    image: ph(1),
+    description: 'Kunjungan Perdana Menteri Thailand dalam rangka mengenal warisan budaya Nusantara.',
   },
   {
     id: 3,
-    name: 'Kunjungan Tokoh Pelestari Budaya',
-    occasion: 'Kunjungan Resmi',
-    date: 'January 2026',
-    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928712/1-649e9c984addee76a0426332_xdh14w.webp',
-    description: 'Tokoh pelestari budaya berkunjung untuk berdiskusi mengenai upaya konservasi warisan Nusantara.',
+    name: 'Fadli Zon',
+    role: 'Menteri Kebudayaan RI',
+    category: 'Pejabat & Diplomat',
+    image: ph(2),
+    description: 'Kunjungan Menteri Kebudayaan Republik Indonesia, Fadli Zon, ke Indonesian Heritage Museum.',
   },
   {
     id: 4,
-    name: 'Rombongan Mitra Institusi',
-    occasion: 'Kerja Sama',
-    date: 'December 2025',
-    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928712/ihmm3-64c8e1a108a8b564d002cda2_nyjcff.webp',
-    description: 'Rombongan mitra institusi melakukan kunjungan dalam rangka penjajakan kerja sama program edukasi.',
+    name: 'Fadli Zon di Indonesian Heritage Museum',
+    role: 'Menteri Kebudayaan RI (2025)',
+    category: 'Pejabat & Diplomat',
+    image: ph(3),
+    description: 'Kunjungan Menteri Kebudayaan Fadli Zon ke Indonesian Heritage Museum pada tahun 2025.',
   },
   {
     id: 5,
-    name: 'Tamu VIP Peresmian Pameran',
-    occasion: 'Kegiatan Khusus',
-    date: 'November 2025',
-    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928713/Patung-Loro-Blonyo-dari-Jawa-Tengah-dipercaya-sebagai-patung-keberuntungan-1024x683-1_n1fmdr.webp',
-    description: 'Tamu VIP menghadiri peresmian pameran koleksi terbaru Indonesian Heritage Museum.',
+    name: 'Ibu Ani Yudhoyono',
+    role: 'Ibu Negara ke-6 RI',
+    category: 'Pejabat & Diplomat',
+    image: ph(4),
+    description: 'Kunjungan kehormatan Ibu Ani Yudhoyono ke Indonesian Heritage Museum.',
   },
   {
     id: 6,
-    name: 'Kunjungan Komunitas Sejarah',
-    occasion: 'Kunjungan Resmi',
-    date: 'October 2025',
-    image: 'https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772926892/7_vpirjo.webp',
-    description: 'Komunitas sejarah berkunjung untuk mempelajari koleksi naskah dan artefak bersejarah museum.',
+    name: 'Jero Wacik',
+    role: 'Mantan Menteri Kebudayaan & Pariwisata',
+    category: 'Pejabat & Diplomat',
+    image: ph(5),
+    description: 'Kunjungan Bapak Jero Wacik, mantan Menteri Kebudayaan dan Pariwisata RI.',
+  },
+  {
+    id: 7,
+    name: 'Sapta Nirwandar',
+    role: 'Tokoh Pariwisata Nasional',
+    category: 'Pejabat & Diplomat',
+    image: ph(6),
+    description: 'Kunjungan Bapak Sapta Nirwandar, tokoh pariwisata nasional, ke Indonesian Heritage Museum.',
+  },
+  {
+    id: 8,
+    name: 'Gusmardi Bustami',
+    role: 'Tokoh',
+    category: 'Pejabat & Diplomat',
+    image: ph(7),
+    description: 'Kunjungan kehormatan Bapak Gusmardi Bustami ke Indonesian Heritage Museum.',
+  },
+  {
+    id: 9,
+    name: 'Bupati Hulu',
+    role: 'Kepala Daerah',
+    category: 'Pejabat & Diplomat',
+    image: ph(8),
+    description: 'Kunjungan Bupati Hulu beserta rombongan ke Indonesian Heritage Museum.',
+  },
+  {
+    id: 10,
+    name: 'Ibu Boediono',
+    role: 'Tamu Kehormatan',
+    category: 'Pejabat & Diplomat',
+    image: ph(9),
+    description: 'Kunjungan kehormatan Ibu Boediono ke Indonesian Heritage Museum.',
+  },
+  {
+    id: 11,
+    name: 'Ibu Miranda Gultom',
+    role: 'Tamu Kehormatan',
+    category: 'Pejabat & Diplomat',
+    image: ph(10),
+    description: 'Kunjungan kehormatan Ibu Miranda Gultom ke Indonesian Heritage Museum.',
+  },
+  {
+    id: 12,
+    name: 'Ari Lasso',
+    role: 'Penyanyi',
+    category: 'Tokoh & Seniman',
+    image: ph(11),
+    description: 'Kunjungan penyanyi ternama Ari Lasso ke Indonesian Heritage Museum.',
+  },
+  {
+    id: 13,
+    name: 'Cak Kandar',
+    role: 'Seniman & Pelukis',
+    category: 'Tokoh & Seniman',
+    image: ph(12),
+    description: 'Kunjungan seniman dan pelukis Cak Kandar ke Indonesian Heritage Museum.',
+  },
+  {
+    id: 14,
+    name: 'Ibu Dewi Motik',
+    role: 'Tokoh Masyarakat',
+    category: 'Tokoh & Seniman',
+    image: ph(13),
+    description: 'Kunjungan tokoh masyarakat Ibu Dewi Motik ke Indonesian Heritage Museum.',
+  },
+  {
+    id: 15,
+    name: 'Ibu Atalia Praratya',
+    role: 'Tamu Kehormatan',
+    category: 'Tokoh & Seniman',
+    image: ph(14),
+    description: 'Kunjungan Ibu Atalia Praratya ke History of Sundaland Museum.',
+  },
+  {
+    id: 16,
+    name: 'ESSEC University',
+    role: 'Delegasi Akademik',
+    category: 'Institusi & Lainnya',
+    image: ph(15),
+    description: 'Kunjungan delegasi akademik ESSEC University ke Indonesian Heritage Museum.',
+  },
+  {
+    id: 17,
+    name: 'ISI Bali',
+    role: 'Institut Seni Indonesia Bali',
+    category: 'Institusi & Lainnya',
+    image: ph(16),
+    description: 'Kunjungan rombongan Institut Seni Indonesia (ISI) Bali ke Indonesian Heritage Museum.',
+  },
+  {
+    id: 18,
+    name: 'Founder Panorama Tour',
+    role: 'Tokoh Pariwisata',
+    category: 'Institusi & Lainnya',
+    image: ph(17),
+    description: 'Kunjungan Founder Panorama Tour ke Indonesian Heritage Museum.',
+  },
+  {
+    id: 19,
+    name: 'Ibu Okka',
+    role: 'Tamu Kehormatan',
+    category: 'Institusi & Lainnya',
+    image: ph(18),
+    description: 'Kunjungan kehormatan Ibu Okka ke Indonesian Heritage Museum.',
+  },
+  {
+    id: 20,
+    name: 'WNCH',
+    role: 'Tamu Kehormatan',
+    category: 'Institusi & Lainnya',
+    image: ph(19),
+    description: 'Kunjungan tamu kehormatan WNCH ke Indonesian Heritage Museum.',
   },
 ];
 
+const categories = ['Semua', 'Pejabat & Diplomat', 'Tokoh & Seniman', 'Institusi & Lainnya'];
+
 export default function VIPGuest() {
-  const [selectedVisit, setSelectedVisit] = useState<VIPVisit | null>(null);
+  const [selected, setSelected] = useState<VIPGuest | null>(null);
+  const [filter, setFilter] = useState('Semua');
+
+  const filtered =
+    filter === 'Semua' ? guests : guests.filter((g) => g.category === filter);
 
   return (
-    <div className="bg-[#F4EFE6] min-h-screen py-16 px-4">
-      <div className="max-w-[1400px] mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="font-['Cinzel'] text-4xl md:text-5xl text-[#2B2B2B] mb-4">
-            VIP Guest
-          </h1>
-          <div className="w-24 h-1 bg-[#8C6B3E] mx-auto mb-6"></div>
-          <p className="text-[#5A5A5A] text-lg max-w-3xl mx-auto leading-relaxed">
-            Dokumentasi foto kunjungan tamu istimewa (VIP) di Indonesian
-            Heritage Museum, baik dalam kunjungan resmi maupun pada
-            kegiatan-kegiatan tertentu yang diselenggarakan museum.
+    <div className="bg-[#F4EFE6] min-h-screen">
+      {/* HERO */}
+      <div className="relative bg-[#8C6B3E] text-white py-28 px-4">
+        <div className="max-w-[900px] mx-auto text-center">
+          <div className="w-20 h-20 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-8">
+            <Crown className="w-10 h-10 text-white" />
+          </div>
+          <h1 className="font-['Cinzel'] text-4xl md:text-6xl mb-6">VIP Guest</h1>
+          <div className="w-24 h-1 bg-white mx-auto mb-8"></div>
+          <p className="text-lg md:text-xl opacity-90 leading-relaxed">
+            Dokumentasi kunjungan tamu istimewa &mdash; para pejabat, diplomat,
+            tokoh, dan seniman yang pernah hadir di Indonesian Heritage Museum.
           </p>
         </div>
+      </div>
 
-        {/* Masonry Gallery */}
-        <Masonry columnsCount={3} gutter="24px">
-          {vipVisits.map((visit) => (
-            <div
-              key={visit.id}
-              className="group relative overflow-hidden rounded shadow-md cursor-pointer hover:shadow-xl transition-all duration-300"
-              onClick={() => setSelectedVisit(visit)}
-            >
-              <img
-                src={visit.image}
-                alt={visit.name}
-                className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <span className="inline-block px-3 py-1 bg-[#8C6B3E] text-xs rounded-full mb-2">
-                    {visit.occasion}
-                  </span>
-                  <h3 className="font-['Cinzel'] text-xl mb-1">{visit.name}</h3>
-                  <p className="text-sm text-white/90">{visit.date}</p>
-                </div>
-                <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                  <ZoomIn className="w-5 h-5 text-white" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </Masonry>
-
-        {/* Lightbox Modal */}
-        {selectedVisit && (
-          <div
-            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
-            onClick={() => setSelectedVisit(null)}
-          >
+      <div className="max-w-[1200px] mx-auto px-4 py-16">
+        {/* Filter */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map((cat) => (
             <button
-              className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
-              onClick={() => setSelectedVisit(null)}
+              key={cat}
+              onClick={() => setFilter(cat)}
+              className={`px-6 py-3 rounded-full transition-all ${
+                filter === cat
+                  ? 'bg-[#8C6B3E] text-white shadow-lg'
+                  : 'bg-white text-[#2B2B2B] border border-[#C8B9A6] hover:bg-[#E7DED0]'
+              }`}
             >
-              <X className="w-6 h-6" />
+              {cat}
             </button>
-            <div className="max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
-              <img
-                src={selectedVisit.image}
-                alt={selectedVisit.name}
-                className="w-full h-auto rounded-lg shadow-2xl"
-              />
-              <div className="mt-6 text-white text-center">
-                <span className="inline-block px-4 py-2 bg-[#8C6B3E] rounded-full text-sm mb-3">
-                  {selectedVisit.occasion}
-                </span>
-                <h2 className="font-['Cinzel'] text-3xl mb-2">
-                  {selectedVisit.name}
-                </h2>
-                <p className="text-white/70 mb-2">{selectedVisit.date}</p>
-                <p className="text-white/80 text-lg">
-                  {selectedVisit.description}
-                </p>
+          ))}
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {filtered.map((guest) => (
+            <button
+              key={guest.id}
+              onClick={() => setSelected(guest)}
+              className="group text-left bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            >
+              <div className="relative h-64 overflow-hidden bg-[#E7DED0]">
+                <img
+                  src={guest.image}
+                  alt={guest.name}
+                  className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-300"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 ring-0 group-hover:ring-4 ring-inset ring-[#8C6B3E]/40 transition-all"></div>
               </div>
+              <div className="p-4 border-t-2 border-[#8C6B3E]">
+                <h3 className="font-['Cinzel'] text-base text-[#2B2B2B] leading-snug line-clamp-2">
+                  {guest.name}
+                </h3>
+                <p className="text-[#8C6B3E] text-sm mt-1">{guest.role}</p>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Lightbox */}
+      {selected && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setSelected(null)}
+        >
+          <button
+            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            onClick={() => setSelected(null)}
+            aria-label="Close"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <div className="max-w-3xl w-full" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={selected.image}
+              alt={selected.name}
+              className="w-full max-h-[65vh] object-contain rounded-lg shadow-2xl"
+            />
+            <div className="mt-6 text-center text-white">
+              <span className="inline-block px-4 py-1.5 bg-[#8C6B3E] rounded-full text-sm mb-3">
+                {selected.category}
+              </span>
+              <h3 className="font-['Cinzel'] text-2xl md:text-3xl mb-1">
+                {selected.name}
+              </h3>
+              <p className="text-[#E7DED0] mb-3">{selected.role}</p>
+              <p className="text-white/80 max-w-xl mx-auto leading-relaxed">
+                {selected.description}
+              </p>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
