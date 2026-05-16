@@ -159,10 +159,24 @@ export default function Header() {
             </Link>
 
             <Link
+              to="/event"
+              className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E] transition-colors"
+            >
+              Event
+            </Link>
+
+            <Link
               to="/gallery"
               className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E]"
             >
               Gallery
+            </Link>
+
+            <Link
+              to="/vip-guest"
+              className="px-4 py-2 text-[#2B2B2B] font-['Cinzel'] text-sm hover:text-[#8C6B3E]"
+            >
+              VIP Guest
             </Link>
 
             <Link
@@ -348,10 +362,24 @@ export default function Header() {
             </Link>
 
             <Link
+              to="/event"
+              className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
+            >
+              Event
+            </Link>
+
+            <Link
               to="/gallery"
               className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
             >
               Gallery
+            </Link>
+
+            <Link
+              to="/vip-guest"
+              className="px-4 py-3 text-[#2B2B2B] font-['Cinzel'] text-base hover:text-[#8C6B3E] hover:bg-[#E7DED0] rounded"
+            >
+              VIP Guest
             </Link>
 
             <Link
