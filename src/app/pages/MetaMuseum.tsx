@@ -1,4 +1,5 @@
-import { Cpu, Eye, Layers } from 'lucide-react';
+import { useState } from 'react';
+import { Cpu, Eye, Layers, Play, X } from 'lucide-react';
 
 /* =========================
    CDN CONFIG
@@ -286,6 +287,8 @@ const arItems: ARItem[] = [
 ========================= */
 
 export default function MetaMuseum() {
+  const [selected, setSelected] = useState<ARItem | null>(null);
+
   return (
     <div className="bg-[#F4EFE6] min-h-screen">
 
@@ -354,78 +357,113 @@ export default function MetaMuseum() {
       {/* CONTENT */}
       <div className="max-w-[1200px] mx-auto px-4 py-16">
 
-        <div className="space-y-16">
+        <div className="text-center mb-12">
+          <h2 className="font-['Cinzel'] text-3xl md:text-4xl text-[#2B2B2B] mb-4">
+            Galeri Augmented Reality
+          </h2>
+          <div className="w-24 h-1 bg-[#8C6B3E] mx-auto"></div>
+        </div>
 
-          {arItems.map((item, index) => {
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
+          {arItems.map((item) => {
             const media = getMedia(item);
 
             return (
-              <div
+              <button
                 key={item.id}
-                className={`${index % 2 === 0 ? "bg-white" : "bg-[#E7DED0]"} rounded shadow-md overflow-hidden`}
+                onClick={() => setSelected(item)}
+                className="group text-left bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               >
-
-                <div className={`grid md:grid-cols-2 gap-8 p-8 ${index % 2 !== 0 ? "md:[&>*:first-child]:order-2" : ""}`}>
-
-                  {/* MEDIA */}
-
-                  <div className="rounded overflow-hidden flex items-center justify-center">
-
-                    {item.type === "video" ? (
-
+                <div className="relative h-56 overflow-hidden bg-[#E7DED0]">
+                  {item.type === "video" ? (
+                    <>
                       <video
-                        className="w-full h-full max-h-[420px] object-cover rounded"
-                        controls
+                        className="w-full h-full object-cover"
+                        muted
                         playsInline
                         preload="metadata"
                       >
-                        <source src={media} type="video/mp4" />
+                        <source src={`${media}#t=0.5`} type="video/mp4" />
                       </video>
-
-                    ) : (
-
-                      <img
-                        src={media}
-                        alt={item.title}
-                        className="w-full h-full max-h-[420px] object-cover rounded"
-                        loading="lazy"
-                      />
-
-                    )}
-
-                  </div>
-
-                  {/* TEXT */}
-
-                  <div className="flex flex-col justify-center">
-
-                    <div className="text-sm text-[#8C6B3E] font-medium mb-3">
-                      Konten AR #{item.id}
-                    </div>
-
-                    <h3 className="font-['Cinzel'] text-2xl md:text-3xl text-[#2B2B2B] mb-6">
-                      {item.title}
-                    </h3>
-
-                    <div className="border-l-4 border-[#8C6B3E] pl-6">
-                      <p className="text-[#2B2B2B] leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-
-                  </div>
-
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                        <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-lg">
+                          <Play className="w-6 h-6 text-[#8C6B3E] ml-1" />
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <img
+                      src={media}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  )}
+                  <span className="absolute top-3 left-3 px-3 py-1 bg-[#8C6B3E] text-white text-xs rounded-full">
+                    {item.type === "video" ? "Video" : `AR #${item.id}`}
+                  </span>
                 </div>
-
-              </div>
+                <div className="p-5">
+                  <h3 className="font-['Cinzel'] text-lg text-[#2B2B2B] line-clamp-2">
+                    {item.title}
+                  </h3>
+                </div>
+              </button>
             );
-
           })}
 
         </div>
 
       </div>
+
+      {/* LIGHTBOX */}
+      {selected && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setSelected(null)}
+        >
+          <button
+            className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+            onClick={() => setSelected(null)}
+            aria-label="Close"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <div
+            className="max-w-4xl w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {selected.type === "video" ? (
+              <video
+                className="w-full max-h-[70vh] rounded-lg shadow-2xl bg-black"
+                controls
+                autoPlay
+                playsInline
+              >
+                <source src={getMedia(selected)} type="video/mp4" />
+              </video>
+            ) : (
+              <img
+                src={getMedia(selected)}
+                alt={selected.title}
+                className="w-full max-h-[70vh] object-contain rounded-lg shadow-2xl"
+              />
+            )}
+            <div className="mt-6 text-center text-white">
+              <span className="inline-block px-4 py-1.5 bg-[#8C6B3E] rounded-full text-sm mb-3">
+                Konten AR #{selected.id}
+              </span>
+              <h3 className="font-['Cinzel'] text-2xl md:text-3xl mb-3">
+                {selected.title}
+              </h3>
+              <p className="text-white/80 max-w-2xl mx-auto leading-relaxed">
+                {selected.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
