@@ -95,7 +95,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`heritage-header fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? "bg-[#F4EFE6] shadow-md" : "bg-[#F4EFE6]/95"
       }`}
       style={{ borderBottom: "1px solid #C8B9A6" }}

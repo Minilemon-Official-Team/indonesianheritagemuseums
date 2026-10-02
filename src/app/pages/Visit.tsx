@@ -331,7 +331,7 @@ export default function Visit() {
                 <Phone className="w-5 h-5 text-[#8C6B3E] mt-1 flex-shrink-0" />
                 <div>
                   <div className="text-[#2B2B2B] font-medium">{t.phone}</div>
-                  <div className="text-[#5A5A5A]">+62 857 4840 5800</div>
+                  <div className="text-[#5A5A5A]">+62 813 3437 0700</div>
                 </div>
               </div>
               <div className="border-t border-[#C8B9A6] pt-4">
@@ -376,7 +376,7 @@ export default function Visit() {
               ))}
             </ul>
             <button className="px-6 py-3 bg-[#8C6B3E] text-white rounded hover:bg-[#6F532F] transition-colors">
-              <a href="https://wa.me/+6285748405800"> {t.bookGroup} </a>
+              <a href="https://wa.me/6281334370700"> {t.bookGroup} </a>
             </button>
           </div>
 

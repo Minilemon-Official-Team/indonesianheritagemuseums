@@ -1,294 +1,121 @@
-import { useEffect, useRef, useState } from 'react';
+import { ArrowRight, ExternalLink, Map, Play, ScanLine } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import HeritageHero from '../components/HeritageHero';
 import { useUiLang } from '../i18n';
 
 const T = {
   id: {
-    heroSubtitle: 'Temukan Kekayaan Warisan Budaya Indonesia',
+    heroSubtitle: 'Temukan kekayaan warisan budaya Indonesia melalui 17 zona cerita dan pengalaman digital.',
     downloadAR: 'Unduh AR',
-    autoGuide: 'Auto Guide',
-    welcomeTitle: 'Selamat Datang di Indonesian Heritage Museum',
-    welcomeText:
-      'Indonesian Heritage Museum merupakan museum warisan budaya Indonesia yang mempunyai koleksi warisan budaya dari seluruh wilayah Indonesia, berdiri sejak tahun 2010, Indonesian heritage Museum juga merupakan pelopor museum berteknologi Augmented Reality di Indonesia, terdapat 17 zona yang mewakili wilayah di Indonesia, yang menyimpan benda benda bersejarah dari seluruh suku di tanah air.',
-    arTitle: 'Augmented Reality',
-    arText:
-      'Silakan mengunduh aplikasi Augmented Reality di link berikut ini dari Google Playstore di Android anda, untuk mempermudah para pengunjung dalam melihat 3 Dimensi.',
-    autoTitle: 'Auto Self Guided Tour',
-    autoText:
-      'Silahkan akses Auto Self Guided Tour untuk memudahkan para pengunjung dalam memahami narasi per zona, sembari bermain dan belajar di dalam Indonesian Heritage Museum.',
-    text2a: 'Silakan kepada para pengunjung untuk dapat mengunduh aplikasi ',
-    text2b: ' di Google Play Store dan juga ',
-    text2c:
-      ' yang dapat diakses melalui website untuk dapat memudahkan para pengunjung selama berada di Indonesian Heritage Museum.',
+    autoGuide: 'Buka Auto Guide',
+    welcomeTitle: 'Satu museum. Banyak pintu masuk.',
+    welcomeText: 'Indonesian Heritage Museum menyimpan warisan budaya dari seluruh wilayah Indonesia. Datang untuk melihat koleksi, tinggal untuk menemukan hubungan antara benda, manusia, dan tempat.',
+    arTitle: 'Lihat lapisan digital',
+    arText: 'Buka objek tiga dimensi melalui aplikasi Augmented Reality resmi museum.',
+    autoTitle: 'Mulai dari satu zona',
+    autoText: 'Ikuti narasi per wilayah dengan Auto Self Guided Tour sebelum atau sesudah kunjungan.',
+    archiveTitle: 'Jejak yang saling terhubung',
+    archiveText: 'Dari Austronesia sampai Jawa, setiap ruang adalah potongan dari peta budaya yang lebih luas.',
+    explore: 'Jelajahi koleksi',
+    visit: 'Rencanakan kunjungan',
   },
   en: {
-    heroSubtitle: 'Discover the Rich Cultural Legacy of Indonesia',
+    heroSubtitle: 'Discover Indonesia\'s cultural heritage through 17 story zones and digital experiences.',
     downloadAR: 'Download AR',
-    autoGuide: 'Auto Guide',
-    welcomeTitle: 'Welcome to Indonesian Heritage Museum',
-    welcomeText:
-      "Indonesian Heritage Museum is a museum of Indonesian cultural heritage holding collections from all regions of Indonesia. Established in 2010, it is also a pioneer of Augmented Reality museum technology in Indonesia, with 17 zones representing Indonesia's regions and preserving historical objects from every ethnic group in the country.",
-    arTitle: 'Augmented Reality',
-    arText:
-      'Download the Augmented Reality app from the link below on the Google Play Store on your Android device, to make it easier for visitors to view objects in 3D.',
-    autoTitle: 'Auto Self Guided Tour',
-    autoText:
-      'Access the Auto Self Guided Tour to help visitors understand the narrative of each zone, while playing and learning inside Indonesian Heritage Museum.',
-    text2a: 'Visitors are welcome to download the ',
-    text2b: ' app on the Google Play Store and also the ',
-    text2c:
-      ' accessible through the website, to make their visit to Indonesian Heritage Museum more convenient.',
+    autoGuide: 'Open Auto Guide',
+    welcomeTitle: 'One museum. Many ways in.',
+    welcomeText: 'Indonesian Heritage Museum holds cultural stories from across Indonesia. Come for the objects, stay for the relationships between people, places, and memory.',
+    arTitle: 'See the digital layer',
+    arText: 'Open selected objects in three dimensions through the museum\'s official Augmented Reality app.',
+    autoTitle: 'Start with one zone',
+    autoText: 'Follow a regional narrative with the Auto Self Guided Tour before or after your visit.',
+    archiveTitle: 'Traces that connect',
+    archiveText: 'From Austronesia to Java, every room is a fragment of a larger cultural map.',
+    explore: 'Explore the collection',
+    visit: 'Plan your visit',
   },
   zh: {
-    heroSubtitle: '探索印度尼西亚丰富的文化遗产',
+    heroSubtitle: '通过17个故事展区和数字体验，探索印度尼西亚丰富的文化遗产。',
     downloadAR: '下载 AR',
-    autoGuide: '自助导览',
-    welcomeTitle: '欢迎来到印度尼西亚遗产博物馆',
-    welcomeText:
-      '印度尼西亚遗产博物馆是一座收藏印尼各地文化遗产的博物馆，成立于 2010 年，也是印尼增强现实技术博物馆的先驱。馆内设有代表印尼各地区的 17 个展区，珍藏来自全国各民族的历史文物。',
-    arTitle: 'Augmented Reality',
-    arText:
-      '请通过以下链接从安卓设备的 Google Play 商店下载增强现实应用程序，方便访客以三维方式观赏展品。',
-    autoTitle: 'Auto Self Guided Tour',
-    autoText:
-      '使用自助导览功能，帮助访客理解每个展区的叙述，在印度尼西亚遗产博物馆中寓教于乐。',
-    text2a: '欢迎访客下载 ',
-    text2b: ' 应用程序（Google Play 商店），以及通过网站访问 ',
-    text2c: '，让您在印度尼西亚遗产博物馆的参观更加便利。',
+    autoGuide: '打开自助导览',
+    welcomeTitle: '一座博物馆，多种进入方式。',
+    welcomeText: '印度尼西亚遗产博物馆收藏来自印度尼西亚各地的文化故事。为了文物而来，也为了人与地方之间的联系而停留。',
+    arTitle: '查看数字层',
+    arText: '通过博物馆官方增强现实应用，以三维方式查看精选展品。',
+    autoTitle: '从一个展区开始',
+    autoText: '在参观前后使用自助导览，沿着地区叙事继续探索。',
+    archiveTitle: '彼此相连的足迹',
+    archiveText: '从南岛文化到爪哇，每个展厅都是更大文化地图的一角。',
+    explore: '探索收藏',
+    visit: '计划参观',
   },
 };
 
 export default function Home() {
-  const [isVisible, setIsVisible] = useState<{ [key: string]: boolean }>({});
-  const observerRef = useRef<IntersectionObserver | null>(null);
   const lang = useUiLang();
   const t = T[lang];
 
-  useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible((prev) => ({ ...prev, [entry.target.id]: true }));
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    const sections = document.querySelectorAll('.fade-in-section');
-    sections.forEach((section) => {
-      if (observerRef.current) {
-        observerRef.current.observe(section);
-      }
-    });
-
-    return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-    };
-  }, []);
-
   return (
-    <div className="bg-[#F4EFE6]">
-      {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `linear-gradient(rgba(140, 107, 62, 0.4), rgba(140, 107, 62, 0.6)), url('https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772931496/IHM2-768x432_w8r2nn.webp')`,
-          }}
-        />
-        <div className="relative z-10 text-center max-w-4xl px-4">
-          <h1 className="font-['Cinzel'] text-5xl md:text-6xl lg:text-7xl text-white mb-6 tracking-wide">
-            Indonesian Heritage Museum
-          </h1>
-          <p className="text-xl md:text-2xl text-white/95 mb-8 leading-relaxed">
-            {t.heroSubtitle}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://play.google.com/store/apps/details?id=com.dtopeng.ihmarr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-8 py-4 bg-[#8C6B3E] text-white rounded hover:bg-[#6F532F] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >{t.downloadAR}</a>
-            <Link
-              to="/auto-guide"
-              className="px-8 py-4 bg-white text-[#8C6B3E] rounded hover:bg-[#E7DED0] transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-            >
-              {t.autoGuide}
-            </Link>
+    <div className="heritage-home">
+      <HeritageHero
+        eyebrow="INDONESIAN HERITAGE MUSEUM / 01"
+        title={<><span>Indonesian Heritage</span><em>Museum</em></>}
+        description={t.heroSubtitle}
+        video="/videos/heritage-banner.mp4"
+        poster="/images/zones/austronesia.jpeg"
+        meta={['17 STORY ZONES', 'AR + AUTO GUIDE', 'EST. 2010']}
+        variant="atlas"
+        actions={<>
+          <a className="heritage-button heritage-button--solid" href="https://play.google.com/store/apps/details?id=com.dtopeng.ihmarr" target="_blank" rel="noopener noreferrer">{t.downloadAR}<ExternalLink size={16} aria-hidden="true" /></a>
+          <Link className="heritage-button heritage-button--line" to="/auto-guide">{t.autoGuide}<ArrowRight size={16} aria-hidden="true" /></Link>
+        </>}
+      />
+
+      <section className="heritage-stat-band" aria-label="Museum highlights">
+        <div><strong>17</strong><span>story zones</span></div>
+        <div><strong>AR</strong><span>see objects move</span></div>
+        <div><strong>2010</strong><span>opened the archive</span></div>
+        <Link to="/visit" className="heritage-stat-link">{t.visit}<ArrowRight size={16} aria-hidden="true" /></Link>
+      </section>
+
+      <section className="heritage-home-intro heritage-section" aria-labelledby="heritage-welcome-title">
+        <div className="heritage-section-kicker">A MAP OF MANY HOMES</div>
+        <div className="heritage-intro-grid">
+          <h2 id="heritage-welcome-title">{t.welcomeTitle}</h2>
+          <div>
+            <p className="heritage-lede">{t.welcomeText}</p>
+            <Link to="/gallery" className="heritage-text-link">{t.explore}<ArrowRight size={17} aria-hidden="true" /></Link>
           </div>
         </div>
       </section>
 
-      {/* Welcome Section */}
-      <section
-        id="welcome"
-        className="fade-in-section py-20 md:py-28 px-4"
-        style={{
-          opacity: isVisible['welcome'] ? 1 : 0,
-          transform: isVisible['welcome'] ? 'translateY(0)' : 'translateY(30px)',
-          transition: 'all 0.8s ease-out',
-        }}
-      >
-        <div className="max-w-[1200px] mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="font-['Cinzel'] text-4xl md:text-5xl text-[#2B2B2B] mb-4">
-              {t.welcomeTitle}
-            </h2>
-            <div className="w-24 h-1 bg-[#8C6B3E] mx-auto"></div>
-          </div>
-          <div className="text-center max-w-[900px] mx-auto">
-            <p className="text-[#2B2B2B] text-lg leading-relaxed mb-6">
-              {t.welcomeText}
-            </p>
-          </div>
+      <section className="heritage-feature-rail heritage-section" aria-label="Museum digital experiences">
+        <div className="heritage-section-heading">
+          <div><span className="heritage-section-kicker">CHOOSE YOUR LAYER</span><h2>Look closer. Go further.</h2></div>
+          <span className="heritage-section-note">01 — 02</span>
+        </div>
+        <div className="heritage-feature-grid">
+          <article className="heritage-feature-card heritage-feature-card--ar">
+            <div className="heritage-feature-image"><img src="/images/zones/autoguide-image-(10).jpeg" alt="Visitors exploring a heritage display with a phone" loading="lazy" /><span className="heritage-feature-tag"><ScanLine size={15} aria-hidden="true" /> DIGITAL LAYER</span></div>
+            <div className="heritage-feature-copy"><h3>{t.arTitle}</h3><p>{t.arText}</p><a className="heritage-text-link" href="https://play.google.com/store/apps/details?id=com.dtopeng.ihmarr" target="_blank" rel="noopener noreferrer">{t.downloadAR}<ExternalLink size={16} aria-hidden="true" /></a></div>
+          </article>
+          <article className="heritage-feature-card heritage-feature-card--guide">
+            <div className="heritage-feature-image"><img src="/images/auto-tour.png" alt="Auto Guide museum route" loading="lazy" /><span className="heritage-feature-tag"><Map size={15} aria-hidden="true" /> REGIONAL ROUTES</span></div>
+            <div className="heritage-feature-copy"><h3>{t.autoTitle}</h3><p>{t.autoText}</p><Link className="heritage-text-link" to="/auto-guide">{t.autoGuide}<ArrowRight size={16} aria-hidden="true" /></Link></div>
+          </article>
         </div>
       </section>
 
-      {/* Two Feature Cards */}
-      <section
-        id="feature-cards"
-        className="fade-in-section py-12 px-4"
-        style={{
-          opacity: isVisible['feature-cards'] ? 1 : 0,
-          transform: isVisible['feature-cards'] ? 'translateY(0)' : 'translateY(30px)',
-          transition: 'all 0.8s ease-out',
-        }}
-      >
-        <div className="max-w-[1200px] mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* AR Card */}
-            <div className="bg-white rounded shadow-md overflow-hidden hover:shadow-xl transition-all duration-300">
-              <div className="h-80 overflow-hidden">
-                <img
-                  src="https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772936678/1_23_x5apvd.webp"
-                  alt="Augmented Reality"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-8">
-                <h3 className="font-['Cinzel'] text-3xl text-[#2B2B2B] mb-4">{t.arTitle}</h3>
-                <p className="text-[#5A5A5A] text-lg leading-relaxed mb-6">
-                  {t.arText}
-                </p>
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.dtopeng.ihmarr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#D97234] text-white rounded hover:bg-[#C0611D] transition-all shadow-lg hover:shadow-xl"
-                >
-                  {t.arTitle}
-                  <ExternalLink className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Auto Guide Card */}
-            <div className="bg-white rounded shadow-md overflow-hidden hover:shadow-xl transition-all duration-300">
-              <div className="h-80 overflow-hidden">
-                <img
-                  src="/images/auto-tour.png"
-                  alt="Auto Self Guided Tour"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-8">
-                <h3 className="font-['Cinzel'] text-3xl text-[#2B2B2B] mb-4">{t.autoTitle}</h3>
-                <p className="text-[#5A5A5A] text-lg leading-relaxed mb-6">
-                  {t.autoText}
-                </p>
-                <Link
-                  to="/auto-guide"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#D97234] text-white rounded hover:bg-[#C0611D] transition-all shadow-lg hover:shadow-xl"
-                >
-                  {t.autoTitle}
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section className="heritage-archive-slice heritage-section">
+        <div className="heritage-archive-image"><img src="/images/zones/austronesia.jpeg" alt="Austronesia gallery at Indonesian Heritage Museum" loading="lazy" /><span>FIELD NOTE / 02</span></div>
+        <div className="heritage-archive-copy"><span className="heritage-section-kicker">THE LIVING ARCHIVE</span><h2>{t.archiveTitle}</h2><p>{t.archiveText}</p><div className="heritage-route-pills"><span>AUSTRONESIA</span><span>NUSANTARA</span><span>JAWA</span></div><Link to="/auto-guide" className="heritage-button heritage-button--dark">{t.explore}<ArrowRight size={16} aria-hidden="true" /></Link></div>
       </section>
 
-      {/* Full Width Image 1 */}
-      <section
-        id="image-1"
-        className="fade-in-section py-12 px-4"
-        style={{
-          opacity: isVisible['image-1'] ? 1 : 0,
-          transform: isVisible['image-1'] ? 'translateY(0)' : 'translateY(30px)',
-          transition: 'all 0.8s ease-out',
-        }}
-      >
-        <div className="max-w-[1400px] mx-auto">
-          <img
-            src="https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772921565/IHM1-1024x576_1_yhi1lk.webp"
-            alt="Pengunjung melihat koleksi topeng di dinding"
-            className="w-full h-[500px] object-cover rounded-lg shadow-lg"
-          />
-        </div>
-      </section>
-
-      {/* Text Section 1 */}
-      <section
-        id="text-1"
-        className="fade-in-section py-16 px-4"
-        style={{
-          opacity: isVisible['text-1'] ? 1 : 0,
-          transform: isVisible['text-1'] ? 'translateY(0)' : 'translateY(30px)',
-          transition: 'all 0.8s ease-out',
-        }}
-      >
-        <div className="max-w-[900px] mx-auto text-center">
-          <p className="text-[#2B2B2B] text-xl leading-relaxed">
-            {t.welcomeText}
-          </p>
-        </div>
-      </section>
-
-      {/* Full Width Image 2 */}
-      <section
-        id="image-2"
-        className="fade-in-section py-12 px-4"
-        style={{
-          opacity: isVisible['image-2'] ? 1 : 0,
-          transform: isVisible['image-2'] ? 'translateY(0)' : 'translateY(30px)',
-          transition: 'all 0.8s ease-out',
-        }}
-      >
-        <div className="max-w-[1400px] mx-auto">
-          <img
-            src="https://res.cloudinary.com/dnbq1z8lx/image/upload/v1772928951/1-649ec852e1a1676b31155872_y8trlr.webp"
-            alt="Koleksi topeng emas di display"
-            className="w-full h-[500px] object-cover rounded-lg shadow-lg"
-          />
-        </div>
-      </section>
-
-      {/* Text Section 2 */}
-      <section
-        id="text-2"
-        className="fade-in-section py-16 px-4 mb-12"
-        style={{
-          opacity: isVisible['text-2'] ? 1 : 0,
-          transform: isVisible['text-2'] ? 'translateY(0)' : 'translateY(30px)',
-          transition: 'all 0.8s ease-out',
-        }}
-      >
-        <div className="max-w-[900px] mx-auto text-center">
-          <p className="text-[#2B2B2B] text-xl leading-relaxed">
-            {t.text2a}
-            <span className="font-bold text-[#D97234]">Augmented Reality</span>
-            {t.text2b}
-            <span className="font-bold text-[#D97234]">Autoself Guided Tour</span>
-            {t.text2c}
-          </p>
-        </div>
+      <section className="heritage-film-strip" aria-label="Museum story">
+        <div className="heritage-film-strip-copy"><Play size={18} aria-hidden="true" /><span>THE ARCHIVE MOVES</span><p>Every object carries a route. Follow it.</p></div>
+        <img src="/images/zones/majapahit.jpeg" alt="Majapahit heritage display" loading="lazy" />
+        <img src="/images/zones/jatim.jpeg" alt="East Java heritage display" loading="lazy" />
+        <img src="/images/zones/jateng.jpeg" alt="Central Java heritage display" loading="lazy" />
       </section>
     </div>
   );

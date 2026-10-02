@@ -119,7 +119,12 @@ export default function ObjectPage() {
                 </div>
             </div>
 
-            <div className="relative bg-[#8C6B3E] text-white py-12 px-4">
+            <div
+                className="heritage-object-hero relative bg-[#8C6B3E] text-white py-12 px-4"
+                style={{
+                    backgroundImage: `linear-gradient(90deg, rgba(19, 60, 67, .94), rgba(19, 60, 67, .56)), url("${getObjectImage(object)}")`,
+                }}
+            >
                 <div className="max-w-[1200px] mx-auto">
                     <div className="flex items-center justify-between gap-4 mb-4">
                         <div className="flex items-center gap-2 text-sm opacity-80">

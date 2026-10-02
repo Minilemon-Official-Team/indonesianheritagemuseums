@@ -1,18 +1,18 @@
 export default function WhatsAppButton() {
   return (
     <a
-      href="https://wa.me/6285748405800"
+      href="https://wa.me/6281334370700"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 group"
+      className="heritage-whatsapp fixed bottom-6 right-6 z-50 group"
       aria-label="Contact us on WhatsApp"
     >
-      <div className="relative">
+      <div className="heritage-whatsapp-shell relative">
         {/* Pulsing animation ring */}
-        <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-75"></div>
+        <div className="heritage-whatsapp-ring absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-75"></div>
         
         {/* Main button */}
-        <div className="relative bg-[#25D366] hover:bg-[#128C7E] transition-all duration-300 rounded-full p-4 shadow-lg hover:shadow-2xl transform hover:scale-110">
+        <div className="heritage-whatsapp-button relative bg-[#25D366] hover:bg-[#128C7E] transition-all duration-300 rounded-full p-4 shadow-lg hover:shadow-2xl transform hover:scale-110">
           {/* WhatsApp Icon SVG */}
           <svg
             className="w-7 h-7 md:w-8 md:h-8 text-white"
@@ -26,7 +26,7 @@ export default function WhatsAppButton() {
       </div>
       
       {/* Tooltip on hover - only visible on desktop */}
-      <div className="hidden md:block absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
+      <div className="heritage-whatsapp-tooltip hidden md:block absolute right-full mr-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap">
         <div className="bg-[#1F2937] text-white px-3 py-2 rounded-lg text-sm shadow-lg">
           Chat dengan kami di WhatsApp
           <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 rotate-45 w-2 h-2 bg-[#1F2937]"></div>

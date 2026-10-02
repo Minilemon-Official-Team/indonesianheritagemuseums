@@ -1,4 +1,4 @@
-export const CMS_API_URL = import.meta.env.VITE_CMS_API_URL || "http://localhost:8787";
+export const CMS_API_URL = (import.meta.env.VITE_CMS_API_URL || "https://api.gloryofislammuseum.com").trim();
 export const SITE_ID = import.meta.env.VITE_SITE_ID || "indonesian-heritage";
 
 export interface CmsPost {

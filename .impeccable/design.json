@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-02T00:00:00+07:00",
+  "title": "Design System: Indonesian Heritage Museum Field Atlas",
+  "extensions": {
+    "colorMeta": {
+      "primary": { "role": "primary", "displayName": "Archive Teal", "canonical": "#245F64", "tonalRamp": ["#102C31", "#163E43", "#1B5053", "#245F64", "#4C7D7B", "#779B93", "#A7BBB0", "#D7DED3"] },
+      "accent": { "role": "secondary", "displayName": "Terracotta Annotation", "canonical": "#B65A3B", "tonalRamp": ["#4B2118", "#6A3023", "#873F2E", "#B65A3B", "#C97A60", "#DA9A84", "#E8BBA9", "#F4DDD3"] },
+      "ink": { "role": "neutral", "displayName": "Archive Ink", "canonical": "#153641", "tonalRamp": ["#0B1B20", "#102A32", "#153641", "#2D535A", "#5A777B", "#8CA1A2", "#BDC9C5", "#E4E9E2"] },
+      "paper": { "role": "neutral", "displayName": "Woven Paper", "canonical": "#F3ECDE", "tonalRamp": ["#5A554B", "#827A6D", "#A59C8E", "#C4BBAA", "#D9D1C1", "#E5DECF", "#EEE8DC", "#F3ECDE"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Lora Display", "purpose": "Museum names, route statements, and archive headlines." },
+      "body": { "displayName": "DM Sans Utility", "purpose": "Navigation, descriptions, metadata, and controls." }
+    },
+    "shadows": [
+      { "name": "ambient-card", "value": "0 18px 44px rgba(19, 60, 67, .11)", "purpose": "Quiet separation for image-led cards." },
+      { "name": "header-veil", "value": "0 10px 28px rgba(21, 54, 65, .06)", "purpose": "Separation beneath the fixed navigation." }
+    ],
+    "motion": [
+      { "name": "atlas-hover", "value": "transform .25s ease, background .25s ease, color .25s ease", "purpose": "Small tactile response for actions and cards." }
+    ],
+    "breakpoints": [
+      { "name": "tablet", "value": "900px" },
+      { "name": "phone", "value": "560px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Terracotta action button for the next museum route.",
+      "html": "<button class=\"ds-btn-primary\">OPEN AUTO GUIDE <span aria-hidden=\"true\">→</span></button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; gap:10px; min-height:46px; padding:0 18px; border:1px solid transparent; border-radius:2px; background:#B65A3B; color:#FFFDF8; font:700 .72rem/1 DM Sans, sans-serif; letter-spacing:.11em; text-transform:uppercase; transition:transform .25s ease, background .25s ease; } .ds-btn-primary:hover { background:#873F2E; transform:translateY(-2px); } .ds-btn-primary:focus-visible { outline:2px solid #F0AD86; outline-offset:3px; }"
+    },
+    {
+      "name": "Archive Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outlined companion action used beside a stronger route signal.",
+      "html": "<button class=\"ds-btn-archive\">PLAN YOUR VISIT</button>",
+      "css": ".ds-btn-archive { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border:1px solid rgba(255,253,248,.46); border-radius:2px; background:transparent; color:#FFFDF8; font:700 .72rem/1 DM Sans, sans-serif; letter-spacing:.11em; text-transform:uppercase; transition:background .25s ease, transform .25s ease; } .ds-btn-archive:hover { background:rgba(255,253,248,.1); transform:translateY(-2px); } .ds-btn-archive:focus-visible { outline:2px solid #F0AD86; outline-offset:3px; }"
+    },
+    {
+      "name": "Archive Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Fixed paper veil navigation with compact wayfinding labels.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#archive\">GALLERY</a><a href=\"#visit\">VISIT</a><button aria-label=\"Open menu\">☰</button></nav>",
+      "css": ".ds-nav { display:flex; align-items:center; gap:28px; padding:18px 24px; border-bottom:1px solid rgba(21,54,65,.2); background:rgba(243,236,222,.92); color:#153641; font:700 .68rem/1.2 DM Sans, sans-serif; letter-spacing:.12em; text-transform:uppercase; } .ds-nav a:hover { color:#B65A3B; } .ds-nav button { color:inherit; background:transparent; border:0; }"
+    },
+    {
+      "name": "Feature Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Opaque archive card pairing documentary imagery with a clear route.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-image\"></div><div class=\"ds-card-copy\"><small>REGIONAL ROUTE</small><h3>START WITH ONE ZONE</h3><p>Follow the collection by place and story.</p></div></article>",
+      "css": ".ds-card { overflow:hidden; border:1px solid rgba(21,54,65,.2); border-radius:2px; background:#FFFDF8; color:#153641; box-shadow:0 18px 44px rgba(19,60,67,.11); } .ds-card-image { height:180px; background:#245F64; } .ds-card-copy { padding:28px 30px 34px; } .ds-card-copy small { color:#B65A3B; font:700 .68rem/1.2 DM Sans, sans-serif; letter-spacing:.2em; } .ds-card-copy h3 { margin:12px 0; font:500 2rem/1 Lora, Georgia, serif; } .ds-card-copy p { margin:0; color:#46606A; font:400 1rem/1.7 DM Sans, sans-serif; }"
+    },
+    {
+      "name": "Archive Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Small filter or route marker that stays legible against paper or teal.",
+      "html": "<span class=\"ds-chip\">17 STORY ZONES</span>",
+      "css": ".ds-chip { display:inline-flex; padding:8px 10px; border:1px solid rgba(21,54,65,.2); color:#245F64; font:700 .64rem/1 DM Sans, sans-serif; letter-spacing:.12em; text-transform:uppercase; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Nusantara Field Atlas",
+    "overview": "The site behaves like a living field notebook: visitors follow routes, compare regions, and choose a next layer of exploration. Deep teal and indigo-like ink create a calm archive ground; terracotta annotations mark action and discovery; documentary imagery keeps the museum present rather than ornamental. The field-atlas world is deliberately separate from the Glory of Islam Museum's warm gold editorial language.",
+    "keyCharacteristics": ["Dark teal archive heroes with terracotta route markers.", "Warm woven-paper texture behind opaque reading surfaces.", "Lora display type paired with DM Sans utility copy.", "Real museum images and a muted local hero film as evidence."],
+    "rules": [
+      { "name": "The Material Boundary Rule", "body": "The paper texture belongs behind the app at z-index 0; never lower the opacity of a content component to reveal it.", "section": "elevation" },
+      { "name": "The Two-Voice Rule", "body": "Lora speaks for place and story; DM Sans speaks for action and navigation.", "section": "typography" }
+    ],
+    "dos": ["Do let real museum imagery carry the meaning of each route.", "Do use the local hero film muted, looping, and with a poster fallback.", "Do keep the woven paper visible only as a background material."],
+    "donts": ["Don't reuse the Glory of Islam Museum's gold/cream hero language or spotlight glow.", "Don't place text directly on a noisy texture without an opaque or darkened surface.", "Don't use gradients as decoration; gradients are only image legibility washes."]
+  }
+}

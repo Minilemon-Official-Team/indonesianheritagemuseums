@@ -62,7 +62,7 @@ export default function Footer() {
   const t = T[lang];
 
   return (
-    <footer className="bg-[#E7DED0] border-t border-[#C8B9A6]">
+    <footer className="heritage-footer bg-[#E7DED0] border-t border-[#C8B9A6]">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* About Section */}
@@ -151,7 +151,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-[#5A5A5A] text-sm">
                 <Phone className="w-4 h-4 flex-shrink-0 text-[#8C6B3E]" />
-                <span>+62 857-4840-5800</span>
+                <span>+62 813-3437-0700</span>
               </li>
             </ul>
           </div>

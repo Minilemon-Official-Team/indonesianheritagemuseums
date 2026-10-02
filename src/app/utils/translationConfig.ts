@@ -1,7 +1,7 @@
 // Translation Configuration for Indonesian Heritage Museum
 // All audio and translations served from Cloudflare R2 + Workers
 
-export const R2_BASE_URL = 'https://pub-135a7545edfc4289af5e9373bf26a44b.r2.dev';
+export const R2_BASE_URL = 'https://audio.indonesianheritagemuseum.com';
 export const WORKER_API = 'https://translation-worker.dtopengkingdom.workers.dev';
 
 export const LANGUAGES = [
