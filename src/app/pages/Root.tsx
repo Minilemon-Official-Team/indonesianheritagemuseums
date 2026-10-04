@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import WhatsAppButton from '../components/WhatsAppButton';
 import HeritageHero from '../components/HeritageHero';
+import PageTranslator from '../components/PageTranslator';
 
 const quietRouteHeroes = {
   '/news': {
@@ -71,6 +72,7 @@ export default function Root() {
 
   return (
     <div className="heritage-app min-h-screen flex flex-col" data-heritage-route={location.pathname}>
+      <PageTranslator />
       <Header />
       <main className="heritage-main flex-1 pt-20">
         {hero && <HeritageHero {...hero} variant="archive" />}
